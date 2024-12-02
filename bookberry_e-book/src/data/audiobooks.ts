@@ -9,7 +9,22 @@ export const audiobooks: Book[] = [
     progress: 45,
     isAudio: true,
     duration: 420,
-    narrator: 'Rasim Balayev'
+    narrator: 'Rasim Balayev',
+    description: 'Əli və Nino romanı, Azərbaycan və Gürcüstan arasındakı mədəni və dini fərqləri əks etdirən bir məhəbbət hekayəsidir. Əsər XX əsrin əvvəllərində Bakıda cərəyan edir.',
+    publishedYear: 1937,
+    language: 'Azərbaycanca',
+    genre: 'Roman',
+    rating: 4.8,
+    reviews: [
+      {
+        id: '1',
+        userId: 'user1',
+        userName: 'Aynur Məmmədova',
+        rating: 5,
+        comment: 'Rasim Balayevin səsləndirməsi əsəri daha da canlandırır.',
+        date: '2024-02-15'
+      }
+    ]
   },
   {
     id: 'audio-2',
@@ -19,7 +34,12 @@ export const audiobooks: Book[] = [
     progress: 30,
     isAudio: true,
     duration: 380,
-    narrator: 'Həsən Məmmədov'
+    narrator: 'Həsən Məmmədov',
+    description: 'Dədə Qorqud dastanları Oğuz türklərinin həyatını, adət-ənənələrini, qəhrəmanlıq tarixini əks etdirən epik folklor əsəridir.',
+    publishedYear: 1815,
+    language: 'Azərbaycanca',
+    genre: 'Dastan',
+    rating: 4.9
   },
   {
     id: 'audio-3',
@@ -29,7 +49,12 @@ export const audiobooks: Book[] = [
     progress: 60,
     isAudio: true,
     duration: 290,
-    narrator: 'Məlahət Abbasova'
+    narrator: 'Məlahət Abbasova',
+    description: 'Azərbaycan qadınının azadlıq mübarizəsini əks etdirən dram əsəri.',
+    publishedYear: 1928,
+    language: 'Azərbaycanca',
+    genre: 'Dram',
+    rating: 4.7
   },
   {
     id: 'audio-4',
@@ -39,6 +64,11 @@ export const audiobooks: Book[] = [
     progress: 15,
     isAudio: true,
     duration: 180,
-    narrator: 'Şəfiqə Məmmədova'
+    narrator: 'Şəfiqə Məmmədova',
+    description: 'Kimsəsiz bir qızın həyat hekayəsini əks etdirən təsirli əsər.',
+    publishedYear: 1926,
+    language: 'Azərbaycanca',
+    genre: 'Hekayə',
+    rating: 4.6
   }
 ];

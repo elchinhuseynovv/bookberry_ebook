@@ -7,6 +7,30 @@ export const books: Book[] = [
     author: 'Qurban Səid',
     cover: 'https://upload.wikimedia.org/wikipedia/az/8/83/Əli_və_Nino.jpg',
     progress: 65,
+    description: 'Əli və Nino romanı, Azərbaycan və Gürcüstan arasındakı mədəni və dini fərqləri əks etdirən bir məhəbbət hekayəsidir. Əsər XX əsrin əvvəllərində Bakıda cərəyan edir.',
+    publishedYear: 1937,
+    language: 'Azərbaycanca',
+    pages: 288,
+    genre: 'Roman',
+    rating: 4.8,
+    reviews: [
+      {
+        id: '1',
+        userId: 'user1',
+        userName: 'Aynur Məmmədova',
+        rating: 5,
+        comment: 'Azərbaycan ədəbiyyatının şah əsərlərindən biri. Mütləq oxunmalı bir kitabdır.',
+        date: '2024-02-15'
+      },
+      {
+        id: '2',
+        userId: 'user2',
+        userName: 'Elçin Əliyev',
+        rating: 4.5,
+        comment: 'Tarixi və mədəni konteksti çox gözəl təsvir edilib.',
+        date: '2024-01-20'
+      }
+    ]
   },
   {
     id: '2',
@@ -14,6 +38,22 @@ export const books: Book[] = [
     author: 'Xalq dastanı',
     cover: 'https://altunkitab.az/storage/347/conversions/dede_qorqud2018-blade.jpg',
     progress: 30,
+    description: 'Dədə Qorqud dastanları Oğuz türklərinin həyatını, adət-ənənələrini, qəhrəmanlıq tarixini əks etdirən epik folklor əsəridir.',
+    publishedYear: 1815,
+    language: 'Azərbaycanca',
+    pages: 256,
+    genre: 'Dastan',
+    rating: 4.9,
+    reviews: [
+      {
+        id: '3',
+        userId: 'user3',
+        userName: 'Rəşad Hüseynov',
+        rating: 5,
+        comment: 'Milli kimliyimizi əks etdirən ən dəyərli əsərlərdən biri.',
+        date: '2024-03-01'
+      }
+    ]
   },
   {
     id: '3',
@@ -21,6 +61,12 @@ export const books: Book[] = [
     author: 'Çingiz Abdullayev',
     cover: 'https://www.teaspress.az/storage/1354/conversions/boyuk-oyun-front-book.jpg',
     progress: 0,
+    description: 'Beynəlxalq intriqalar və siyasi oyunların mərkəzində cərəyan edən detektiv əsər.',
+    publishedYear: 2020,
+    language: 'Azərbaycanca',
+    pages: 312,
+    genre: 'Detektiv',
+    rating: 4.5
   },
   {
     id: '4',
@@ -28,6 +74,12 @@ export const books: Book[] = [
     author: 'Çingiz Abdullayev',
     cover: 'https://www.teaspress.az/storage/1831/conversions/yalniz-ozumuzunkuler-front-book.png',
     progress: 45,
+    description: 'Müasir cəmiyyətdə baş verən hadisələri və insan münasibətlərini əks etdirən psixoloji roman.',
+    publishedYear: 2021,
+    language: 'Azərbaycanca',
+    pages: 280,
+    genre: 'Roman',
+    rating: 4.3
   },
   {
     id: '5',
@@ -35,40 +87,11 @@ export const books: Book[] = [
     author: 'Nəriman Nərimanov',
     cover: 'https://bakubookcenter.az/get-product-image?fileId=85084',
     progress: 15,
-  },
-  {
-    id: '6',
-    title: 'Sevil',
-    author: 'Cəfər Cabbarlı',
-    cover: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1675550751i/13640058.jpg',
-    progress: 78,
-  },
-  {
-    id: '7',
-    title: 'Yarpaq Tökümü',
-    author: 'Rəşad Nuri Güntəkin',
-    cover: 'https://kitabal.az/img/books/9304821.jpg',
-    progress: 92,
-  },
-  {
-    id: '8',
-    title: 'Pəri Cadu',
-    author: 'Əbdürrəhim bəy Haqverdiyev',
-    cover: 'https://novella.az/wp-content/uploads/2021/03/PƏRI-CADU.jpg',
-    progress: 23,
-  },
-  {
-    id: '9',
-    title: 'Oliqarxın Səhvi',
-    author: 'Çingiz Abdullayev',
-    cover: 'https://www.teaspress.az/storage/1194/conversions/oliqarxin-sehvi-front-book.png',
-    progress: 55,
-  },
-  {
-    id: '10',
-    title: 'Qaraca Qız',
-    author: 'Süleyman Sani Axundov',
-    cover: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1572986942i/48714609.jpg',
-    progress: 88,
+    description: 'XIX əsrin sonu XX əsrin əvvəllərində Azərbaycan cəmiyyətində baş verən hadisələri əks etdirən məhəbbət romanı.',
+    publishedYear: 1896,
+    language: 'Azərbaycanca',
+    pages: 184,
+    genre: 'Roman',
+    rating: 4.6
   }
 ];

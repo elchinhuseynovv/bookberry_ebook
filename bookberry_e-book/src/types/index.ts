@@ -5,13 +5,29 @@ export interface Book {
   cover: string;
   progress: number;
   isAudio?: boolean;
-  duration?: number; // in minutes
+  duration?: number;
   narrator?: string;
+  description?: string;
+  publishedYear?: number;
+  language?: string;
+  pages?: number;
+  genre?: string;
+  rating?: number;
+  reviews?: Review[];
+}
+
+export interface Review {
+  id: string;
+  userId: string;
+  userName: string;
+  rating: number;
+  comment: string;
+  date: string;
 }
 
 export type ThemeMode = 'light' | 'dark' | 'sepia';
 
-export type ViewMode = 'library' | 'audiobooks' | 'bookmarks' | 'settings';
+export type ViewMode = 'library' | 'audiobooks' | 'bookmarks' | 'settings' | 'book-details';
 
 export interface Bookmark {
   id: string;

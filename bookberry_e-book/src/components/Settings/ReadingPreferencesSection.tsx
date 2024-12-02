@@ -2,6 +2,8 @@ import React from 'react';
 import { ReadingPreferences } from '../../types';
 import { az } from '../../constants/translations';
 import { Type, AlignLeft, AlignCenter, AlignJustify } from 'lucide-react';
+import { SettingHeader } from './SettingHeader';
+import { Toggle } from './Toggle';
 
 interface Props {
   preferences: ReadingPreferences;
@@ -16,15 +18,16 @@ export const ReadingPreferencesSection: React.FC<Props> = ({ preferences, onSave
   };
 
   return (
-    <div className="rounded-2xl bg-white p-6 shadow-md dark:bg-gray-800">
-      <div className="flex items-center gap-3 mb-6">
-        <Type className="text-purple-600" size={24} />
-        <h2 className="text-2xl font-bold text-purple-600">{az.readingPreferences.title}</h2>
-      </div>
+    <div className="space-y-6">
+      <SettingHeader
+        icon={<Type size={24} />}
+        title={az.readingPreferences.title}
+        className="text-blue-700 dark:text-blue-400"
+      />
 
-      <div className="space-y-6">
+      <div className="space-y-6 rounded-2xl bg-white/50 p-6 dark:bg-gray-800/50">
         <div>
-          <label className="mb-2 block text-sm font-medium text-gray-600 dark:text-gray-300">
+          <label className="mb-3 block text-sm font-medium text-gray-600 dark:text-gray-300">
             {az.readingPreferences.fontSize}
           </label>
           <input
@@ -33,16 +36,17 @@ export const ReadingPreferencesSection: React.FC<Props> = ({ preferences, onSave
             max="24"
             value={editedPreferences.fontSize}
             onChange={(e) => setEditedPreferences({ ...editedPreferences, fontSize: Number(e.target.value) })}
-            className="w-full accent-purple-600"
+            className="h-2 w-full appearance-none rounded-full bg-blue-100 accent-blue-600"
           />
-          <div className="mt-1 flex justify-between text-sm text-gray-500">
+          <div className="mt-2 flex justify-between text-sm text-gray-500">
             <span>12px</span>
+            <span className="font-medium">{editedPreferences.fontSize}px</span>
             <span>24px</span>
           </div>
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-gray-600 dark:text-gray-300">
+          <label className="mb-3 block text-sm font-medium text-gray-600 dark:text-gray-300">
             {az.readingPreferences.textAlignment}
           </label>
           <div className="flex gap-2">
@@ -54,10 +58,10 @@ export const ReadingPreferencesSection: React.FC<Props> = ({ preferences, onSave
               <button
                 key={alignment.value}
                 onClick={() => setEditedPreferences({ ...editedPreferences, textAlignment: alignment.value as any })}
-                className={`p-2 rounded-lg ${
+                className={`rounded-xl p-3 transition-colors ${
                   editedPreferences.textAlignment === alignment.value
-                    ? 'bg-purple-100 text-purple-600'
-                    : 'text-gray-500 hover:bg-gray-100'
+                    ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
+                    : 'text-gray-500 hover:bg-blue-50 dark:hover:bg-blue-900/20'
                 }`}
               >
                 {alignment.icon}
@@ -66,7 +70,7 @@ export const ReadingPreferencesSection: React.FC<Props> = ({ preferences, onSave
           </div>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {[
             { key: 'autoPlayAudio', label: az.readingPreferences.autoPlayAudio },
             { key: 'showPageNumber', label: az.readingPreferences.showPageNumber },
@@ -74,33 +78,23 @@ export const ReadingPreferencesSection: React.FC<Props> = ({ preferences, onSave
           ].map((setting) => (
             <div key={setting.key} className="flex items-center justify-between">
               <span className="text-sm text-gray-600 dark:text-gray-300">{setting.label}</span>
-              <button
-                onClick={() =>
+              <Toggle
+                enabled={editedPreferences[setting.key as keyof ReadingPreferences]}
+                onChange={() =>
                   setEditedPreferences({
                     ...editedPreferences,
                     [setting.key]: !editedPreferences[setting.key as keyof ReadingPreferences]
                   })
                 }
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  editedPreferences[setting.key as keyof ReadingPreferences]
-                    ? 'bg-purple-600'
-                    : 'bg-gray-200'
-                }`}
-              >
-                <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    editedPreferences[setting.key as keyof ReadingPreferences] ? 'translate-x-6' : 'translate-x-1'
-                  }`}
-                />
-              </button>
+              />
             </div>
           ))}
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-end pt-4">
           <button
             onClick={handleSave}
-            className="rounded-lg bg-purple-600 px-4 py-2 text-white hover:bg-purple-700"
+            className="rounded-xl bg-blue-600 px-6 py-2 font-medium text-white shadow-lg shadow-blue-200 hover:bg-blue-700 dark:shadow-blue-900/20"
           >
             {az.profile.save}
           </button>

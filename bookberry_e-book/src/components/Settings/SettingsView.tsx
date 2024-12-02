@@ -56,11 +56,22 @@ export const SettingsView: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 max-w-3xl mx-auto">
-      <ProfileSection profile={defaultProfile} onSave={handleProfileSave} />
-      <ReadingPreferencesSection preferences={defaultReadingPreferences} onSave={handleReadingPreferencesSave} />
-      <NotificationsSection settings={defaultNotificationSettings} onSave={handleNotificationsSave} />
-      <AccessibilitySection settings={defaultAccessibilitySettings} onSave={handleAccessibilitySave} />
+    <div className="space-y-8 max-w-3xl mx-auto pb-12">
+      <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-3xl p-8 shadow-lg">
+        <ProfileSection profile={defaultProfile} onSave={handleProfileSave} />
+      </div>
+      
+      <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-3xl p-8 shadow-lg">
+        <ReadingPreferencesSection preferences={defaultReadingPreferences} onSave={handleReadingPreferencesSave} />
+      </div>
+      
+      <div className="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 rounded-3xl p-8 shadow-lg">
+        <NotificationsSection settings={defaultNotificationSettings} onSave={handleNotificationsSave} />
+      </div>
+      
+      <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 rounded-3xl p-8 shadow-lg">
+        <AccessibilitySection settings={defaultAccessibilitySettings} onSave={handleAccessibilitySave} />
+      </div>
     </div>
   );
 };

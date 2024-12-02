@@ -18,6 +18,15 @@ export const az = {
   duration: 'Müddət',
   narrator: 'Səsləndirən',
   minutes: 'dəqiqə',
+  read: 'Oxu',
+  listen: 'Dinlə',
+  bookDetails: 'Kitab haqqında',
+  description: 'Təsvir',
+  publishedYear: 'Nəşr ili',
+  pages: 'Səhifə sayı',
+  language: 'Dil',
+  genre: 'Janr',
+  reviews: 'Rəylər',
   profile: {
     title: 'Profil',
     name: 'Ad',
@@ -27,6 +36,7 @@ export const az = {
     booksPerMonth: 'kitab/ay',
     save: 'Yadda saxla',
     cancel: 'Ləğv et',
+    edit: 'Düzəliş et',
     uploadPhoto: 'Şəkil yüklə',
     removePhoto: 'Şəkli sil'
   },

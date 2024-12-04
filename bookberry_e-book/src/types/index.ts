@@ -45,6 +45,18 @@ export interface UserProfile {
   readingGoal?: number;
 }
 
+export interface SecuritySettings {
+  twoFactorEnabled: boolean;
+  lastPasswordChange: Date;
+  securityQuestions: SecurityQuestion[];
+  password?: string;
+}
+
+export interface SecurityQuestion {
+  question: string;
+  answer: string;
+}
+
 export interface ReadingPreferences {
   fontSize: number;
   lineSpacing: number;

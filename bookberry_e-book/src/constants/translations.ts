@@ -38,6 +38,21 @@ export const az = {
     checkYourEmail: 'E-poçtunuzu yoxlayın',
     resetEmailSent: 'Şifrə sıfırlama linki e-poçt ünvanınıza göndərildi'
   },
+  security: {
+    title: 'Təhlükəsizlik',
+    currentPassword: 'Cari şifrə',
+    currentPasswordPlaceholder: 'Cari şifrənizi daxil edin',
+    newPassword: 'Yeni şifrə',
+    newPasswordPlaceholder: 'Yeni şifrənizi daxil edin',
+    confirmNewPassword: 'Yeni şifrəni təsdiqləyin',
+    confirmNewPasswordPlaceholder: 'Yeni şifrənizi təkrar daxil edin',
+    twoFactorAuth: 'İki faktorlu doğrulama',
+    twoFactorAuthDescription: 'Hesabınızı daha təhlükəsiz etmək üçün əlavə təhlükəsizlik təbəqəsi əlavə edin',
+    enabled: 'Aktiv',
+    disabled: 'Deaktiv',
+    lastPasswordChange: 'Son şifrə dəyişikliyi',
+    securityQuestions: 'Təhlükəsizlik sualları'
+  },
   readingProgress: 'Oxuma irəliləyişi',
   listeningProgress: 'Dinləmə irəliləyişi',
   addBookmark: 'Əlfəcin əlavə et',

@@ -173,13 +173,17 @@ function App() {
   const mainContent = (
     <div className={`min-h-screen ${themeClasses[theme]} transition-colors duration-300`}>
       <Sidebar currentView={currentView} onViewChange={setCurrentView} />
-      <main className="ml-16 p-8">
+      <main className="ml-16 p-4 sm:p-8">
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Logo />
-            <h1 className="text-3xl font-bold text-purple-600 tracking-tight">{az.appName}</h1>
+            <h1 className="text-3xl font-bold text-purple-600 tracking-tight hidden sm:block">
+              {az.appName}
+            </h1>
           </div>
-          <ThemeToggle currentTheme={theme} onThemeChange={setTheme} />
+          <div className="flex items-center gap-2">
+            <ThemeToggle currentTheme={theme} onThemeChange={setTheme} />
+          </div>
         </div>
         
         {renderContent()}

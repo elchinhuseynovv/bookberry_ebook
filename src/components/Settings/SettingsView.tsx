@@ -4,6 +4,7 @@ import { SecuritySection } from './SecuritySection';
 import { ReadingPreferencesSection } from './ReadingPreferencesSection';
 import { NotificationsSection } from './NotificationsSection';
 import { AccessibilitySection } from './AccessibilitySection';
+import { SettingsTab } from './SettingsTab';
 import { 
   UserProfile, 
   ReadingPreferences, 
@@ -15,7 +16,7 @@ import { Settings as SettingsIcon, BookOpen, Bell, Eye } from 'lucide-react';
 import { az } from '../../constants/translations';
 import { storage } from '../../services/storage';
 
-type SettingsTab = 'account' | 'reading' | 'notifications' | 'accessibility';
+type TabId = 'account' | 'reading' | 'notifications' | 'accessibility';
 
 const defaultProfile: UserProfile = {
   name: 'İstifadəçi',
@@ -56,8 +57,43 @@ const defaultAccessibilitySettings: AccessibilitySettings = {
   textToSpeech: false
 };
 
+const tabs = [
+  { 
+    id: 'account', 
+    label: az.settings, 
+    icon: SettingsIcon, 
+    color: 'violet',
+    gradient: 'from-violet-500 to-purple-600',
+    shadow: 'shadow-violet-500/25'
+  },
+  { 
+    id: 'reading', 
+    label: az.readingPreferences.title, 
+    icon: BookOpen, 
+    color: 'sky',
+    gradient: 'from-sky-500 to-blue-600',
+    shadow: 'shadow-sky-500/25'
+  },
+  { 
+    id: 'notifications', 
+    label: az.notifications.title, 
+    icon: Bell, 
+    color: 'rose',
+    gradient: 'from-rose-500 to-pink-600',
+    shadow: 'shadow-rose-500/25'
+  },
+  { 
+    id: 'accessibility', 
+    label: az.accessibility.title, 
+    icon: Eye, 
+    color: 'indigo',
+    gradient: 'from-indigo-500 to-blue-600',
+    shadow: 'shadow-indigo-500/25'
+  }
+];
+
 export const SettingsView: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<SettingsTab>('account');
+  const [activeTab, setActiveTab] = useState<TabId>('account');
   const [profile, setProfile] = useState<UserProfile>(defaultProfile);
   const [securitySettings, setSecuritySettings] = useState<SecuritySettings>(defaultSecuritySettings);
   const [readingPreferences, setReadingPreferences] = useState<ReadingPreferences>(defaultReadingPreferences);
@@ -107,41 +143,36 @@ export const SettingsView: React.FC = () => {
     setAccessibilitySettings(settings);
   };
 
-  const tabs = [
-    { id: 'account', label: az.settings, icon: SettingsIcon, color: 'violet' },
-    { id: 'reading', label: az.readingPreferences.title, icon: BookOpen, color: 'sky' },
-    { id: 'notifications', label: az.notifications.title, icon: Bell, color: 'rose' },
-    { id: 'accessibility', label: az.accessibility.title, icon: Eye, color: 'indigo' }
-  ];
+  const activeTabData = tabs.find(tab => tab.id === activeTab)!;
 
   const renderContent = () => {
     switch (activeTab) {
       case 'account':
         return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white shadow-[0_4px_20px_rgba(124,58,237,0.15)] rounded-3xl p-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <div className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/50 dark:to-purple-950/50 backdrop-blur-xl rounded-3xl p-4 sm:p-6 shadow-lg shadow-violet-500/10">
               <ProfileSection profile={profile} onSave={handleProfileSave} />
             </div>
-            <div className="bg-white shadow-[0_4px_20px_rgba(22,163,74,0.15)] rounded-3xl p-6">
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 backdrop-blur-xl rounded-3xl p-4 sm:p-6 shadow-lg shadow-green-500/10">
               <SecuritySection settings={securitySettings} onSave={handleSecuritySave} />
             </div>
           </div>
         );
       case 'reading':
         return (
-          <div className="bg-white shadow-[0_4px_20px_rgba(14,165,233,0.15)] rounded-3xl p-6">
+          <div className="bg-gradient-to-br from-sky-50 to-blue-50 dark:from-sky-950/50 dark:to-blue-950/50 backdrop-blur-xl rounded-3xl p-4 sm:p-6 shadow-lg shadow-sky-500/10">
             <ReadingPreferencesSection preferences={readingPreferences} onSave={handleReadingPreferencesSave} />
           </div>
         );
       case 'notifications':
         return (
-          <div className="bg-white shadow-[0_4px_20px_rgba(244,63,94,0.15)] rounded-3xl p-6">
+          <div className="bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/50 dark:to-pink-950/50 backdrop-blur-xl rounded-3xl p-4 sm:p-6 shadow-lg shadow-rose-500/10">
             <NotificationsSection settings={notificationSettings} onSave={handleNotificationsSave} />
           </div>
         );
       case 'accessibility':
         return (
-          <div className="bg-white shadow-[0_4px_20px_rgba(99,102,241,0.15)] rounded-3xl p-6">
+          <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/50 dark:to-blue-950/50 backdrop-blur-xl rounded-3xl p-4 sm:p-6 shadow-lg shadow-indigo-500/10">
             <AccessibilitySection settings={accessibilitySettings} onSave={handleAccessibilitySave} />
           </div>
         );
@@ -151,30 +182,33 @@ export const SettingsView: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
       {/* Settings Navigation */}
-      <nav className="mb-8">
-        <div className="flex flex-wrap gap-2">
+      <nav className="mb-6 sm:mb-8 overflow-x-auto pb-2 -mx-3 px-3 sm:mx-0 sm:px-0">
+        <div className="flex gap-2 sm:gap-3 min-w-max sm:flex-wrap">
           {tabs.map((tab) => (
-            <button
+            <SettingsTab
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as SettingsTab)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300
-                ${activeTab === tab.id
-                  ? `bg-${tab.color}-600 text-white shadow-lg shadow-${tab.color}-500/25`
-                  : `bg-white text-gray-600 shadow-md hover:shadow-lg hover:scale-105 
-                     hover:bg-${tab.color}-50 hover:text-${tab.color}-600`
-                }`}
-            >
-              <tab.icon size={20} />
-              {tab.label}
-            </button>
+              isActive={activeTab === tab.id}
+              onClick={() => setActiveTab(tab.id as TabId)}
+              icon={tab.icon}
+              label={tab.label}
+              gradient={tab.gradient}
+              shadow={tab.shadow}
+            />
           ))}
         </div>
       </nav>
 
       {/* Settings Content */}
-      <div className="space-y-6">
+      <div 
+        className="space-y-4 sm:space-y-6 transition-all duration-300"
+        style={{
+          background: `radial-gradient(circle at top left, 
+            var(--tw-gradient-from), 
+            transparent 80%)`
+        }}
+      >
         {renderContent()}
       </div>
     </div>

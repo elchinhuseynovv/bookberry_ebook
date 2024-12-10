@@ -110,7 +110,7 @@ function App() {
               />
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 auto-rows-fr">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 auto-rows-fr pb-20">
               {filteredAudioBooks.length > 0 ? (
                 filteredAudioBooks.map((book) => (
                   <AudioBookCard key={book.id} book={book} onClick={handleBookClick} />
@@ -154,7 +154,7 @@ function App() {
               />
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 auto-rows-fr">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 auto-rows-fr pb-20">
               {filteredBooks.length > 0 ? (
                 filteredBooks.map((book) => (
                   <BookCard key={book.id} book={book} onClick={handleBookClick} />
@@ -172,8 +172,7 @@ function App() {
 
   const mainContent = (
     <div className={`min-h-screen ${themeClasses[theme]} transition-colors duration-300`}>
-      <Sidebar currentView={currentView} onViewChange={setCurrentView} />
-      <main className="ml-16 p-4 sm:p-8">
+      <main className="p-4">
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Logo />
@@ -181,13 +180,13 @@ function App() {
               {az.appName}
             </h1>
           </div>
-          <div className="flex items-center gap-2">
-            <ThemeToggle currentTheme={theme} onThemeChange={setTheme} />
-          </div>
+          <ThemeToggle currentTheme={theme} onThemeChange={setTheme} />
         </div>
         
         {renderContent()}
       </main>
+
+      <Sidebar currentView={currentView} onViewChange={setCurrentView} />
 
       {selectedBook && (
         <BookDetailsView

@@ -143,36 +143,34 @@ export const SettingsView: React.FC = () => {
     setAccessibilitySettings(settings);
   };
 
-  const activeTabData = tabs.find(tab => tab.id === activeTab)!;
-
   const renderContent = () => {
     switch (activeTab) {
       case 'account':
         return (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-            <div className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/50 dark:to-purple-950/50 backdrop-blur-xl rounded-3xl p-4 sm:p-6 shadow-lg shadow-violet-500/10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/50 dark:to-purple-950/50 backdrop-blur-xl rounded-2xl p-4 shadow-lg shadow-violet-500/10">
               <ProfileSection profile={profile} onSave={handleProfileSave} />
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 backdrop-blur-xl rounded-3xl p-4 sm:p-6 shadow-lg shadow-green-500/10">
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 backdrop-blur-xl rounded-2xl p-4 shadow-lg shadow-green-500/10">
               <SecuritySection settings={securitySettings} onSave={handleSecuritySave} />
             </div>
           </div>
         );
       case 'reading':
         return (
-          <div className="bg-gradient-to-br from-sky-50 to-blue-50 dark:from-sky-950/50 dark:to-blue-950/50 backdrop-blur-xl rounded-3xl p-4 sm:p-6 shadow-lg shadow-sky-500/10">
+          <div className="bg-gradient-to-br from-sky-50 to-blue-50 dark:from-sky-950/50 dark:to-blue-950/50 backdrop-blur-xl rounded-2xl p-4 shadow-lg shadow-sky-500/10">
             <ReadingPreferencesSection preferences={readingPreferences} onSave={handleReadingPreferencesSave} />
           </div>
         );
       case 'notifications':
         return (
-          <div className="bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/50 dark:to-pink-950/50 backdrop-blur-xl rounded-3xl p-4 sm:p-6 shadow-lg shadow-rose-500/10">
+          <div className="bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/50 dark:to-pink-950/50 backdrop-blur-xl rounded-2xl p-4 shadow-lg shadow-rose-500/10">
             <NotificationsSection settings={notificationSettings} onSave={handleNotificationsSave} />
           </div>
         );
       case 'accessibility':
         return (
-          <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/50 dark:to-blue-950/50 backdrop-blur-xl rounded-3xl p-4 sm:p-6 shadow-lg shadow-indigo-500/10">
+          <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/50 dark:to-blue-950/50 backdrop-blur-xl rounded-2xl p-4 shadow-lg shadow-indigo-500/10">
             <AccessibilitySection settings={accessibilitySettings} onSave={handleAccessibilitySave} />
           </div>
         );
@@ -182,10 +180,10 @@ export const SettingsView: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
+    <div className="w-full px-2 sm:px-4 py-4 sm:py-6">
       {/* Settings Navigation */}
-      <nav className="mb-6 sm:mb-8 overflow-x-auto pb-2 -mx-3 px-3 sm:mx-0 sm:px-0">
-        <div className="flex gap-2 sm:gap-3 min-w-max sm:flex-wrap">
+      <div className="mb-6 -mx-2 px-2 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-2 min-w-max">
           {tabs.map((tab) => (
             <SettingsTab
               key={tab.id}
@@ -198,17 +196,10 @@ export const SettingsView: React.FC = () => {
             />
           ))}
         </div>
-      </nav>
+      </div>
 
       {/* Settings Content */}
-      <div 
-        className="space-y-4 sm:space-y-6 transition-all duration-300"
-        style={{
-          background: `radial-gradient(circle at top left, 
-            var(--tw-gradient-from), 
-            transparent 80%)`
-        }}
-      >
+      <div className="space-y-4 transition-all duration-300">
         {renderContent()}
       </div>
     </div>

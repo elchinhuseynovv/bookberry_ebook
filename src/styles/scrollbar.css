@@ -1,0 +1,64 @@
+/* Custom Scrollbar Styles */
+@layer utilities {
+  /* Webkit browsers (Chrome, Safari, newer Edge) */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.purple.500/60');
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.purple.600');
+  }
+
+  /* For dark mode */
+  .dark ::-webkit-scrollbar-thumb {
+    background: theme('colors.purple.400/60');
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.purple.300');
+  }
+
+  /* For sepia mode */
+  .sepia ::-webkit-scrollbar-thumb {
+    background: theme('colors.purple.500/40');
+  }
+
+  .sepia ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.purple.600/60');
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.purple.500/60') transparent;
+  }
+
+  .dark * {
+    scrollbar-color: theme('colors.purple.400/60') transparent;
+  }
+
+  .sepia * {
+    scrollbar-color: theme('colors.purple.500/40') transparent;
+  }
+
+  /* Hide scrollbar utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

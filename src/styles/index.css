@@ -1,5 +1,14 @@
+/* Main styles entry point */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-@import './styles/scrollbar.css';
+
+/* Theme */
+@import './theme/colors.css';
+
+/* Base styles */
+@import './base/scrollbar.css';
+
+/* Utilities */
+@import './utilities/scrollbar-hide.css';
 
 @tailwind base;
 @tailwind components;

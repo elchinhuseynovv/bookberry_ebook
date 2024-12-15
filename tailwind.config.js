@@ -10,7 +10,8 @@ export default {
       animation: {
         'fade-in': 'fadeIn 1.5s ease-in forwards',
         'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'ping': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+        'ping': 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite',
+        'float': 'float 3s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -26,6 +27,10 @@ export default {
             transform: 'scale(2)',
             opacity: '0',
           },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
       },
     },

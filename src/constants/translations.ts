@@ -4,6 +4,7 @@ export const az = {
   audiobooks: 'Səsli Kitablar',
   bookmarks: 'Əlfəcinlər',
   settings: 'Tənzimləmələr',
+  digitalLibrary: 'Rəqəmsal Kitabxananız',
   theme: {
     light: 'İşıqlı',
     dark: 'Qaranlıq',

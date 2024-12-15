@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { ThemeToggle } from './components/ThemeToggle';
+import { MainLayout } from './components/layout/MainLayout';
 import { BookCard } from './components/BookCard';
 import { AudioBookCard } from './components/AudioBookCard';
-import { Sidebar } from './components/Sidebar';
-import { Logo } from './components/Logo';
 import { SettingsView } from './components/Settings/SettingsView';
 import { BookDetailsView } from './components/BookDetails/BookDetailsView';
 import { LoginPage } from './components/auth/LoginPage';
 import { SignUpPage } from './components/auth/SignUpPage';
 import { ResetPasswordPage } from './components/auth/ResetPasswordPage';
 import { SplashScreen } from './components/SplashScreen';
-import { Book, ThemeMode, ViewMode } from './types';
+import { Book, ViewMode } from './types';
 import { az } from './constants/translations';
 import { Search } from 'lucide-react';
-import { books } from './data/books';
-import { audiobooks } from './data/audiobooks';
+import { useAuth } from './hooks/useAuth';
+import { useTheme } from './hooks/useTheme';
+import { useSearch } from './hooks/useSearch';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showSignUp, setShowSignUp] = useState(false);
-  const [showResetPassword, setShowResetPassword] = useState(false);
-  const [theme, setTheme] = useState<ThemeMode>('light');
   const [currentView, setCurrentView] = useState<ViewMode>('library');
-  const [searchQuery, setSearchQuery] = useState('');
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  
+  const { theme, setTheme, themeClasses } = useTheme();
+  const { searchQuery, setSearchQuery, filteredBooks, filteredAudioBooks } = useSearch();
+  const {
+    isAuthenticated,
+    showSignUp,
+    showResetPassword,
+    setShowSignUp,
+    setShowResetPassword,
+    handleLogin,
+    handleSignUp,
+    handleResetPassword
+  } = useAuth();
 
   useEffect(() => {
     document.body.style.overflow = showSplash ? 'hidden' : 'auto';
@@ -37,37 +44,6 @@ function App() {
       document.body.style.overflow = 'auto';
     };
   }, [showSplash]);
-
-  const handleLogin = (data: { email: string; password: string }) => {
-    console.log('Login attempt:', data);
-    setIsAuthenticated(true);
-  };
-
-  const handleSignUp = (data: { name: string; email: string; password: string; confirmPassword: string }) => {
-    console.log('Sign up attempt:', data);
-    setIsAuthenticated(true);
-  };
-
-  const handleResetPassword = (email: string) => {
-    console.log('Reset password attempt for:', email);
-  };
-
-  const themeClasses = {
-    light: 'bg-gray-50 text-gray-900',
-    dark: 'bg-gray-900 text-white',
-    sepia: 'bg-[#f4ecd8] text-[#5c4b37]'
-  };
-
-  const filteredBooks = books.filter(book => 
-    book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    book.author.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const filteredAudioBooks = audiobooks.filter(book => 
-    book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    (book.narrator && book.narrator.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
 
   const handleBookClick = (book: Book) => {
     setSelectedBook(book);
@@ -170,33 +146,6 @@ function App() {
     }
   };
 
-  const mainContent = (
-    <div className={`min-h-screen ${themeClasses[theme]} transition-colors duration-300`}>
-      <main className="p-4">
-        <div className="mb-8 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Logo />
-            <h1 className="text-3xl font-bold text-purple-600 tracking-tight hidden sm:block">
-              {az.appName}
-            </h1>
-          </div>
-          <ThemeToggle currentTheme={theme} onThemeChange={setTheme} />
-        </div>
-        
-        {renderContent()}
-      </main>
-
-      <Sidebar currentView={currentView} onViewChange={setCurrentView} />
-
-      {selectedBook && (
-        <BookDetailsView
-          book={selectedBook}
-          onClose={() => setSelectedBook(null)}
-        />
-      )}
-    </div>
-  );
-
   return (
     <>
       {showSplash && <SplashScreen />}
@@ -219,7 +168,21 @@ function App() {
           />
         )
       ) : (
-        mainContent
+        <MainLayout
+          theme={theme}
+          themeClasses={themeClasses}
+          onThemeChange={setTheme}
+          currentView={currentView}
+          onViewChange={setCurrentView}
+        >
+          {renderContent()}
+          {selectedBook && (
+            <BookDetailsView
+              book={selectedBook}
+              onClose={() => setSelectedBook(null)}
+            />
+          )}
+        </MainLayout>
       )}
     </>
   );

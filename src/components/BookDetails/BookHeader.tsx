@@ -8,6 +8,12 @@ interface Props {
 }
 
 export const BookHeader: React.FC<Props> = ({ book }) => {
+  const handleReadClick = () => {
+    if (book.pdfUrl) {
+      window.open(book.pdfUrl, '_blank');
+    }
+  };
+
   return (
     <div className="relative">
       {/* Background blur effect */}
@@ -60,7 +66,10 @@ export const BookHeader: React.FC<Props> = ({ book }) => {
               </div>
 
               <div className="flex gap-3 pt-4">
-                <button className="rounded-xl bg-purple-600 px-6 py-2.5 font-medium text-white shadow-lg shadow-purple-500/25 hover:bg-purple-700 transition-colors">
+                <button 
+                  onClick={handleReadClick}
+                  className="rounded-xl bg-purple-600 px-6 py-2.5 font-medium text-white shadow-lg shadow-purple-500/25 hover:bg-purple-700 transition-colors"
+                >
                   {book.isAudio ? az.listen : az.read}
                 </button>
                 <button className="rounded-xl bg-white/10 backdrop-blur-sm px-6 py-2.5 font-medium text-white shadow-lg hover:bg-white/20 transition-colors">

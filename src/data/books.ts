@@ -92,6 +92,7 @@ export const books: Book[] = [
     language: 'Azərbaycanca',
     pages: 184,
     genre: 'Roman',
-    rating: 4.6
+    rating: 4.6,
+    pdfUrl: 'https://achiqkitab.aztc.gov.az/az/file/view/nerimanov-bahadir-ve-sona.pdf'
   }
 ];

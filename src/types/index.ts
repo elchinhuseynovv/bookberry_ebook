@@ -14,6 +14,7 @@ export interface Book {
   genre?: string;
   rating?: number;
   reviews?: Review[];
+  pdfUrl?: string;
 }
 
 export interface Review {

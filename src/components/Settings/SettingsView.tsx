@@ -61,34 +61,38 @@ const tabs = [
   { 
     id: 'account', 
     label: az.settings, 
-    icon: SettingsIcon, 
-    color: 'violet',
-    gradient: 'from-violet-500 to-purple-600',
-    shadow: 'shadow-violet-500/25'
+    icon: SettingsIcon,
+    gradient: 'from-purple-100 to-violet-100 dark:from-purple-900/40 dark:to-violet-900/40',
+    activeGradient: 'from-purple-500 to-violet-600',
+    borderColor: 'border-purple-200 dark:border-purple-800',
+    shadowColor: 'shadow-purple-500/20 dark:shadow-purple-400/10'
   },
   { 
     id: 'reading', 
     label: az.readingPreferences.title, 
-    icon: BookOpen, 
-    color: 'sky',
-    gradient: 'from-sky-500 to-blue-600',
-    shadow: 'shadow-sky-500/25'
+    icon: BookOpen,
+    gradient: 'from-blue-100 to-sky-100 dark:from-blue-900/40 dark:to-sky-900/40',
+    activeGradient: 'from-blue-500 to-sky-600',
+    borderColor: 'border-blue-200 dark:border-blue-800',
+    shadowColor: 'shadow-blue-500/20 dark:shadow-blue-400/10'
   },
   { 
     id: 'notifications', 
     label: az.notifications.title, 
-    icon: Bell, 
-    color: 'rose',
-    gradient: 'from-rose-500 to-pink-600',
-    shadow: 'shadow-rose-500/25'
+    icon: Bell,
+    gradient: 'from-pink-100 to-rose-100 dark:from-pink-900/40 dark:to-rose-900/40',
+    activeGradient: 'from-pink-500 to-rose-600',
+    borderColor: 'border-pink-200 dark:border-pink-800',
+    shadowColor: 'shadow-pink-500/20 dark:shadow-pink-400/10'
   },
   { 
     id: 'accessibility', 
     label: az.accessibility.title, 
-    icon: Eye, 
-    color: 'indigo',
-    gradient: 'from-indigo-500 to-blue-600',
-    shadow: 'shadow-indigo-500/25'
+    icon: Eye,
+    gradient: 'from-indigo-100 to-blue-100 dark:from-indigo-900/40 dark:to-blue-900/40',
+    activeGradient: 'from-indigo-500 to-blue-600',
+    borderColor: 'border-indigo-200 dark:border-indigo-800',
+    shadowColor: 'shadow-indigo-500/20 dark:shadow-indigo-400/10'
   }
 ];
 
@@ -130,7 +134,6 @@ export const SettingsView: React.FC = () => {
   const handleReadingPreferencesSave = (preferences: ReadingPreferences) => {
     storage.setReadingPreferences(preferences);
     setReadingPreferences(preferences);
-    document.documentElement.style.fontSize = `${preferences.fontSize}px`;
   };
 
   const handleNotificationsSave = (settings: NotificationSettings) => {
@@ -147,31 +150,41 @@ export const SettingsView: React.FC = () => {
     switch (activeTab) {
       case 'account':
         return (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/50 dark:to-purple-950/50 backdrop-blur-xl rounded-2xl p-4 shadow-lg shadow-violet-500/10">
-              <ProfileSection profile={profile} onSave={handleProfileSave} />
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="overflow-hidden rounded-2xl border-2 border-purple-100 dark:border-purple-800/30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-xl shadow-purple-500/10 dark:shadow-purple-400/5">
+              <div className="bg-gradient-to-br from-purple-100/80 to-violet-100/80 dark:from-purple-900/40 dark:to-violet-900/40 px-6 py-4">
+                <ProfileSection profile={profile} onSave={handleProfileSave} />
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 backdrop-blur-xl rounded-2xl p-4 shadow-lg shadow-green-500/10">
-              <SecuritySection settings={securitySettings} onSave={handleSecuritySave} />
+            <div className="overflow-hidden rounded-2xl border-2 border-emerald-100 dark:border-emerald-800/30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-xl shadow-emerald-500/10 dark:shadow-emerald-400/5">
+              <div className="bg-gradient-to-br from-emerald-100/80 to-green-100/80 dark:from-emerald-900/40 dark:to-green-900/40 px-6 py-4">
+                <SecuritySection settings={securitySettings} onSave={handleSecuritySave} />
+              </div>
             </div>
           </div>
         );
       case 'reading':
         return (
-          <div className="bg-gradient-to-br from-sky-50 to-blue-50 dark:from-sky-950/50 dark:to-blue-950/50 backdrop-blur-xl rounded-2xl p-4 shadow-lg shadow-sky-500/10">
-            <ReadingPreferencesSection preferences={readingPreferences} onSave={handleReadingPreferencesSave} />
+          <div className="overflow-hidden rounded-2xl border-2 border-blue-100 dark:border-blue-800/30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-xl shadow-blue-500/10 dark:shadow-blue-400/5">
+            <div className="bg-gradient-to-br from-blue-100/80 to-sky-100/80 dark:from-blue-900/40 dark:to-sky-900/40 px-6 py-4">
+              <ReadingPreferencesSection preferences={readingPreferences} onSave={handleReadingPreferencesSave} />
+            </div>
           </div>
         );
       case 'notifications':
         return (
-          <div className="bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/50 dark:to-pink-950/50 backdrop-blur-xl rounded-2xl p-4 shadow-lg shadow-rose-500/10">
-            <NotificationsSection settings={notificationSettings} onSave={handleNotificationsSave} />
+          <div className="overflow-hidden rounded-2xl border-2 border-pink-100 dark:border-pink-800/30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-xl shadow-pink-500/10 dark:shadow-pink-400/5">
+            <div className="bg-gradient-to-br from-pink-100/80 to-rose-100/80 dark:from-pink-900/40 dark:to-rose-900/40 px-6 py-4">
+              <NotificationsSection settings={notificationSettings} onSave={handleNotificationsSave} />
+            </div>
           </div>
         );
       case 'accessibility':
         return (
-          <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/50 dark:to-blue-950/50 backdrop-blur-xl rounded-2xl p-4 shadow-lg shadow-indigo-500/10">
-            <AccessibilitySection settings={accessibilitySettings} onSave={handleAccessibilitySave} />
+          <div className="overflow-hidden rounded-2xl border-2 border-indigo-100 dark:border-indigo-800/30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-xl shadow-indigo-500/10 dark:shadow-indigo-400/5">
+            <div className="bg-gradient-to-br from-indigo-100/80 to-blue-100/80 dark:from-indigo-900/40 dark:to-blue-900/40 px-6 py-4">
+              <AccessibilitySection settings={accessibilitySettings} onSave={handleAccessibilitySave} />
+            </div>
           </div>
         );
       default:
@@ -180,10 +193,10 @@ export const SettingsView: React.FC = () => {
   };
 
   return (
-    <div className="w-full px-2 sm:px-4 py-4 sm:py-6">
+    <div className="w-full max-w-7xl mx-auto px-4 py-4 sm:px-6 sm:py-6">
       {/* Settings Navigation */}
-      <div className="mb-6 -mx-2 px-2 overflow-x-auto scrollbar-hide">
-        <div className="flex gap-2 min-w-max">
+      <div className="mb-6 -mx-4 px-4 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-2 min-w-max pb-2">
           {tabs.map((tab) => (
             <SettingsTab
               key={tab.id}
@@ -192,14 +205,16 @@ export const SettingsView: React.FC = () => {
               icon={tab.icon}
               label={tab.label}
               gradient={tab.gradient}
-              shadow={tab.shadow}
+              activeGradient={tab.activeGradient}
+              borderColor={tab.borderColor}
+              shadowColor={tab.shadowColor}
             />
           ))}
         </div>
       </div>
 
       {/* Settings Content */}
-      <div className="space-y-4 transition-all duration-300">
+      <div className="space-y-6 transition-all duration-300">
         {renderContent()}
       </div>
     </div>

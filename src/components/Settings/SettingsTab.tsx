@@ -7,7 +7,9 @@ interface Props {
   icon: LucideIcon;
   label: string;
   gradient: string;
-  shadow: string;
+  activeGradient: string;
+  borderColor: string;
+  shadowColor: string;
 }
 
 export const SettingsTab: React.FC<Props> = ({
@@ -16,23 +18,26 @@ export const SettingsTab: React.FC<Props> = ({
   icon: Icon,
   label,
   gradient,
-  shadow
+  activeGradient,
+  borderColor,
+  shadowColor
 }) => {
   return (
     <button
       onClick={onClick}
       className={`
-        flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl font-medium text-sm
-        transition-all duration-300 transform whitespace-nowrap
+        relative flex items-center gap-2 px-4 py-2.5 rounded-xl
+        border-2 ${borderColor}
+        font-medium text-sm transition-all duration-300
+        hover:scale-[1.02] active:scale-[0.98]
         ${isActive
-          ? `bg-gradient-to-r ${gradient} text-white ${shadow}`
-          : 'bg-white/80 dark:bg-gray-800/80 text-gray-600 dark:text-gray-300 hover:bg-opacity-90 backdrop-blur-sm'
+          ? `bg-gradient-to-r ${activeGradient} text-white shadow-lg ${shadowColor}`
+          : `bg-gradient-to-r ${gradient} text-gray-700 dark:text-gray-200 shadow-md ${shadowColor}`
         }
-        shadow-md hover:shadow-lg
       `}
     >
-      <Icon size={18} />
-      <span className="hidden sm:inline">{label}</span>
+      <Icon size={18} className={isActive ? 'text-white' : ''} />
+      <span className="hidden sm:inline whitespace-nowrap">{label}</span>
     </button>
   );
 };

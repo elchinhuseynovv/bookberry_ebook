@@ -11,45 +11,45 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: theme('colors.purple.500/60');
+    background: rgba(147, 51, 234, 0.2); /* Very transparent purple */
     border-radius: 9999px;
     transition: all 0.3s ease;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: theme('colors.purple.600');
+    background: rgba(147, 51, 234, 0.4); /* Slightly more visible on hover */
   }
 
   /* For dark mode */
   .dark ::-webkit-scrollbar-thumb {
-    background: theme('colors.purple.400/60');
+    background: rgba(167, 139, 250, 0.2); /* Very transparent light purple */
   }
 
   .dark ::-webkit-scrollbar-thumb:hover {
-    background: theme('colors.purple.300');
+    background: rgba(167, 139, 250, 0.4);
   }
 
   /* For sepia mode */
   .sepia ::-webkit-scrollbar-thumb {
-    background: theme('colors.purple.500/40');
+    background: rgba(147, 51, 234, 0.15);
   }
 
   .sepia ::-webkit-scrollbar-thumb:hover {
-    background: theme('colors.purple.600/60');
+    background: rgba(147, 51, 234, 0.3);
   }
 
   /* Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: theme('colors.purple.500/60') transparent;
+    scrollbar-color: rgba(147, 51, 234, 0.2) transparent;
   }
 
   .dark * {
-    scrollbar-color: theme('colors.purple.400/60') transparent;
+    scrollbar-color: rgba(167, 139, 250, 0.2) transparent;
   }
 
   .sepia * {
-    scrollbar-color: theme('colors.purple.500/40') transparent;
+    scrollbar-color: rgba(147, 51, 234, 0.15) transparent;
   }
 
   /* Hide scrollbar utility */

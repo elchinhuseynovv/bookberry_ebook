@@ -4,6 +4,7 @@ import { az } from '../../constants/translations';
 import { Eye } from 'lucide-react';
 import { SettingHeader } from './SettingHeader';
 import { Toggle } from './Toggle';
+import { storage } from '../../services/storage';
 
 interface Props {
   settings: AccessibilitySettings;
@@ -14,7 +15,32 @@ export const AccessibilitySection: React.FC<Props> = ({ settings, onSave }) => {
   const [editedSettings, setEditedSettings] = React.useState(settings);
 
   const handleSave = () => {
+    // Save to local storage
+    storage.setAccessibilitySettings(editedSettings);
+    
+    // Call the onSave prop to update parent state
     onSave(editedSettings);
+
+    // Apply accessibility changes
+    document.documentElement.classList.toggle('high-contrast', editedSettings.highContrast);
+    document.documentElement.classList.toggle('reduce-animations', editedSettings.reduceAnimations);
+    document.documentElement.classList.toggle('dyslexic-font', editedSettings.dyslexicFont);
+    
+    // Enable screen reader announcements if needed
+    if (editedSettings.screenReader) {
+      document.documentElement.setAttribute('role', 'application');
+      document.documentElement.setAttribute('aria-live', 'polite');
+    } else {
+      document.documentElement.removeAttribute('role');
+      document.documentElement.removeAttribute('aria-live');
+    }
+
+    // Initialize text-to-speech if enabled
+    if (editedSettings.textToSpeech) {
+      window.speechSynthesis?.cancel(); // Cancel any ongoing speech
+      const utterance = new SpeechSynthesisUtterance('Text to speech is now enabled');
+      window.speechSynthesis?.speak(utterance);
+    }
   };
 
   return (

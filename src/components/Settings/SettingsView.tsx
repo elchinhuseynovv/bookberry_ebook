@@ -15,6 +15,7 @@ import {
 import { Settings as SettingsIcon, BookOpen, Bell, Eye } from 'lucide-react';
 import { az } from '../../constants/translations';
 import { storage } from '../../services/storage';
+import { useAuth } from '../../hooks/useAuth';
 
 type TabId = 'account' | 'reading' | 'notifications' | 'accessibility';
 
@@ -103,6 +104,7 @@ export const SettingsView: React.FC = () => {
   const [readingPreferences, setReadingPreferences] = useState<ReadingPreferences>(defaultReadingPreferences);
   const [notificationSettings, setNotificationSettings] = useState<NotificationSettings>(defaultNotificationSettings);
   const [accessibilitySettings, setAccessibilitySettings] = useState<AccessibilitySettings>(defaultAccessibilitySettings);
+  const { handleLogout } = useAuth();
 
   useEffect(() => {
     const savedProfile = storage.getUserProfile();
@@ -153,7 +155,11 @@ export const SettingsView: React.FC = () => {
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="overflow-hidden rounded-2xl border-2 border-purple-100 dark:border-purple-800/30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-xl shadow-purple-500/10 dark:shadow-purple-400/5">
               <div className="bg-gradient-to-br from-purple-100/80 to-violet-100/80 dark:from-purple-900/40 dark:to-violet-900/40 px-6 py-4">
-                <ProfileSection profile={profile} onSave={handleProfileSave} />
+                <ProfileSection 
+                  profile={profile} 
+                  onSave={handleProfileSave}
+                  onLogout={handleLogout}
+                />
               </div>
             </div>
             <div className="overflow-hidden rounded-2xl border-2 border-emerald-100 dark:border-emerald-800/30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-xl shadow-emerald-500/10 dark:shadow-emerald-400/5">

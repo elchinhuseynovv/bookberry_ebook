@@ -78,9 +78,17 @@ export const useAuth = () => {
   };
 
   const handleLogout = () => {
+    // Clear authentication state
     setCurrentUser(null);
     setIsAuthenticated(false);
+    
+    // Clear stored user data
     storage.clearCurrentUserEmail();
+    
+    // Reset UI state
+    setShowSignUp(false);
+    setShowResetPassword(false);
+    setError(null);
   };
 
   return {

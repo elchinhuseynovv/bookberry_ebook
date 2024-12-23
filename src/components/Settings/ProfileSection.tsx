@@ -8,10 +8,9 @@ import { LogoutButton } from './LogoutButton';
 interface Props {
   profile: UserProfile;
   onSave: (profile: UserProfile) => void;
-  onLogout: () => void;
 }
 
-export const ProfileSection: React.FC<Props> = ({ profile, onSave, onLogout }) => {
+export const ProfileSection: React.FC<Props> = ({ profile, onSave }) => {
   const [editedProfile, setEditedProfile] = useState<UserProfile>(profile);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -28,7 +27,7 @@ export const ProfileSection: React.FC<Props> = ({ profile, onSave, onLogout }) =
           title={az.profile.title}
           className="text-purple-700 dark:text-purple-400"
         />
-        <LogoutButton onLogout={onLogout} />
+        <LogoutButton />
       </div>
       
       {/* Rest of the existing ProfileSection code... */}

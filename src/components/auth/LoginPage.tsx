@@ -12,19 +12,25 @@ interface Props {
   onLogin: (data: LoginFormData) => void;
   onSignUp: () => void;
   onForgotPassword: () => void;
-  error?: string | null;
 }
 
-export const LoginPage: React.FC<Props> = ({ onLogin, onSignUp, onForgotPassword, error }) => {
+export const LoginPage: React.FC<Props> = ({ onLogin, onSignUp, onForgotPassword }) => {
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onLogin(formData);
+    setError(null);
+    
+    try {
+      await onLogin(formData);
+    } catch (err) {
+      setError(az.auth.invalidCredentials);
+    }
   };
 
   return (

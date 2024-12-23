@@ -20,7 +20,6 @@ export const useAuth = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     checkAuth();
@@ -40,22 +39,17 @@ export const useAuth = () => {
 
   const handleLogin = async (data: LoginData) => {
     try {
-      setError(null);
       const user = await authDB.login(data);
-      if (user) {
-        setCurrentUser(user);
-        setIsAuthenticated(true);
-        storage.setCurrentUserEmail(user.email);
-      }
+      setCurrentUser(user);
+      setIsAuthenticated(true);
+      return user;
     } catch (error) {
-      setError((error as Error).message);
       throw error;
     }
   };
 
   const handleSignUp = async (data: SignUpData) => {
     try {
-      setError(null);
       if (data.password !== data.confirmPassword) {
         throw new Error('Passwords do not match');
       }
@@ -66,29 +60,20 @@ export const useAuth = () => {
         password: data.password
       });
 
-      if (user) {
-        setCurrentUser(user);
-        setIsAuthenticated(true);
-        storage.setCurrentUserEmail(user.email);
-      }
+      setCurrentUser(user);
+      setIsAuthenticated(true);
+      return user;
     } catch (error) {
-      setError((error as Error).message);
       throw error;
     }
   };
 
   const handleLogout = () => {
-    // Clear authentication state
     setCurrentUser(null);
     setIsAuthenticated(false);
-    
-    // Clear stored user data
     storage.clearCurrentUserEmail();
-    
-    // Reset UI state
     setShowSignUp(false);
     setShowResetPassword(false);
-    setError(null);
   };
 
   return {
@@ -96,7 +81,6 @@ export const useAuth = () => {
     currentUser,
     showSignUp,
     showResetPassword,
-    error,
     setShowSignUp,
     setShowResetPassword,
     handleLogin,

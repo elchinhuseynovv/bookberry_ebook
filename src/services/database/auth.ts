@@ -34,7 +34,7 @@ class AuthDatabase {
     }
   }
 
-  public async register(data: RegisterData): Promise<User | null> {
+  public async register(data: RegisterData): Promise<User> {
     if (this.users.has(data.email)) {
       throw new Error(az.auth.userExists);
     }
@@ -49,17 +49,19 @@ class AuthDatabase {
 
     this.users.set(data.email, newUser);
     this.saveUsers();
+    storage.setCurrentUserEmail(data.email);
     
     return newUser;
   }
 
-  public async login(credentials: LoginCredentials): Promise<User | null> {
+  public async login(credentials: LoginCredentials): Promise<User> {
     const user = this.users.get(credentials.email);
     
     if (!user || user.password !== credentials.password) {
       throw new Error(az.auth.invalidCredentials);
     }
 
+    storage.setCurrentUserEmail(credentials.email);
     return user;
   }
 

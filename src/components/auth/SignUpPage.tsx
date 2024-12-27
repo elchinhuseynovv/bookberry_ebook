@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { UserPlus, Mail, Lock, Eye, EyeOff, User, ArrowLeft } from 'lucide-react';
 import { Logo } from '../Logo';
+import { SubscriptionSelector } from '../subscription/SubscriptionSelector';
+import { SubscriptionPlan } from '../../types/subscription';
 import { az } from '../../constants/translations';
 
 interface SignUpFormData {
@@ -8,6 +10,7 @@ interface SignUpFormData {
   email: string;
   password: string;
   confirmPassword: string;
+  subscriptionPlan: SubscriptionPlan | null;
 }
 
 interface Props {
@@ -20,7 +23,8 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    subscriptionPlan: null
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -32,12 +36,20 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
       alert(az.auth.passwordsDoNotMatch);
       return;
     }
+    if (!formData.subscriptionPlan) {
+      alert(az.subscription.selectPlanRequired);
+      return;
+    }
     onSignUp(formData);
+  };
+
+  const handlePlanSelect = (plan: SubscriptionPlan) => {
+    setFormData({ ...formData, subscriptionPlan: plan });
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-900 dark:to-purple-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+      <div className="w-full max-w-4xl space-y-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
         {/* Back Button */}
         <button
           onClick={onBackToLogin}
@@ -160,36 +172,42 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
             </div>
           </div>
 
-          {/* Terms and Conditions */}
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              checked={acceptTerms}
-              onChange={(e) => setAcceptTerms(e.target.checked)}
-              className="w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
-              required
-            />
-            <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">
-              {az.auth.acceptTerms}{' '}
-              <button
-                type="button"
-                className="text-purple-600 hover:text-purple-500 dark:text-purple-400 dark:hover:text-purple-300"
-              >
-                {az.auth.termsAndConditions}
-              </button>
-            </span>
+          {/* Subscription Plans */}
+          <div className="mt-8">
+            <SubscriptionSelector onSelect={handlePlanSelect} />
           </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full flex items-center justify-center gap-2 bg-purple-600 text-white py-3 rounded-xl
-                     hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2
-                     transition-colors font-medium"
-          >
-            <UserPlus size={20} />
-            {az.auth.createAccount}
-          </button>
+          {/* Terms and Submit button */}
+          <div className="space-y-6">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                checked={acceptTerms}
+                onChange={(e) => setAcceptTerms(e.target.checked)}
+                className="w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                required
+              />
+              <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">
+                {az.auth.acceptTerms}{' '}
+                <button
+                  type="button"
+                  className="text-purple-600 hover:text-purple-500 dark:text-purple-400 dark:hover:text-purple-300"
+                >
+                  {az.auth.termsAndConditions}
+                </button>
+              </span>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full flex items-center justify-center gap-2 bg-purple-600 text-white py-3 rounded-xl
+                       hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2
+                       transition-colors font-medium"
+            >
+              <UserPlus size={20} />
+              {az.auth.createAccount}
+            </button>
+          </div>
         </form>
       </div>
     </div>

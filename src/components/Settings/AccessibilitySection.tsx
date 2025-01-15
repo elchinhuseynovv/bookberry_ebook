@@ -1,6 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { AccessibilitySettings } from '../../types';
-import { az } from '../../constants/translations';
 import { Eye } from 'lucide-react';
 import { SettingHeader } from './SettingHeader';
 import { Toggle } from './Toggle';
@@ -12,6 +12,7 @@ interface Props {
 }
 
 export const AccessibilitySection: React.FC<Props> = ({ settings, onSave }) => {
+  const { t } = useTranslation();
   const [editedSettings, setEditedSettings] = React.useState(settings);
 
   const handleSave = () => {
@@ -47,18 +48,18 @@ export const AccessibilitySection: React.FC<Props> = ({ settings, onSave }) => {
     <div className="space-y-6">
       <SettingHeader
         icon={<Eye size={24} />}
-        title={az.accessibility.title}
+        title={t('accessibility.title')}
         className="text-indigo-700 dark:text-indigo-400"
       />
 
       <div className="space-y-6 rounded-2xl bg-white/50 p-6 dark:bg-gray-800/50">
         <div className="space-y-4">
           {[
-            { key: 'highContrast', label: az.accessibility.highContrast },
-            { key: 'reduceAnimations', label: az.accessibility.reduceAnimations },
-            { key: 'screenReader', label: az.accessibility.screenReader },
-            { key: 'dyslexicFont', label: az.accessibility.dyslexicFont },
-            { key: 'textToSpeech', label: az.accessibility.textToSpeech }
+            { key: 'highContrast', label: t('accessibility.highContrast') },
+            { key: 'reduceAnimations', label: t('accessibility.reduceAnimations') },
+            { key: 'screenReader', label: t('accessibility.screenReader') },
+            { key: 'dyslexicFont', label: t('accessibility.dyslexicFont') },
+            { key: 'textToSpeech', label: t('accessibility.textToSpeech') }
           ].map((setting) => (
             <div key={setting.key} className="flex items-center justify-between">
               <span className="text-sm text-gray-600 dark:text-gray-300">{setting.label}</span>
@@ -80,7 +81,7 @@ export const AccessibilitySection: React.FC<Props> = ({ settings, onSave }) => {
             onClick={handleSave}
             className="rounded-xl bg-indigo-600 px-6 py-2 font-medium text-white shadow-lg shadow-indigo-200 hover:bg-indigo-700 dark:shadow-indigo-900/20"
           >
-            {az.profile.save}
+            {t('profile.save')}
           </button>
         </div>
       </div>

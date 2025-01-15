@@ -1,6 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ReadingPreferences } from '../../types';
-import { az } from '../../constants/translations';
 import { Type, AlignLeft, AlignCenter, AlignJustify } from 'lucide-react';
 import { SettingHeader } from './SettingHeader';
 import { Toggle } from './Toggle';
@@ -11,6 +11,7 @@ interface Props {
 }
 
 export const ReadingPreferencesSection: React.FC<Props> = ({ preferences, onSave }) => {
+  const { t } = useTranslation();
   const [editedPreferences, setEditedPreferences] = React.useState(preferences);
 
   const handleSave = () => {
@@ -21,14 +22,14 @@ export const ReadingPreferencesSection: React.FC<Props> = ({ preferences, onSave
     <div className="space-y-6">
       <SettingHeader
         icon={<Type size={24} />}
-        title={az.readingPreferences.title}
+        title={t('readingPreferences.title')}
         className="text-blue-700 dark:text-blue-400"
       />
 
       <div className="space-y-6 rounded-2xl bg-white/50 p-6 dark:bg-gray-800/50">
         <div>
           <label className="mb-3 block text-sm font-medium text-gray-600 dark:text-gray-300">
-            {az.readingPreferences.fontSize}
+            {t('readingPreferences.fontSize')}
           </label>
           <input
             type="range"
@@ -47,7 +48,7 @@ export const ReadingPreferencesSection: React.FC<Props> = ({ preferences, onSave
 
         <div>
           <label className="mb-3 block text-sm font-medium text-gray-600 dark:text-gray-300">
-            {az.readingPreferences.textAlignment}
+            {t('readingPreferences.textAlignment')}
           </label>
           <div className="flex gap-2">
             {[
@@ -72,9 +73,9 @@ export const ReadingPreferencesSection: React.FC<Props> = ({ preferences, onSave
 
         <div className="space-y-4">
           {[
-            { key: 'autoPlayAudio', label: az.readingPreferences.autoPlayAudio },
-            { key: 'showPageNumber', label: az.readingPreferences.showPageNumber },
-            { key: 'highlightLinks', label: az.readingPreferences.highlightLinks }
+            { key: 'autoPlayAudio', label: t('readingPreferences.autoPlayAudio') },
+            { key: 'showPageNumber', label: t('readingPreferences.showPageNumber') },
+            { key: 'highlightLinks', label: t('readingPreferences.highlightLinks') }
           ].map((setting) => (
             <div key={setting.key} className="flex items-center justify-between">
               <span className="text-sm text-gray-600 dark:text-gray-300">{setting.label}</span>
@@ -96,7 +97,7 @@ export const ReadingPreferencesSection: React.FC<Props> = ({ preferences, onSave
             onClick={handleSave}
             className="rounded-xl bg-blue-600 px-6 py-2 font-medium text-white shadow-lg shadow-blue-200 hover:bg-blue-700 dark:shadow-blue-900/20"
           >
-            {az.profile.save}
+            {t('profile.save')}
           </button>
         </div>
       </div>

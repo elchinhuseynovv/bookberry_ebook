@@ -1,6 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { NotificationSettings } from '../../types';
-import { az } from '../../constants/translations';
 import { Bell } from 'lucide-react';
 import { SettingHeader } from './SettingHeader';
 import { Toggle } from './Toggle';
@@ -11,6 +11,7 @@ interface Props {
 }
 
 export const NotificationsSection: React.FC<Props> = ({ settings, onSave }) => {
+  const { t } = useTranslation();
   const [editedSettings, setEditedSettings] = React.useState(settings);
 
   const handleSave = () => {
@@ -21,17 +22,17 @@ export const NotificationsSection: React.FC<Props> = ({ settings, onSave }) => {
     <div className="space-y-6">
       <SettingHeader
         icon={<Bell size={24} />}
-        title={az.notifications.title}
+        title={t('notifications.title')}
         className="text-pink-700 dark:text-pink-400"
       />
 
       <div className="space-y-6 rounded-2xl bg-white/50 p-6 dark:bg-gray-800/50">
         <div className="space-y-4">
           {[
-            { key: 'dailyReminder', label: az.notifications.dailyReminder },
-            { key: 'weeklyProgress', label: az.notifications.weeklyProgress },
-            { key: 'newBookAlerts', label: az.notifications.newBookAlerts },
-            { key: 'systemNotifications', label: az.notifications.systemNotifications }
+            { key: 'dailyReminder', label: t('notifications.dailyReminder') },
+            { key: 'weeklyProgress', label: t('notifications.weeklyProgress') },
+            { key: 'newBookAlerts', label: t('notifications.newBookAlerts') },
+            { key: 'systemNotifications', label: t('notifications.systemNotifications') }
           ].map((setting) => (
             <div key={setting.key} className="flex items-center justify-between">
               <span className="text-sm text-gray-600 dark:text-gray-300">{setting.label}</span>
@@ -51,7 +52,7 @@ export const NotificationsSection: React.FC<Props> = ({ settings, onSave }) => {
         {editedSettings.dailyReminder && (
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-600 dark:text-gray-300">
-              {az.notifications.reminderTime}
+              {t('notifications.reminderTime')}
             </label>
             <input
               type="time"
@@ -67,7 +68,7 @@ export const NotificationsSection: React.FC<Props> = ({ settings, onSave }) => {
             onClick={handleSave}
             className="rounded-xl bg-pink-600 px-6 py-2 font-medium text-white shadow-lg shadow-pink-200 hover:bg-pink-700 dark:shadow-pink-900/20"
           >
-            {az.profile.save}
+            {t('profile.save')}
           </button>
         </div>
       </div>

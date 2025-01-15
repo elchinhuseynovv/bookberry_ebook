@@ -8,7 +8,8 @@ export const LanguageSelector: React.FC = () => {
 
   const languages = [
     { code: 'az', name: t('language.az') },
-    { code: 'en', name: t('language.en') }
+    { code: 'en', name: t('language.en') },
+    { code: 'ru', name: t('language.ru') }
   ];
 
   const handleLanguageChange = (languageCode: string) => {
@@ -24,7 +25,7 @@ export const LanguageSelector: React.FC = () => {
       />
 
       <div className="space-y-4 rounded-2xl bg-white/50 p-6 dark:bg-gray-800/50">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           {languages.map((language) => (
             <button
               key={language.code}

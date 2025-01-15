@@ -124,5 +124,12 @@ export const az = {
     light: 'Light Mode',
     dark: 'Dark Mode',
     sepia: 'Sepia Mode'
+  },
+
+  language: {
+    title: 'Language',
+    az: 'Azərbaycanca',
+    en: 'English',
+    ru: 'Русский'
   }
 };

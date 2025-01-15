@@ -1,0 +1,135 @@
+{
+  "appName": "BookBerry",
+  "digitalLibrary": "Цифровая Библиотека",
+  "library": "Библиотека",
+  "audiobooks": "Аудиокниги",
+  "bookmarks": "Закладки",
+  "settings": "Настройки",
+  "minutes": "минут",
+  "read": "Читать",
+  "listen": "Слушать",
+  "noBooks": "Книги не найдены",
+  "searchBooks": "Поиск книг...",
+
+  "auth": {
+    "login": "Вход",
+    "createAccount": "Создать аккаунт",
+    "forgotPassword": "Забыли пароль?",
+    "resetPassword": "Сброс пароля",
+    "backToLogin": "Вернуться к входу",
+    "email": "Email",
+    "emailPlaceholder": "Введите ваш email",
+    "password": "Пароль",
+    "passwordPlaceholder": "Введите ваш пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "confirmPasswordPlaceholder": "Введите пароль повторно",
+    "name": "Имя",
+    "namePlaceholder": "Введите ваше имя",
+    "fillDetails": "Пожалуйста, заполните ваши данные",
+    "invalidCredentials": "Неверный email или пароль",
+    "userExists": "Пользователь уже существует",
+    "passwordsDoNotMatch": "Пароли не совпадают",
+    "termsAndConditions": "Условия использования",
+    "acceptTerms": "Я принимаю",
+    "logout": "Выход",
+    "resetPasswordDescription": "Введите ваш email и мы отправим вам ссылку для сброса пароля",
+    "sendResetLink": "Отправить ссылку",
+    "checkYourEmail": "Проверьте вашу почту",
+    "resetEmailSent": "Мы отправили вам email с инструкциями по сбросу пароля"
+  },
+
+  "security": {
+    "title": "Безопасность",
+    "currentPassword": "Текущий пароль",
+    "currentPasswordPlaceholder": "Введите текущий пароль",
+    "newPassword": "Новый пароль",
+    "newPasswordPlaceholder": "Введите новый пароль",
+    "confirmNewPassword": "Подтвердите новый пароль",
+    "confirmNewPasswordPlaceholder": "Введите новый пароль повторно",
+    "twoFactorAuth": "Двухфакторная аутентификация",
+    "twoFactorAuthDescription": "Добавьте дополнительный уровень безопасности",
+    "enabled": "Включено",
+    "disabled": "Отключено"
+  },
+
+  "subscription": {
+    "freePlan": "Бесплатный план",
+    "premiumPlan": "Премиум план",
+    "perMonth": "в месяц",
+    "perYear": "в год",
+    "choosePlan": "Выберите план",
+    "select": "Выбрать",
+    "selected": "Выбрано",
+    "selectPlanRequired": "Пожалуйста, выберите план подписки",
+    "features": {
+      "basicAccess": "Базовый доступ к библиотеке",
+      "limitedBooks": "Доступ к 10 книгам в месяц",
+      "adsSupported": "С рекламой",
+      "fullAccess": "Полный доступ к библиотеке",
+      "unlimitedBooks": "Безлимитные книги",
+      "noAds": "Без рекламы",
+      "offlineReading": "Офлайн чтение",
+      "prioritySupport": "Приоритетная поддержка"
+    }
+  },
+
+  "profile": {
+    "title": "Профиль",
+    "name": "Имя",
+    "namePlaceholder": "Введите ваше имя",
+    "surname": "Фамилия",
+    "surnamePlaceholder": "Введите вашу фамилию",
+    "age": "Возраст",
+    "agePlaceholder": "Введите ваш возраст",
+    "phoneNumber": "Номер телефона",
+    "phonePlaceholder": "+7XXXXXXXXXX",
+    "email": "Email",
+    "emailPlaceholder": "Введите ваш email",
+    "save": "Сохранить изменения",
+    "nameRequired": "Имя обязательно",
+    "surnameRequired": "Фамилия обязательна",
+    "phoneRequired": "Номер телефона обязателен",
+    "invalidPhone": "Неверный формат номера телефона",
+    "invalidAge": "Введите корректный возраст"
+  },
+
+  "readingPreferences": {
+    "title": "Настройки чтения",
+    "fontSize": "Размер шрифта",
+    "textAlignment": "Выравнивание текста",
+    "autoPlayAudio": "Автовоспроизведение аудио",
+    "showPageNumber": "Показывать номера страниц",
+    "highlightLinks": "Подсвечивать ссылки"
+  },
+
+  "notifications": {
+    "title": "Уведомления",
+    "dailyReminder": "Ежедневное напоминание",
+    "weeklyProgress": "Еженедельный отчет",
+    "newBookAlerts": "Уведомления о новых книгах",
+    "systemNotifications": "Системные уведомления",
+    "reminderTime": "Время напоминания"
+  },
+
+  "accessibility": {
+    "title": "Доступность",
+    "highContrast": "Высокий контраст",
+    "reduceAnimations": "Уменьшить анимации",
+    "screenReader": "Поддержка чтения с экрана",
+    "dyslexicFont": "Шрифт для дислексии",
+    "textToSpeech": "Текст в речь"
+  },
+
+  "theme": {
+    "light": "Светлая тема",
+    "dark": "Темная тема",
+    "sepia": "Сепия"
+  },
+
+  "language": {
+    "title": "Язык",
+    "az": "Azərbaycanca",
+    "en": "English",
+    "ru": "Русский"
+  }
+}

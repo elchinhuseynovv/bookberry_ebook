@@ -1,3 +1,14 @@
+export interface UserProfile {
+  name: string;
+  surname: string;
+  email: string;
+  phoneNumber: string;
+  age?: number;
+  avatar?: string;
+  preferredLanguage: string;
+  readingGoal?: number;
+}
+
 export interface Book {
   id: string;
   title: string;
@@ -26,43 +37,17 @@ export interface Review {
   date: string;
 }
 
+export type ViewMode = 'library' | 'audiobooks' | 'bookmarks' | 'settings';
 export type ThemeMode = 'light' | 'dark' | 'sepia';
-
-export type ViewMode = 'library' | 'audiobooks' | 'bookmarks' | 'settings' | 'book-details';
-
-export interface Bookmark {
-  id: string;
-  bookId: string;
-  page: number;
-  note?: string;
-  createdAt: Date;
-}
-
-export interface UserProfile {
-  name: string;
-  email: string;
-  avatar?: string;
-  preferredLanguage: string;
-  readingGoal?: number;
-}
 
 export interface SecuritySettings {
   twoFactorEnabled: boolean;
-  lastPasswordChange: Date;
-  securityQuestions: SecurityQuestion[];
-  password?: string;
-}
-
-export interface SecurityQuestion {
-  question: string;
-  answer: string;
+  password: string;
 }
 
 export interface ReadingPreferences {
   fontSize: number;
-  lineSpacing: number;
-  fontFamily: string;
-  textAlignment: 'left' | 'justify' | 'center';
+  textAlignment: 'left' | 'center' | 'justify';
   autoPlayAudio: boolean;
   showPageNumber: boolean;
   highlightLinks: boolean;
@@ -70,10 +55,10 @@ export interface ReadingPreferences {
 
 export interface NotificationSettings {
   dailyReminder: boolean;
-  reminderTime: string;
   weeklyProgress: boolean;
   newBookAlerts: boolean;
   systemNotifications: boolean;
+  reminderTime: string;
 }
 
 export interface AccessibilitySettings {

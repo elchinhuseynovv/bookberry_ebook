@@ -1,127 +1,128 @@
 export const az = {
   appName: 'BookBerry',
-  digitalLibrary: 'Rəqəmsal Kitabxana',
-  library: 'Kitabxana',
+  digitalLibrary: 'Digital Library',
+  library: 'Library',
   audiobooks: 'Audiobooks',
-  bookmarks: 'Əlfəcinlər',
-  settings: 'Tənzimləmələr',
-  minutes: 'dəqiqə',
-  noBooks: 'Kitab tapılmadı',
-  read: 'Oxu',
-  listen: 'Dinlə',
-  description: 'Təsvir',
-  bookDetails: 'Kitab haqqında',
-  publishedYear: 'Nəşr ili',
-  pages: 'Səhifə sayı',
-  language: 'Dil',
-  genre: 'Janr',
-  reviews: 'Rəylər',
-
-  theme: {
-    light: 'İşıqlı',
-    dark: 'Qaranlıq',
-    sepia: 'Sepiya'
-  },
+  bookmarks: 'Bookmarks',
+  settings: 'Settings',
+  minutes: 'minutes',
+  read: 'Read',
+  listen: 'Listen',
+  noBooks: 'No books found',
+  searchBooks: 'Search books...',
 
   auth: {
-    login: 'Daxil ol',
-    signUp: 'Qeydiyyat',
-    logout: 'Çıxış',
-    email: 'E-poçt',
-    password: 'Şifrə',
-    confirmPassword: 'Şifrəni təsdiqlə',
-    name: 'Ad',
-    emailPlaceholder: 'sizin@email.com',
-    passwordPlaceholder: '********',
-    confirmPasswordPlaceholder: '********',
-    namePlaceholder: 'Adınız',
-    forgotPassword: 'Şifrəni unutmusunuz?',
-    createAccount: 'Hesab yarat',
-    backToLogin: 'Girişə qayıt',
-    resetPassword: 'Şifrəni yenilə',
-    sendResetLink: 'Yeniləmə linki göndər',
-    resetPasswordDescription: 'E-poçt ünvanınızı daxil edin və şifrə yeniləmə linkini alın.',
-    checkYourEmail: 'E-poçtunuzu yoxlayın',
-    resetEmailSent: 'Şifrə yeniləmə linki e-poçt ünvanınıza göndərildi.',
-    fillDetails: 'Məlumatlarınızı doldurun',
-    acceptTerms: 'Şərtləri və qaydaları qəbul edirəm',
-    termsAndConditions: 'Şərtlər və qaydalar',
-    passwordsDoNotMatch: 'Şifrələr uyğun gəlmir',
-    invalidCredentials: 'E-poçt yaxud Şifrəniz yanlışdır. Zəhmət olmasa, məlumatları təkrardan nəzərdən keçirəsiniz.',
-    userExists: 'Bu e-poçt ünvanı ilə istifadəçi artıq mövcuddur.'
-  },
-
-  profile: {
-    title: 'Profil',
-    edit: 'Redaktə et',
-    save: 'Yadda saxla',
-    cancel: 'Ləğv et',
-    name: 'Ad',
-    email: 'E-poçt',
-    uploadPhoto: 'Şəkil yüklə',
-    readingGoal: 'Oxuma hədəfi',
-    booksPerMonth: 'kitab/ay'
+    login: 'Login',
+    createAccount: 'Create Account',
+    forgotPassword: 'Forgot Password?',
+    resetPassword: 'Reset Password',
+    backToLogin: 'Back to Login',
+    email: 'Email',
+    emailPlaceholder: 'Enter your email',
+    password: 'Password',
+    passwordPlaceholder: 'Enter your password',
+    confirmPassword: 'Confirm Password',
+    confirmPasswordPlaceholder: 'Re-enter your password',
+    name: 'Name',
+    namePlaceholder: 'Enter your name',
+    fillDetails: 'Please fill in your details',
+    invalidCredentials: 'Invalid email or password',
+    userExists: 'User already exists',
+    passwordsDoNotMatch: 'Passwords do not match',
+    termsAndConditions: 'Terms and Conditions',
+    acceptTerms: 'I accept the',
+    logout: 'Logout',
+    resetPasswordDescription: 'Enter your email and we will send you a link to reset your password',
+    sendResetLink: 'Send Reset Link',
+    checkYourEmail: 'Check Your Email',
+    resetEmailSent: 'We have sent you an email with instructions to reset your password'
   },
 
   security: {
-    title: 'Təhlükəsizlik',
-    currentPassword: 'Cari şifrə',
-    newPassword: 'Yeni şifrə',
-    confirmNewPassword: 'Yeni şifrəni təsdiqlə',
-    currentPasswordPlaceholder: 'Cari şifrənizi daxil edin',
-    newPasswordPlaceholder: 'Yeni şifrənizi daxil edin',
-    confirmNewPasswordPlaceholder: 'Yeni şifrənizi təkrar daxil edin',
-    twoFactorAuth: 'İki faktorlu doğrulama',
-    twoFactorAuthDescription: 'Hesabınızı daha təhlükəsiz etmək üçün əlavə təhlükəsizlik təbəqəsi əlavə edin',
-    enabled: 'Aktiv',
-    disabled: 'Deaktiv'
-  },
-
-  readingPreferences: {
-    title: 'Oxuma tənzimləmələri',
-    fontSize: 'Şrift ölçüsü',
-    textAlignment: 'Mətn düzləndirməsi',
-    autoPlayAudio: 'Avtomatik audio oxutma',
-    showPageNumber: 'Səhifə nömrəsini göstər',
-    highlightLinks: 'Linkləri vurğula'
-  },
-
-  notifications: {
-    title: 'Bildirişlər',
-    dailyReminder: 'Gündəlik xatırlatma',
-    weeklyProgress: 'Həftəlik irəliləyiş',
-    newBookAlerts: 'Yeni kitab bildirişləri',
-    systemNotifications: 'Sistem bildirişləri',
-    reminderTime: 'Xatırlatma vaxtı'
-  },
-
-  accessibility: {
-    title: 'Əlçatanlıq',
-    highContrast: 'Yüksək kontrast',
-    reduceAnimations: 'Animasiyaları azalt',
-    screenReader: 'Ekran oxuyucusu',
-    dyslexicFont: 'Disleksiya şrifti',
-    textToSpeech: 'Mətndən-səsə'
+    title: 'Security',
+    currentPassword: 'Current Password',
+    currentPasswordPlaceholder: 'Enter your current password',
+    newPassword: 'New Password',
+    newPasswordPlaceholder: 'Enter your new password',
+    confirmNewPassword: 'Confirm New Password',
+    confirmNewPasswordPlaceholder: 'Re-enter your new password',
+    twoFactorAuth: 'Two-Factor Authentication',
+    twoFactorAuthDescription: 'Add an extra layer of security to your account',
+    enabled: 'Enabled',
+    disabled: 'Disabled'
   },
 
   subscription: {
-    freePlan: 'Pulsuz',
-    premiumPlan: 'Premium',
-    perMonth: 'ay',
-    perYear: 'il',
-    choosePlan: 'Abunəlik planı seçin',
-    select: 'Seç',
-    selected: 'Seçildi',
-    selectPlanRequired: 'Zəhmət olmasa, abunəlik planı seçin',
+    freePlan: 'Free Plan',
+    premiumPlan: 'Premium Plan',
+    perMonth: 'per month',
+    perYear: 'per year',
+    choosePlan: 'Choose your plan',
+    select: 'Select',
+    selected: 'Selected',
+    selectPlanRequired: 'Please select a subscription plan',
     features: {
-      basicAccess: 'Əsas funksiyalara giriş',
-      limitedBooks: 'Məhdud kitab sayı',
-      adsSupported: 'Reklamlarla',
-      fullAccess: 'Bütün funksiyalara tam giriş',
-      unlimitedBooks: 'Limitsiz kitab',
-      noAds: 'Reklamsız',
-      offlineReading: 'Oflayn oxuma',
-      prioritySupport: 'Prioritet dəstək'
+      basicAccess: 'Basic library access',
+      limitedBooks: 'Access to 10 books per month',
+      adsSupported: 'Ad-supported reading',
+      fullAccess: 'Full library access',
+      unlimitedBooks: 'Unlimited books',
+      noAds: 'Ad-free reading',
+      offlineReading: 'Offline reading',
+      prioritySupport: 'Priority support'
     }
+  },
+
+  profile: {
+    title: 'Profile',
+    name: 'Name',
+    namePlaceholder: 'Enter your name',
+    surname: 'Surname',
+    surnamePlaceholder: 'Enter your surname',
+    age: 'Age',
+    agePlaceholder: 'Enter your age',
+    phoneNumber: 'Phone Number',
+    phonePlaceholder: '+994XXXXXXXXX',
+    email: 'Email',
+    emailPlaceholder: 'Enter your email',
+    save: 'Save Changes',
+    nameRequired: 'Name is required',
+    surnameRequired: 'Surname is required',
+    phoneRequired: 'Phone number is required',
+    invalidPhone: 'Invalid phone number format',
+    invalidAge: 'Please enter a valid age'
+  },
+
+  readingPreferences: {
+    title: 'Reading Preferences',
+    fontSize: 'Font Size',
+    textAlignment: 'Text Alignment',
+    autoPlayAudio: 'Auto-play Audio',
+    showPageNumber: 'Show Page Numbers',
+    highlightLinks: 'Highlight Links'
+  },
+
+  notifications: {
+    title: 'Notifications',
+    dailyReminder: 'Daily Reading Reminder',
+    weeklyProgress: 'Weekly Progress Report',
+    newBookAlerts: 'New Book Alerts',
+    systemNotifications: 'System Notifications',
+    reminderTime: 'Reminder Time'
+  },
+
+  accessibility: {
+    title: 'Accessibility',
+    highContrast: 'High Contrast',
+    reduceAnimations: 'Reduce Animations',
+    screenReader: 'Screen Reader Support',
+    dyslexicFont: 'Dyslexic-friendly Font',
+    textToSpeech: 'Text-to-Speech'
+  },
+
+  theme: {
+    light: 'Light Mode',
+    dark: 'Dark Mode',
+    sepia: 'Sepia Mode'
   }
 };

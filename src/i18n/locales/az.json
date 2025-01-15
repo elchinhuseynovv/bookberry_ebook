@@ -1,0 +1,134 @@
+{
+  "appName": "BookBerry",
+  "digitalLibrary": "Rəqəmsal Kitabxana",
+  "library": "Kitabxana",
+  "audiobooks": "Audioкitablar",
+  "bookmarks": "Əlfəcinlər",
+  "settings": "Tənzimləmələr",
+  "minutes": "dəqiqə",
+  "read": "Oxu",
+  "listen": "Dinlə",
+  "noBooks": "Kitab tapılmadı",
+  "searchBooks": "Kitabları axtar...",
+
+  "auth": {
+    "login": "Daxil ol",
+    "createAccount": "Hesab yarat",
+    "forgotPassword": "Şifrəni unutmusunuz?",
+    "resetPassword": "Şifrəni yenilə",
+    "backToLogin": "Giriş səhifəsinə qayıt",
+    "email": "E-poçt",
+    "emailPlaceholder": "E-poçt ünvanınızı daxil edin",
+    "password": "Şifrə",
+    "passwordPlaceholder": "Şifrənizi daxil edin",
+    "confirmPassword": "Şifrəni təsdiqlə",
+    "confirmPasswordPlaceholder": "Şifrənizi təkrar daxil edin",
+    "name": "Ad",
+    "namePlaceholder": "Adınızı daxil edin",
+    "fillDetails": "Məlumatlarınızı doldurun",
+    "invalidCredentials": "Yanlış e-poçt və ya şifrə",
+    "userExists": "Bu e-poçt artıq istifadə olunur",
+    "passwordsDoNotMatch": "Şifrələr uyğun gəlmir",
+    "termsAndConditions": "İstifadə şərtləri",
+    "acceptTerms": "Qəbul edirəm",
+    "logout": "Çıxış",
+    "resetPasswordDescription": "E-poçt ünvanınızı daxil edin və şifrəni yeniləmək üçün link göndərəcəyik",
+    "sendResetLink": "Yeniləmə linki göndər",
+    "checkYourEmail": "E-poçtunuzu yoxlayın",
+    "resetEmailSent": "Şifrəni yeniləmək üçün təlimatları e-poçtunuza göndərdik"
+  },
+
+  "security": {
+    "title": "Təhlükəsizlik",
+    "currentPassword": "Cari şifrə",
+    "currentPasswordPlaceholder": "Cari şifrənizi daxil edin",
+    "newPassword": "Yeni şifrə",
+    "newPasswordPlaceholder": "Yeni şifrənizi daxil edin",
+    "confirmNewPassword": "Yeni şifrəni təsdiqlə",
+    "confirmNewPasswordPlaceholder": "Yeni şifrənizi təkrar daxil edin",
+    "twoFactorAuth": "İki faktorlu doğrulama",
+    "twoFactorAuthDescription": "Hesabınıza əlavə təhlükəsizlik təmin edin",
+    "enabled": "Aktiv",
+    "disabled": "Deaktiv"
+  },
+
+  "subscription": {
+    "freePlan": "Pulsuz Plan",
+    "premiumPlan": "Premium Plan",
+    "perMonth": "aylıq",
+    "perYear": "illik",
+    "choosePlan": "Planınızı seçin",
+    "select": "Seç",
+    "selected": "Seçildi",
+    "selectPlanRequired": "Zəhmət olmasa abunəlik planı seçin",
+    "features": {
+      "basicAccess": "Əsas kitabxanaya giriş",
+      "limitedBooks": "Ayda 10 kitaba giriş",
+      "adsSupported": "Reklamlı oxuma",
+      "fullAccess": "Tam kitabxanaya giriş",
+      "unlimitedBooks": "Limitsiz kitablar",
+      "noAds": "Reklamsız oxuma",
+      "offlineReading": "Oflayn oxuma",
+      "prioritySupport": "Prioritet dəstək"
+    }
+  },
+
+  "profile": {
+    "title": "Profil",
+    "name": "Ad",
+    "namePlaceholder": "Adınızı daxil edin",
+    "surname": "Soyad",
+    "surnamePlaceholder": "Soyadınızı daxil edin",
+    "age": "Yaş",
+    "agePlaceholder": "Yaşınızı daxil edin",
+    "phoneNumber": "Telefon nömrəsi",
+    "phonePlaceholder": "+994XXXXXXXXX",
+    "email": "E-poçt",
+    "emailPlaceholder": "E-poçt ünvanınızı daxil edin",
+    "save": "Dəyişiklikləri yadda saxla",
+    "nameRequired": "Ad tələb olunur",
+    "surnameRequired": "Soyad tələb olunur",
+    "phoneRequired": "Telefon nömrəsi tələb olunur",
+    "invalidPhone": "Yanlış telefon nömrəsi formatı",
+    "invalidAge": "Düzgün yaş daxil edin"
+  },
+
+  "readingPreferences": {
+    "title": "Oxuma tənzimləmələri",
+    "fontSize": "Şrift ölçüsü",
+    "textAlignment": "Mətn düzləndirməsi",
+    "autoPlayAudio": "Avtomatik səs oxuma",
+    "showPageNumber": "Səhifə nömrələrini göstər",
+    "highlightLinks": "Linkləri vurğula"
+  },
+
+  "notifications": {
+    "title": "Bildirişlər",
+    "dailyReminder": "Gündəlik oxuma xatırlatması",
+    "weeklyProgress": "Həftəlik irəliləyiş hesabatı",
+    "newBookAlerts": "Yeni kitab bildirişləri",
+    "systemNotifications": "Sistem bildirişləri",
+    "reminderTime": "Xatırlatma vaxtı"
+  },
+
+  "accessibility": {
+    "title": "Əlçatanlıq",
+    "highContrast": "Yüksək kontrast",
+    "reduceAnimations": "Animasiyaları azalt",
+    "screenReader": "Ekran oxuyucu dəstəyi",
+    "dyslexicFont": "Disleksiya dostu şrift",
+    "textToSpeech": "Mətndən-səsə"
+  },
+
+  "theme": {
+    "light": "İşıqlı rejim",
+    "dark": "Qaranlıq rejim",
+    "sepia": "Sepiya rejim"
+  },
+
+  "language": {
+    "title": "Dil",
+    "az": "Azərbaycanca",
+    "en": "English"
+  }
+}

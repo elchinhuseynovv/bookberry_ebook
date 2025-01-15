@@ -1,7 +1,7 @@
 import React from 'react';
 import { Library, BookMarked, Settings, Headphones } from 'lucide-react';
 import { ViewMode } from '../../types';
-import { az } from '../../constants/translations';
+import { useTranslation } from 'react-i18next';
 import { NavButton } from './NavButton';
 
 interface Props {
@@ -9,14 +9,16 @@ interface Props {
   onViewChange: (view: ViewMode) => void;
 }
 
-const navItems = [
-  { view: 'library' as ViewMode, icon: Library, label: az.library },
-  { view: 'audiobooks' as ViewMode, icon: Headphones, label: az.audiobooks },
-  { view: 'bookmarks' as ViewMode, icon: BookMarked, label: az.bookmarks },
-  { view: 'settings' as ViewMode, icon: Settings, label: az.settings }
-];
-
 export const BottomNav: React.FC<Props> = ({ currentView, onViewChange }) => {
+  const { t } = useTranslation();
+
+  const navItems = [
+    { view: 'library' as ViewMode, icon: Library, label: t('library') },
+    { view: 'audiobooks' as ViewMode, icon: Headphones, label: t('audiobooks') },
+    { view: 'bookmarks' as ViewMode, icon: BookMarked, label: t('bookmarks') },
+    { view: 'settings' as ViewMode, icon: Settings, label: t('settings') }
+  ];
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50">
       {/* Gradient overlay */}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MainLayout } from './components/layout/MainLayout';
 import { BookCard } from './components/BookCard';
 import { AudioBookCard } from './components/AudioBookCard';
@@ -9,13 +10,13 @@ import { SignUpPage } from './components/auth/SignUpPage';
 import { ResetPasswordPage } from './components/auth/ResetPasswordPage';
 import { SplashScreen } from './components/SplashScreen';
 import { Book, ViewMode } from './types';
-import { az } from './constants/translations';
 import { Search } from 'lucide-react';
 import { useAuth } from './hooks/useAuth';
 import { useTheme } from './hooks/useTheme';
 import { useSearch } from './hooks/useSearch';
 
 function App() {
+  const { t } = useTranslation();
   const [showSplash, setShowSplash] = useState(true);
   const [currentView, setCurrentView] = useState<ViewMode>('library');
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
@@ -63,7 +64,7 @@ function App() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={az.searchBooks}
+                placeholder={t('searchBooks')}
                 className={`w-full h-12 rounded-xl border-2 px-12 font-medium transition-all duration-300
                   ${theme === 'dark' 
                     ? 'bg-gray-800/90 border-purple-500/30 text-white placeholder-gray-400 focus:border-purple-400'
@@ -93,7 +94,7 @@ function App() {
                 ))
               ) : (
                 <div className="col-span-full text-center py-8 text-gray-500">
-                  {az.noBooks}
+                  {t('noBooks')}
                 </div>
               )}
             </div>
@@ -107,7 +108,7 @@ function App() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={az.searchBooks}
+                placeholder={t('searchBooks')}
                 className={`w-full h-12 rounded-xl border-2 px-12 font-medium transition-all duration-300
                   ${theme === 'dark' 
                     ? 'bg-gray-800/90 border-purple-500/30 text-white placeholder-gray-400 focus:border-purple-400'
@@ -137,7 +138,7 @@ function App() {
                 ))
               ) : (
                 <div className="col-span-full text-center py-8 text-gray-500">
-                  {az.noBooks}
+                  {t('noBooks')}
                 </div>
               )}
             </div>
@@ -187,5 +188,3 @@ function App() {
     </>
   );
 }
-
-export default App;

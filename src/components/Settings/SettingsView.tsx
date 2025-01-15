@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ProfileSection } from './ProfileSection';
 import { SecuritySection } from './SecuritySection';
 import { ReadingPreferencesSection } from './ReadingPreferencesSection';
 import { NotificationsSection } from './NotificationsSection';
 import { AccessibilitySection } from './AccessibilitySection';
+import { LanguageSelector } from './LanguageSelector';
 import { SettingsTab } from './SettingsTab';
 import { 
   UserProfile, 
@@ -12,66 +14,25 @@ import {
   AccessibilitySettings,
   SecuritySettings 
 } from '../../types';
-import { Settings as SettingsIcon, BookOpen, Bell, Eye } from 'lucide-react';
-import { az } from '../../constants/translations';
+import { Settings as SettingsIcon, BookOpen, Bell, Eye, Globe } from 'lucide-react';
 import { storage } from '../../services/storage';
 import { useAuth } from '../../hooks/useAuth';
 import { profileDB } from '../../services/database/profile';
 
-type TabId = 'account' | 'reading' | 'notifications' | 'accessibility';
-
-const tabs = [
-  { 
-    id: 'account', 
-    label: az.settings, 
-    icon: SettingsIcon,
-    gradient: 'from-purple-100 to-violet-100 dark:from-purple-900/40 dark:to-violet-900/40',
-    activeGradient: 'from-purple-500 to-violet-600',
-    borderColor: 'border-purple-200 dark:border-purple-800',
-    shadowColor: 'shadow-purple-500/20 dark:shadow-purple-400/10'
-  },
-  { 
-    id: 'reading', 
-    label: az.readingPreferences.title, 
-    icon: BookOpen,
-    gradient: 'from-blue-100 to-sky-100 dark:from-blue-900/40 dark:to-sky-900/40',
-    activeGradient: 'from-blue-500 to-sky-600',
-    borderColor: 'border-blue-200 dark:border-blue-800',
-    shadowColor: 'shadow-blue-500/20 dark:shadow-blue-400/10'
-  },
-  { 
-    id: 'notifications', 
-    label: az.notifications.title, 
-    icon: Bell,
-    gradient: 'from-pink-100 to-rose-100 dark:from-pink-900/40 dark:to-rose-900/40',
-    activeGradient: 'from-pink-500 to-rose-600',
-    borderColor: 'border-pink-200 dark:border-pink-800',
-    shadowColor: 'shadow-pink-500/20 dark:shadow-pink-400/10'
-  },
-  { 
-    id: 'accessibility', 
-    label: az.accessibility.title, 
-    icon: Eye,
-    gradient: 'from-indigo-100 to-blue-100 dark:from-indigo-900/40 dark:to-blue-900/40',
-    activeGradient: 'from-indigo-500 to-blue-600',
-    borderColor: 'border-indigo-200 dark:border-indigo-800',
-    shadowColor: 'shadow-indigo-500/20 dark:shadow-indigo-400/10'
-  }
-];
-
-const defaultProfile: UserProfile = {
-  name: '',
-  surname: '',
-  email: '',
-  phoneNumber: '',
-  preferredLanguage: 'az',
-  readingGoal: 4
-};
+type TabId = 'account' | 'reading' | 'notifications' | 'accessibility' | 'language';
 
 export const SettingsView: React.FC = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<TabId>('account');
   const { currentUser } = useAuth();
-  const [profile, setProfile] = useState<UserProfile>(defaultProfile);
+  const [profile, setProfile] = useState<UserProfile>({
+    name: '',
+    surname: '',
+    email: '',
+    phoneNumber: '',
+    preferredLanguage: 'az',
+    readingGoal: 4
+  });
   const [securitySettings, setSecuritySettings] = useState<SecuritySettings>({
     twoFactorEnabled: false,
     password: ''
@@ -98,17 +59,63 @@ export const SettingsView: React.FC = () => {
     textToSpeech: false
   });
 
-  // Load profile data when component mounts or when currentUser changes
+  const tabs = [
+    { 
+      id: 'account', 
+      label: t('settings'), 
+      icon: SettingsIcon,
+      gradient: 'from-purple-100 to-violet-100 dark:from-purple-900/40 dark:to-violet-900/40',
+      activeGradient: 'from-purple-500 to-violet-600',
+      borderColor: 'border-purple-200 dark:border-purple-800',
+      shadowColor: 'shadow-purple-500/20 dark:shadow-purple-400/10'
+    },
+    { 
+      id: 'reading', 
+      label: t('readingPreferences.title'), 
+      icon: BookOpen,
+      gradient: 'from-blue-100 to-sky-100 dark:from-blue-900/40 dark:to-sky-900/40',
+      activeGradient: 'from-blue-500 to-sky-600',
+      borderColor: 'border-blue-200 dark:border-blue-800',
+      shadowColor: 'shadow-blue-500/20 dark:shadow-blue-400/10'
+    },
+    { 
+      id: 'notifications', 
+      label: t('notifications.title'), 
+      icon: Bell,
+      gradient: 'from-pink-100 to-rose-100 dark:from-pink-900/40 dark:to-rose-900/40',
+      activeGradient: 'from-pink-500 to-rose-600',
+      borderColor: 'border-pink-200 dark:border-pink-800',
+      shadowColor: 'shadow-pink-500/20 dark:shadow-pink-400/10'
+    },
+    { 
+      id: 'accessibility', 
+      label: t('accessibility.title'), 
+      icon: Eye,
+      gradient: 'from-indigo-100 to-blue-100 dark:from-indigo-900/40 dark:to-blue-900/40',
+      activeGradient: 'from-indigo-500 to-blue-600',
+      borderColor: 'border-indigo-200 dark:border-indigo-800',
+      shadowColor: 'shadow-indigo-500/20 dark:shadow-indigo-400/10'
+    },
+    { 
+      id: 'language', 
+      label: t('language.title'), 
+      icon: Globe,
+      gradient: 'from-emerald-100 to-teal-100 dark:from-emerald-900/40 dark:to-teal-900/40',
+      activeGradient: 'from-emerald-500 to-teal-600',
+      borderColor: 'border-emerald-200 dark:border-emerald-800',
+      shadowColor: 'shadow-emerald-500/20 dark:shadow-emerald-400/10'
+    }
+  ];
+
   useEffect(() => {
     if (currentUser?.email) {
       const savedProfile = profileDB.getProfile(currentUser.email);
       if (savedProfile) {
         setProfile(savedProfile);
       } else {
-        setProfile({ ...defaultProfile, email: currentUser.email });
+        setProfile({ ...profile, email: currentUser.email });
       }
 
-      // Load other settings
       const savedSecuritySettings = storage.getSecuritySettings();
       if (savedSecuritySettings) {
         setSecuritySettings(savedSecuritySettings);
@@ -203,6 +210,9 @@ export const SettingsView: React.FC = () => {
             settings={accessibilitySettings}
             onSave={handleAccessibilitySave}
           />
+        )}
+        {activeTab === 'language' && (
+          <LanguageSelector />
         )}
       </div>
     </div>

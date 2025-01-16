@@ -10,6 +10,13 @@
   "listen": "Listen",
   "noBooks": "No books found",
   "searchBooks": "Search books...",
+  "bookDetails": "Book Details",
+  "description": "Description",
+  "publishedYear": "Published Year",
+  "pages": "Pages",
+  "language": "Language",
+  "genre": "Genre",
+  "allLanguages": "All Languages",
 
   "auth": {
     "login": "Login",
@@ -82,7 +89,7 @@
     "age": "Age",
     "agePlaceholder": "Enter your age",
     "phoneNumber": "Phone Number",
-    "phonePlaceholder": "+994XXXXXXXXX",
+    "phonePlaceholder": "+1XXXXXXXXXX",
     "email": "Email",
     "emailPlaceholder": "Enter your email",
     "save": "Save Changes",
@@ -129,6 +136,7 @@
   "language": {
     "title": "Language",
     "az": "Azərbaycanca",
-    "en": "English"
+    "en": "English",
+    "ru": "Русский"
   }
 }

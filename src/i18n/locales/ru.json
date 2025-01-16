@@ -10,6 +10,13 @@
   "listen": "Слушать",
   "noBooks": "Книги не найдены",
   "searchBooks": "Поиск книг...",
+  "bookDetails": "О книге",
+  "description": "Описание",
+  "publishedYear": "Год издания",
+  "pages": "Страниц",
+  "language": "Язык",
+  "genre": "Жанр",
+  "allLanguages": "Все языки",
 
   "auth": {
     "login": "Вход",

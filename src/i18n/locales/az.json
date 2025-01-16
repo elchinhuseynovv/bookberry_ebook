@@ -2,7 +2,7 @@
   "appName": "BookBerry",
   "digitalLibrary": "Rəqəmsal Kitabxana",
   "library": "Kitabxana",
-  "audiobooks": "Audioкitablar",
+  "audiobooks": "Audiokitablar",
   "bookmarks": "Əlfəcinlər",
   "settings": "Tənzimləmələr",
   "minutes": "dəqiqə",
@@ -10,6 +10,13 @@
   "listen": "Dinlə",
   "noBooks": "Kitab tapılmadı",
   "searchBooks": "Kitabları axtar...",
+  "bookDetails": "Kitab haqqında",
+  "description": "Təsvir",
+  "publishedYear": "Nəşr ili",
+  "pages": "Səhifə sayı",
+  "language": "Dil",
+  "genre": "Janr",
+  "allLanguages": "Bütün dillər",
 
   "auth": {
     "login": "Daxil ol",
@@ -46,10 +53,10 @@
     "newPasswordPlaceholder": "Yeni şifrənizi daxil edin",
     "confirmNewPassword": "Yeni şifrəni təsdiqlə",
     "confirmNewPasswordPlaceholder": "Yeni şifrənizi təkrar daxil edin",
-    "twoFactorAuth": "İki faktorlu doğrulama",
-    "twoFactorAuthDescription": "Hesabınıza əlavə təhlükəsizlik təmin edin",
-    "enabled": "Aktiv",
-    "disabled": "Deaktiv"
+    "twoFactorAuth": "İki faktorlu autentifikasiya",
+    "twoFactorAuthDescription": "Hesabınıza əlavə təhlükəsizlik təbəqəsi əlavə edin",
+    "enabled": "Aktivdir",
+    "disabled": "Deaktivdir"
   },
 
   "subscription": {
@@ -62,10 +69,10 @@
     "selected": "Seçildi",
     "selectPlanRequired": "Zəhmət olmasa abunəlik planı seçin",
     "features": {
-      "basicAccess": "Əsas kitabxanaya giriş",
+      "basicAccess": "Əsas kitabxana girişi",
       "limitedBooks": "Ayda 10 kitaba giriş",
       "adsSupported": "Reklamlı oxuma",
-      "fullAccess": "Tam kitabxanaya giriş",
+      "fullAccess": "Tam kitabxana girişi",
       "unlimitedBooks": "Limitsiz kitablar",
       "noAds": "Reklamsız oxuma",
       "offlineReading": "Oflayn oxuma",
@@ -94,41 +101,42 @@
   },
 
   "readingPreferences": {
-    "title": "Oxuma tənzimləmələri",
-    "fontSize": "Şrift ölçüsü",
-    "textAlignment": "Mətn düzləndirməsi",
-    "autoPlayAudio": "Avtomatik səs oxuma",
-    "showPageNumber": "Səhifə nömrələrini göstər",
-    "highlightLinks": "Linkləri vurğula"
+    "title": "Oxuma Tənzimləmələri",
+    "fontSize": "Şrift Ölçüsü",
+    "textAlignment": "Mətn Düzləndirməsi",
+    "autoPlayAudio": "Avtomatik Audio Oxuma",
+    "showPageNumber": "Səhifə Nömrələrini Göstər",
+    "highlightLinks": "Linkləri Vurğula"
   },
 
   "notifications": {
     "title": "Bildirişlər",
-    "dailyReminder": "Gündəlik oxuma xatırlatması",
-    "weeklyProgress": "Həftəlik irəliləyiş hesabatı",
-    "newBookAlerts": "Yeni kitab bildirişləri",
-    "systemNotifications": "Sistem bildirişləri",
-    "reminderTime": "Xatırlatma vaxtı"
+    "dailyReminder": "Gündəlik Oxuma Xatırlatması",
+    "weeklyProgress": "Həftəlik İrəliləyiş Hesabatı",
+    "newBookAlerts": "Yeni Kitab Bildirişləri",
+    "systemNotifications": "Sistem Bildirişləri",
+    "reminderTime": "Xatırlatma Vaxtı"
   },
 
   "accessibility": {
     "title": "Əlçatanlıq",
-    "highContrast": "Yüksək kontrast",
-    "reduceAnimations": "Animasiyaları azalt",
-    "screenReader": "Ekran oxuyucu dəstəyi",
-    "dyslexicFont": "Disleksiya dostu şrift",
-    "textToSpeech": "Mətndən-səsə"
+    "highContrast": "Yüksək Kontrast",
+    "reduceAnimations": "Animasiyaları Azalt",
+    "screenReader": "Ekran Oxuyucu Dəstəyi",
+    "dyslexicFont": "Disleksiya Dostu Şrift",
+    "textToSpeech": "Mətndən Səsə"
   },
 
   "theme": {
-    "light": "İşıqlı rejim",
-    "dark": "Qaranlıq rejim",
-    "sepia": "Sepiya rejim"
+    "light": "İşıqlı Rejim",
+    "dark": "Qaranlıq Rejim",
+    "sepia": "Sepiya Rejimi"
   },
 
   "language": {
     "title": "Dil",
     "az": "Azərbaycanca",
-    "en": "English"
+    "en": "English",
+    "ru": "Русский"
   }
 }

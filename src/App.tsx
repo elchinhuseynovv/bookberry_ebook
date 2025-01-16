@@ -9,6 +9,7 @@ import { LoginPage } from './components/auth/LoginPage';
 import { SignUpPage } from './components/auth/SignUpPage';
 import { ResetPasswordPage } from './components/auth/ResetPasswordPage';
 import { SplashScreen } from './components/SplashScreen';
+import { LanguageFilter } from './components/LanguageFilter';
 import { Book, ViewMode } from './types';
 import { Search } from 'lucide-react';
 import { useAuth } from './hooks/useAuth';
@@ -22,7 +23,15 @@ function App() {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   
   const { theme, setTheme, themeClasses } = useTheme();
-  const { searchQuery, setSearchQuery, filteredBooks, filteredAudioBooks } = useSearch();
+  const { 
+    searchQuery, 
+    setSearchQuery, 
+    selectedLanguage,
+    setSelectedLanguage,
+    languages,
+    filteredBooks, 
+    filteredAudioBooks 
+  } = useSearch();
   const {
     isAuthenticated,
     showSignUp,
@@ -87,6 +96,12 @@ function App() {
               />
             </div>
 
+            <LanguageFilter
+              selectedLanguage={selectedLanguage}
+              onLanguageSelect={setSelectedLanguage}
+              languages={languages}
+            />
+
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 auto-rows-fr pb-20">
               {filteredAudioBooks.length > 0 ? (
                 filteredAudioBooks.map((book) => (
@@ -130,6 +145,12 @@ function App() {
                 }`} 
               />
             </div>
+
+            <LanguageFilter
+              selectedLanguage={selectedLanguage}
+              onLanguageSelect={setSelectedLanguage}
+              languages={languages}
+            />
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 auto-rows-fr pb-20">
               {filteredBooks.length > 0 ? (

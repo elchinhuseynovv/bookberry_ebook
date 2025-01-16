@@ -21,18 +21,20 @@ import { profileDB } from '../../services/database/profile';
 
 type TabId = 'account' | 'reading' | 'notifications' | 'accessibility' | 'language';
 
+const defaultProfile: UserProfile = {
+  name: '',
+  surname: '',
+  email: '',
+  phoneNumber: '',
+  preferredLanguage: 'az',
+  readingGoal: 4
+};
+
 export const SettingsView: React.FC = () => {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<TabId>('account');
   const { currentUser } = useAuth();
-  const [profile, setProfile] = useState<UserProfile>({
-    name: '',
-    surname: '',
-    email: '',
-    phoneNumber: '',
-    preferredLanguage: 'az',
-    readingGoal: 4
-  });
+  const [profile, setProfile] = useState<UserProfile>(defaultProfile);
   const [securitySettings, setSecuritySettings] = useState<SecuritySettings>({
     twoFactorEnabled: false,
     password: ''
@@ -113,7 +115,7 @@ export const SettingsView: React.FC = () => {
       if (savedProfile) {
         setProfile(savedProfile);
       } else {
-        setProfile({ ...profile, email: currentUser.email });
+        setProfile({ ...defaultProfile, email: currentUser.email });
       }
 
       const savedSecuritySettings = storage.getSecuritySettings();

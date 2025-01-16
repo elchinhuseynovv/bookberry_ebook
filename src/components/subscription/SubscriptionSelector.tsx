@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { SubscriptionCard } from './SubscriptionCard';
 import { subscriptionPlans } from '../../constants/subscriptionPlans';
 import { SubscriptionPlan } from '../../types/subscription';
-import { az } from '../../constants/translations';
 
 interface Props {
   onSelect: (plan: SubscriptionPlan) => void;
 }
 
 export const SubscriptionSelector: React.FC<Props> = ({ onSelect }) => {
+  const { t } = useTranslation();
   const [selectedPlan, setSelectedPlan] = useState<string>('free');
 
   const handleSelect = (plan: SubscriptionPlan) => {
@@ -19,7 +20,7 @@ export const SubscriptionSelector: React.FC<Props> = ({ onSelect }) => {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-        {az.subscription.choosePlan}
+        {t('subscription.choosePlan')}
       </h2>
       <div className="grid gap-6 md:grid-cols-3">
         {subscriptionPlans.map((plan) => (

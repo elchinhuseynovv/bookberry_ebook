@@ -6,6 +6,7 @@ import { ReadingPreferencesSection } from './ReadingPreferencesSection';
 import { NotificationsSection } from './NotificationsSection';
 import { AccessibilitySection } from './AccessibilitySection';
 import { LanguageSelector } from './LanguageSelector';
+import { SubscriptionSection } from './SubscriptionSection';
 import { SettingsTab } from './SettingsTab';
 import { 
   UserProfile, 
@@ -14,12 +15,14 @@ import {
   AccessibilitySettings,
   SecuritySettings 
 } from '../../types';
-import { Settings as SettingsIcon, BookOpen, Bell, Eye, Globe } from 'lucide-react';
+import { Settings as SettingsIcon, BookOpen, Bell, Eye, Globe, CreditCard } from 'lucide-react';
 import { storage } from '../../services/storage';
 import { useAuth } from '../../hooks/useAuth';
 import { profileDB } from '../../services/database/profile';
+import { subscriptionPlans } from '../../constants/subscriptionPlans';
+import { SubscriptionPlan } from '../../types/subscription';
 
-type TabId = 'account' | 'reading' | 'notifications' | 'accessibility' | 'language';
+type TabId = 'account' | 'subscription' | 'reading' | 'notifications' | 'accessibility' | 'language';
 
 const defaultProfile: UserProfile = {
   name: '',
@@ -35,6 +38,7 @@ export const SettingsView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabId>('account');
   const { currentUser } = useAuth();
   const [profile, setProfile] = useState<UserProfile>(defaultProfile);
+  const [currentPlan, setCurrentPlan] = useState<SubscriptionPlan>(subscriptionPlans[0]);
   const [securitySettings, setSecuritySettings] = useState<SecuritySettings>({
     twoFactorEnabled: false,
     password: ''
@@ -70,6 +74,15 @@ export const SettingsView: React.FC = () => {
       activeGradient: 'from-purple-500 to-violet-600',
       borderColor: 'border-purple-200 dark:border-purple-800',
       shadowColor: 'shadow-purple-500/20 dark:shadow-purple-400/10'
+    },
+    { 
+      id: 'subscription',
+      label: t('subscription.title'),
+      icon: CreditCard,
+      gradient: 'from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40',
+      activeGradient: 'from-orange-500 to-amber-600',
+      borderColor: 'border-orange-200 dark:border-orange-800',
+      shadowColor: 'shadow-orange-500/20 dark:shadow-orange-400/10'
     },
     { 
       id: 'reading', 
@@ -171,6 +184,11 @@ export const SettingsView: React.FC = () => {
     storage.setAccessibilitySettings(settings);
   };
 
+  const handlePlanChange = (plan: SubscriptionPlan) => {
+    setCurrentPlan(plan);
+    // Here you would typically handle the subscription change with your backend
+  };
+
   return (
     <div className="space-y-8">
       {/* Settings Navigation */}
@@ -194,6 +212,12 @@ export const SettingsView: React.FC = () => {
       <div className="space-y-8">
         {activeTab === 'account' && (
           <ProfileSection profile={profile} onSave={handleProfileSave} />
+        )}
+        {activeTab === 'subscription' && (
+          <SubscriptionSection
+            currentPlan={currentPlan}
+            onPlanChange={handlePlanChange}
+          />
         )}
         {activeTab === 'reading' && (
           <ReadingPreferencesSection

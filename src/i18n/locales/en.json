@@ -17,6 +17,9 @@
   "language": "Language",
   "genre": "Genre",
   "allLanguages": "All Languages",
+  "reviews": "Reviews",
+  "readingProgress": "Reading Progress",
+  "listeningProgress": "Listening Progress",
 
   "auth": {
     "login": "Login",
@@ -60,6 +63,8 @@
   },
 
   "subscription": {
+    "title": "Subscription",
+    "currentPlan": "Current Plan",
     "freePlan": "Free Plan",
     "premiumPlan": "Premium Plan",
     "perMonth": "per month",
@@ -68,6 +73,10 @@
     "select": "Select",
     "selected": "Selected",
     "selectPlanRequired": "Please select a subscription plan",
+    "free": "Free",
+    "currency": "USD",
+    "monthly": "monthly",
+    "yearly": "yearly",
     "features": {
       "basicAccess": "Basic library access",
       "limitedBooks": "Access to 10 books per month",
@@ -76,7 +85,18 @@
       "unlimitedBooks": "Unlimited books",
       "noAds": "Ad-free reading",
       "offlineReading": "Offline reading",
-      "prioritySupport": "Priority support"
+      "prioritySupport": "Priority support",
+      "audiobooks": "Access to audiobooks",
+      "deviceSync": "Sync across all devices",
+      "customCollections": "Custom collections",
+      "readingStats": "Reading statistics",
+      "bookmarks": "Unlimited bookmarks",
+      "highlights": "Notes and highlights"
+    },
+    "pricing": {
+      "free": "$0 - Free",
+      "monthly": "$9.99/month",
+      "yearly": "$99/year"
     }
   },
 

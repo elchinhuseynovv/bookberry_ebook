@@ -17,6 +17,9 @@
   "language": "Язык",
   "genre": "Жанр",
   "allLanguages": "Все языки",
+  "reviews": "Отзывы",
+  "readingProgress": "Прогресс чтения",
+  "listeningProgress": "Прогресс прослушивания",
 
   "auth": {
     "login": "Вход",
@@ -29,7 +32,7 @@
     "password": "Пароль",
     "passwordPlaceholder": "Введите ваш пароль",
     "confirmPassword": "Подтвердите пароль",
-    "confirmPasswordPlaceholder": "Введите пароль повторно",
+    "confirmPasswordPlaceholder": "Введите пароль ещё раз",
     "name": "Имя",
     "namePlaceholder": "Введите ваше имя",
     "fillDetails": "Пожалуйста, заполните ваши данные",
@@ -38,11 +41,11 @@
     "passwordsDoNotMatch": "Пароли не совпадают",
     "termsAndConditions": "Условия использования",
     "acceptTerms": "Я принимаю",
-    "logout": "Выход",
+    "logout": "Выйти",
     "resetPasswordDescription": "Введите ваш email и мы отправим вам ссылку для сброса пароля",
     "sendResetLink": "Отправить ссылку",
-    "checkYourEmail": "Проверьте вашу почту",
-    "resetEmailSent": "Мы отправили вам email с инструкциями по сбросу пароля"
+    "checkYourEmail": "Проверьте почту",
+    "resetEmailSent": "Мы отправили вам инструкции по сбросу пароля"
   },
 
   "security": {
@@ -52,7 +55,7 @@
     "newPassword": "Новый пароль",
     "newPasswordPlaceholder": "Введите новый пароль",
     "confirmNewPassword": "Подтвердите новый пароль",
-    "confirmNewPasswordPlaceholder": "Введите новый пароль повторно",
+    "confirmNewPasswordPlaceholder": "Введите новый пароль ещё раз",
     "twoFactorAuth": "Двухфакторная аутентификация",
     "twoFactorAuthDescription": "Добавьте дополнительный уровень безопасности",
     "enabled": "Включено",
@@ -60,6 +63,8 @@
   },
 
   "subscription": {
+    "title": "Подписка",
+    "currentPlan": "Текущий план",
     "freePlan": "Бесплатный план",
     "premiumPlan": "Премиум план",
     "perMonth": "в месяц",
@@ -68,6 +73,10 @@
     "select": "Выбрать",
     "selected": "Выбрано",
     "selectPlanRequired": "Пожалуйста, выберите план подписки",
+    "free": "Бесплатно",
+    "currency": "РУБ",
+    "monthly": "ежемесячно",
+    "yearly": "ежегодно",
     "features": {
       "basicAccess": "Базовый доступ к библиотеке",
       "limitedBooks": "Доступ к 10 книгам в месяц",
@@ -76,7 +85,18 @@
       "unlimitedBooks": "Безлимитные книги",
       "noAds": "Без рекламы",
       "offlineReading": "Офлайн чтение",
-      "prioritySupport": "Приоритетная поддержка"
+      "prioritySupport": "Приоритетная поддержка",
+      "audiobooks": "Доступ к аудиокнигам",
+      "deviceSync": "Синхронизация на всех устройствах",
+      "customCollections": "Пользовательские коллекции",
+      "readingStats": "Статистика чтения",
+      "bookmarks": "Безлимитные закладки",
+      "highlights": "Заметки и выделения"
+    },
+    "pricing": {
+      "free": "0 РУБ - Бесплатно",
+      "monthly": "799 РУБ/месяц",
+      "yearly": "7990 РУБ/год"
     }
   },
 
@@ -97,7 +117,7 @@
     "surnameRequired": "Фамилия обязательна",
     "phoneRequired": "Номер телефона обязателен",
     "invalidPhone": "Неверный формат номера телефона",
-    "invalidAge": "Введите корректный возраст"
+    "invalidAge": "Пожалуйста, введите корректный возраст"
   },
 
   "readingPreferences": {
@@ -124,7 +144,7 @@
     "reduceAnimations": "Уменьшить анимации",
     "screenReader": "Поддержка чтения с экрана",
     "dyslexicFont": "Шрифт для дислексии",
-    "textToSpeech": "Текст в речь"
+    "textToSpeech": "Преобразование текста в речь"
   },
 
   "theme": {

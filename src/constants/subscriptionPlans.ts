@@ -16,7 +16,7 @@ export const subscriptionPlans: SubscriptionPlan[] = [
     id: 'premium-monthly',
     tier: 'premium',
     name: 'premiumPlan',
-    price: 9.99,
+    price: 7,
     billingPeriod: 'monthly',
     features: [
       'fullAccess',
@@ -36,7 +36,7 @@ export const subscriptionPlans: SubscriptionPlan[] = [
     id: 'premium-yearly',
     tier: 'premium',
     name: 'premiumPlan',
-    price: 99,
+    price: 70,
     billingPeriod: 'yearly',
     features: [
       'fullAccess',

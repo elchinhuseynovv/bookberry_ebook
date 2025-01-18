@@ -94,10 +94,13 @@
       "bookmarks": "Limitsiz əlfəcinlər",
       "highlights": "Qeydlər və vurğulamalar"
     },
-    "pricing": {
-      "free": "0 AZN - Pulsuz",
-      "monthly": "15 AZN/ay",
-      "yearly": "150 AZN/il"
+    "payment": {
+      "title": "Ödəniş məlumatları",
+      "cardNumber": "Kart nömrəsi",
+      "expiry": "Bitmə tarixi",
+      "cvv": "CVV",
+      "nameOnCard": "Kartdakı ad",
+      "payNow": "İndi ödə"
     }
   },
 

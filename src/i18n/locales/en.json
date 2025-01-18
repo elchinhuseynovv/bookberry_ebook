@@ -94,10 +94,13 @@
       "bookmarks": "Unlimited bookmarks",
       "highlights": "Notes and highlights"
     },
-    "pricing": {
-      "free": "$0 - Free",
-      "monthly": "$9.99/month",
-      "yearly": "$99/year"
+    "payment": {
+      "title": "Payment Details",
+      "cardNumber": "Card Number",
+      "expiry": "Expiry Date",
+      "cvv": "CVV",
+      "nameOnCard": "Name on Card",
+      "payNow": "Pay Now"
     }
   },
 

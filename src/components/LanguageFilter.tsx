@@ -11,6 +11,19 @@ interface Props {
 export const LanguageFilter: React.FC<Props> = ({ selectedLanguage, onLanguageSelect, languages }) => {
   const { t } = useTranslation();
 
+  const getLanguageDisplay = (lang: string) => {
+    switch (lang.toLowerCase()) {
+      case 'azərbaycanca':
+        return t('language.az');
+      case 'english':
+        return t('language.en');
+      case 'русский':
+        return t('language.ru');
+      default:
+        return lang;
+    }
+  };
+
   return (
     <div className="mb-6">
       <div className="flex items-center gap-2 mb-3">
@@ -38,7 +51,7 @@ export const LanguageFilter: React.FC<Props> = ({ selectedLanguage, onLanguageSe
                 : 'bg-gray-100 text-gray-600 hover:bg-purple-50 dark:bg-gray-800 dark:text-gray-300'
               }`}
           >
-            {lang}
+            {getLanguageDisplay(lang)}
           </button>
         ))}
       </div>

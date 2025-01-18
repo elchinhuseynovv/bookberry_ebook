@@ -13,10 +13,10 @@ export const SubscriptionCard: React.FC<Props> = ({ plan, isSelected, onSelect }
   const { t } = useTranslation();
 
   const getPriceDisplay = () => {
-    if (plan.tier === 'free') {
-      return t('subscription.pricing.free');
+    if (plan.price === 0) {
+      return t('subscription.free');
     }
-    return t(`subscription.pricing.${plan.billingPeriod}`);
+    return `${plan.price} ${t('subscription.currency')} ${t(`subscription.${plan.billingPeriod}`)}`;
   };
 
   return (

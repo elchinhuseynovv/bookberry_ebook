@@ -2,10 +2,12 @@ import { useState, useMemo } from 'react';
 import { Book } from '../types';
 import { books } from '../data/books';
 import { audiobooks } from '../data/audiobooks';
+import { useTranslation } from 'react-i18next';
 
 export const useSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const languages = useMemo(() => {
     const allBooks = [...books, ...audiobooks];

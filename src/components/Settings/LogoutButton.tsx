@@ -1,9 +1,10 @@
 import React from 'react';
 import { LogOut } from 'lucide-react';
-import { az } from '../../constants/translations';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth';
 
 export const LogoutButton: React.FC = () => {
+  const { t } = useTranslation();
   const { handleLogout } = useAuth();
 
   const handleClick = () => {
@@ -20,7 +21,7 @@ export const LogoutButton: React.FC = () => {
                  transition-colors duration-200"
     >
       <LogOut size={20} />
-      <span>{az.auth.logout}</span>
+      <span>{t('auth.logout')}</span>
     </button>
   );
 };

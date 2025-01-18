@@ -3,7 +3,8 @@ import { UserPlus, Mail, Lock, Eye, EyeOff, User, ArrowLeft } from 'lucide-react
 import { Logo } from '../Logo';
 import { SubscriptionSelector } from '../subscription/SubscriptionSelector';
 import { SubscriptionPlan } from '../../types/subscription';
-import { az } from '../../constants/translations';
+import { useTranslation } from 'react-i18next';
+import { AuthLanguageSelector } from './LanguageSelector';
 
 interface SignUpFormData {
   name: string;
@@ -19,6 +20,7 @@ interface Props {
 }
 
 export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<SignUpFormData>({
     name: '',
     email: '',
@@ -33,11 +35,11 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      alert(az.auth.passwordsDoNotMatch);
+      alert(t('auth.passwordsDoNotMatch'));
       return;
     }
     if (!formData.subscriptionPlan) {
-      alert(az.subscription.selectPlanRequired);
+      alert(t('subscription.selectPlanRequired'));
       return;
     }
     onSignUp(formData);
@@ -56,7 +58,7 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
           className="flex items-center gap-2 text-purple-600 hover:text-purple-500 dark:text-purple-400 dark:hover:text-purple-300"
         >
           <ArrowLeft size={20} />
-          {az.auth.backToLogin}
+          {t('auth.backToLogin')}
         </button>
 
         {/* Logo and Title */}
@@ -65,10 +67,10 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
             <Logo />
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            {az.auth.createAccount}
+            {t('auth.createAccount')}
           </h1>
           <p className="mt-2 text-gray-600 dark:text-gray-300">
-            {az.auth.fillDetails}
+            {t('auth.fillDetails')}
           </p>
         </div>
 
@@ -77,7 +79,7 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
           {/* Name Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-              {az.auth.name}
+              {t('auth.name')}
             </label>
             <div className="relative">
               <input
@@ -88,7 +90,7 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
                          bg-white dark:bg-gray-700 text-gray-900 dark:text-white
                          focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none
                          transition-colors pl-12"
-                placeholder={az.auth.namePlaceholder}
+                placeholder={t('auth.namePlaceholder')}
                 required
               />
               <User className="absolute left-4 top-3.5 h-5 w-5 text-gray-400" />
@@ -98,7 +100,7 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
           {/* Email Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-              {az.auth.email}
+              {t('auth.email')}
             </label>
             <div className="relative">
               <input
@@ -109,7 +111,7 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
                          bg-white dark:bg-gray-700 text-gray-900 dark:text-white
                          focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none
                          transition-colors pl-12"
-                placeholder={az.auth.emailPlaceholder}
+                placeholder={t('auth.emailPlaceholder')}
                 required
               />
               <Mail className="absolute left-4 top-3.5 h-5 w-5 text-gray-400" />
@@ -119,7 +121,7 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
           {/* Password Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-              {az.auth.password}
+              {t('auth.password')}
             </label>
             <div className="relative">
               <input
@@ -130,7 +132,7 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
                          bg-white dark:bg-gray-700 text-gray-900 dark:text-white
                          focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none
                          transition-colors pl-12"
-                placeholder={az.auth.passwordPlaceholder}
+                placeholder={t('auth.passwordPlaceholder')}
                 required
               />
               <Lock className="absolute left-4 top-3.5 h-5 w-5 text-gray-400" />
@@ -147,7 +149,7 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
           {/* Confirm Password Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-              {az.auth.confirmPassword}
+              {t('auth.confirmPassword')}
             </label>
             <div className="relative">
               <input
@@ -158,7 +160,7 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
                          bg-white dark:bg-gray-700 text-gray-900 dark:text-white
                          focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none
                          transition-colors pl-12"
-                placeholder={az.auth.confirmPasswordPlaceholder}
+                placeholder={t('auth.confirmPasswordPlaceholder')}
                 required
               />
               <Lock className="absolute left-4 top-3.5 h-5 w-5 text-gray-400" />
@@ -188,12 +190,12 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
                 required
               />
               <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">
-                {az.auth.acceptTerms}{' '}
+                {t('auth.acceptTerms')}{' '}
                 <button
                   type="button"
                   className="text-purple-600 hover:text-purple-500 dark:text-purple-400 dark:hover:text-purple-300"
                 >
-                  {az.auth.termsAndConditions}
+                  {t('auth.termsAndConditions')}
                 </button>
               </span>
             </div>
@@ -205,8 +207,12 @@ export const SignUpPage: React.FC<Props> = ({ onSignUp, onBackToLogin }) => {
                        transition-colors font-medium"
             >
               <UserPlus size={20} />
-              {az.auth.createAccount}
+              {t('auth.createAccount')}
             </button>
+
+            <div className="pt-4 text-center">
+              <AuthLanguageSelector />
+            </div>
           </div>
         </form>
       </div>

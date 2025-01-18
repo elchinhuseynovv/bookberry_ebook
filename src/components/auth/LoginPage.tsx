@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { LogIn, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { Logo } from '../Logo';
-import { az } from '../../constants/translations';
+import { useTranslation } from 'react-i18next';
+import { AuthLanguageSelector } from './LanguageSelector';
 
 interface LoginFormData {
   email: string;
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export const LoginPage: React.FC<Props> = ({ onLogin, onSignUp, onForgotPassword }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: ''
@@ -29,7 +31,7 @@ export const LoginPage: React.FC<Props> = ({ onLogin, onSignUp, onForgotPassword
     try {
       await onLogin(formData);
     } catch (err) {
-      setError(az.auth.invalidCredentials);
+      setError(t('auth.invalidCredentials'));
     }
   };
 
@@ -41,7 +43,7 @@ export const LoginPage: React.FC<Props> = ({ onLogin, onSignUp, onForgotPassword
             <Logo />
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            {az.auth.login}
+            {t('auth.login')}
           </h1>
         </div>
 
@@ -54,7 +56,7 @@ export const LoginPage: React.FC<Props> = ({ onLogin, onSignUp, onForgotPassword
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-              {az.auth.email}
+              {t('auth.email')}
             </label>
             <div className="relative">
               <input
@@ -65,7 +67,7 @@ export const LoginPage: React.FC<Props> = ({ onLogin, onSignUp, onForgotPassword
                          bg-white dark:bg-gray-700 text-gray-900 dark:text-white
                          focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none
                          transition-colors pl-12"
-                placeholder={az.auth.emailPlaceholder}
+                placeholder={t('auth.emailPlaceholder')}
                 required
               />
               <Mail className="absolute left-4 top-3.5 h-5 w-5 text-gray-400" />
@@ -74,7 +76,7 @@ export const LoginPage: React.FC<Props> = ({ onLogin, onSignUp, onForgotPassword
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-              {az.auth.password}
+              {t('auth.password')}
             </label>
             <div className="relative">
               <input
@@ -85,7 +87,7 @@ export const LoginPage: React.FC<Props> = ({ onLogin, onSignUp, onForgotPassword
                          bg-white dark:bg-gray-700 text-gray-900 dark:text-white
                          focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none
                          transition-colors pl-12"
-                placeholder={az.auth.passwordPlaceholder}
+                placeholder={t('auth.passwordPlaceholder')}
                 required
               />
               <Lock className="absolute left-4 top-3.5 h-5 w-5 text-gray-400" />
@@ -105,7 +107,7 @@ export const LoginPage: React.FC<Props> = ({ onLogin, onSignUp, onForgotPassword
               onClick={onForgotPassword}
               className="text-sm text-purple-600 hover:text-purple-500 dark:text-purple-400 dark:hover:text-purple-300"
             >
-              {az.auth.forgotPassword}
+              {t('auth.forgotPassword')}
             </button>
           </div>
 
@@ -116,17 +118,21 @@ export const LoginPage: React.FC<Props> = ({ onLogin, onSignUp, onForgotPassword
                      transition-colors font-medium"
           >
             <LogIn size={20} />
-            {az.auth.login}
+            {t('auth.login')}
           </button>
 
-          <div className="text-center">
+          <div className="text-center space-y-4">
             <button
               type="button"
               onClick={onSignUp}
               className="text-sm text-purple-600 hover:text-purple-500 dark:text-purple-400 dark:hover:text-purple-300"
             >
-              {az.auth.createAccount}
+              {t('auth.createAccount')}
             </button>
+
+            <div className="pt-2">
+              <AuthLanguageSelector />
+            </div>
           </div>
         </form>
       </div>

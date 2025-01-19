@@ -20,7 +20,6 @@
   "reviews": "Reviews",
   "readingProgress": "Reading Progress",
   "listeningProgress": "Listening Progress",
-
   "auth": {
     "login": "Login",
     "createAccount": "Create Account",
@@ -47,7 +46,6 @@
     "checkYourEmail": "Check Your Email",
     "resetEmailSent": "We have sent you an email with instructions to reset your password"
   },
-
   "security": {
     "title": "Security",
     "currentPassword": "Current Password",
@@ -61,7 +59,6 @@
     "enabled": "Enabled",
     "disabled": "Disabled"
   },
-
   "subscription": {
     "title": "Subscription",
     "currentPlan": "Current Plan",
@@ -103,7 +100,6 @@
       "payNow": "Pay Now"
     }
   },
-
   "profile": {
     "title": "Profile",
     "name": "Name",
@@ -123,7 +119,6 @@
     "invalidPhone": "Invalid phone number format",
     "invalidAge": "Please enter a valid age"
   },
-
   "readingPreferences": {
     "title": "Reading Preferences",
     "fontSize": "Font Size",
@@ -132,7 +127,6 @@
     "showPageNumber": "Show Page Numbers",
     "highlightLinks": "Highlight Links"
   },
-
   "notifications": {
     "title": "Notifications",
     "dailyReminder": "Daily Reading Reminder",
@@ -141,7 +135,6 @@
     "systemNotifications": "System Notifications",
     "reminderTime": "Reminder Time"
   },
-
   "accessibility": {
     "title": "Accessibility",
     "highContrast": "High Contrast",
@@ -150,13 +143,11 @@
     "dyslexicFont": "Dyslexic-friendly Font",
     "textToSpeech": "Text-to-Speech"
   },
-
   "theme": {
     "light": "Light Mode",
     "dark": "Dark Mode",
     "sepia": "Sepia Mode"
   },
-
   "language": {
     "title": "Language",
     "az": "Azərbaycanca",

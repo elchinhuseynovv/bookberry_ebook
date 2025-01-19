@@ -28,7 +28,7 @@ export const LanguageFilter: React.FC<Props> = ({ selectedLanguage, onLanguageSe
     <div className="mb-6">
       <div className="flex items-center gap-2 mb-3">
         <Globe className="h-5 w-5 text-purple-500" />
-        <h3 className="font-medium text-gray-900 dark:text-white">{t('language')}</h3>
+        <h3 className="font-medium text-gray-900 dark:text-white">{t('language.title')}</h3>
       </div>
       <div className="flex flex-wrap gap-2">
         <button

@@ -32,7 +32,7 @@ export const SplashScreen: React.FC = () => {
           {az.appName}
         </h1>
         <p className="text-purple-500/70 dark:text-purple-300/70">
-          {az.digitalLibrary}
+          Rəqəmsal Kitabxana
         </p>
       </div>
 

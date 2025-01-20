@@ -1,18 +1,125 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Book } from '../../types';
-import { BookmarkPlus, Share2, Star, Clock } from 'lucide-react';
-import { az } from '../../constants/translations';
+import { BookmarkPlus, BookmarkCheck, Share2, Star, Clock, Check, Copy, Facebook, Instagram, MessageCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   book: Book;
 }
 
 export const BookHeader: React.FC<Props> = ({ book }) => {
+  const { t } = useTranslation();
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [showCopySuccess, setShowCopySuccess] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+
   const handleReadClick = () => {
     if (book.pdfUrl) {
       window.open(book.pdfUrl, '_blank');
     }
   };
+
+  const handleBookmarkClick = () => {
+    setIsBookmarked(!isBookmarked);
+    // Save bookmark state to local storage
+    const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+    if (!isBookmarked) {
+      bookmarks.push(book.id);
+    } else {
+      const index = bookmarks.indexOf(book.id);
+      if (index > -1) {
+        bookmarks.splice(index, 1);
+      }
+    }
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+  };
+
+  const isShareSupported = () => {
+    try {
+      return navigator.share !== undefined && 
+             !window.location.href.includes('stackblitz.com') &&
+             !window.location.href.includes('localhost') &&
+             window.location.protocol === 'https:';
+    } catch {
+      return false;
+    }
+  };
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setShowCopySuccess(true);
+      setTimeout(() => setShowCopySuccess(false), 2000);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const getShareText = () => {
+    return `${book.title} by ${book.author}\n${window.location.href}`;
+  };
+
+  const handleShare = async (platform?: string) => {
+    const shareText = getShareText();
+    const encodedText = encodeURIComponent(shareText);
+    const encodedUrl = encodeURIComponent(window.location.href);
+
+    if (platform) {
+      let shareUrl = '';
+      switch (platform) {
+        case 'whatsapp':
+          shareUrl = `https://wa.me/?text=${encodedText}`;
+          break;
+        case 'facebook':
+          shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+          break;
+        case 'instagram':
+          // Instagram doesn't have a direct sharing URL, but we can copy to clipboard
+          await copyToClipboard(shareText);
+          alert(t('shareToInstagramGuide'));
+          return;
+        default:
+          break;
+      }
+      window.open(shareUrl, '_blank', 'noopener,noreferrer');
+      setShowShareMenu(false);
+    } else {
+      // Try native sharing first, fall back to menu if it fails
+      if (isShareSupported()) {
+        try {
+          await navigator.share({
+            title: book.title,
+            text: `Check out "${book.title}" by ${book.author}`,
+            url: window.location.href
+          });
+        } catch (error) {
+          // If share fails for any reason (denied permission, etc), show the menu
+          setShowShareMenu(true);
+        }
+      } else {
+        setShowShareMenu(true);
+      }
+    }
+  };
+
+  // Close share menu when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showShareMenu && !(event.target as Element).closest('.share-menu')) {
+        setShowShareMenu(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [showShareMenu]);
+
+  // Check if book is bookmarked on component mount
+  React.useEffect(() => {
+    const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+    setIsBookmarked(bookmarks.includes(book.id));
+  }, [book.id]);
 
   return (
     <div className="relative">
@@ -60,7 +167,7 @@ export const BookHeader: React.FC<Props> = ({ book }) => {
                 {book.duration && (
                   <div className="flex items-center gap-1 text-gray-200">
                     <Clock className="h-5 w-5" />
-                    <span>{book.duration} {az.minutes}</span>
+                    <span>{book.duration} {t('minutes')}</span>
                   </div>
                 )}
               </div>
@@ -70,14 +177,72 @@ export const BookHeader: React.FC<Props> = ({ book }) => {
                   onClick={handleReadClick}
                   className="rounded-xl bg-purple-600 px-6 py-2.5 font-medium text-white shadow-lg shadow-purple-500/25 hover:bg-purple-700 transition-colors"
                 >
-                  {book.isAudio ? az.listen : az.read}
+                  {book.isAudio ? t('listen') : t('read')}
                 </button>
-                <button className="rounded-xl bg-white/10 backdrop-blur-sm px-6 py-2.5 font-medium text-white shadow-lg hover:bg-white/20 transition-colors">
-                  <BookmarkPlus className="h-5 w-5" />
+                <button 
+                  onClick={handleBookmarkClick}
+                  className="rounded-xl bg-white/10 backdrop-blur-sm px-6 py-2.5 font-medium text-white shadow-lg hover:bg-white/20 transition-colors"
+                  aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
+                >
+                  {isBookmarked ? (
+                    <BookmarkCheck className="h-5 w-5 text-purple-400" />
+                  ) : (
+                    <BookmarkPlus className="h-5 w-5" />
+                  )}
                 </button>
-                <button className="rounded-xl bg-white/10 backdrop-blur-sm px-6 py-2.5 font-medium text-white shadow-lg hover:bg-white/20 transition-colors">
-                  <Share2 className="h-5 w-5" />
-                </button>
+                <div className="relative">
+                  <button 
+                    onClick={() => handleShare()}
+                    className="rounded-xl bg-white/10 backdrop-blur-sm px-6 py-2.5 font-medium text-white shadow-lg hover:bg-white/20 transition-colors group"
+                    aria-label="Share"
+                  >
+                    {showCopySuccess ? (
+                      <Check className="h-5 w-5 text-green-400" />
+                    ) : (
+                      <Share2 className="h-5 w-5" />
+                    )}
+                  </button>
+
+                  {/* Share Menu */}
+                  {showShareMenu && (
+                    <div className="share-menu absolute bottom-full left-0 mb-2 w-48 rounded-xl bg-white dark:bg-gray-800 shadow-lg p-2 z-50">
+                      <button
+                        onClick={() => handleShare('whatsapp')}
+                        className="flex items-center gap-2 w-full p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      >
+                        <MessageCircle className="h-5 w-5 text-green-500" />
+                        <span className="text-gray-700 dark:text-gray-200">WhatsApp</span>
+                      </button>
+                      <button
+                        onClick={() => handleShare('facebook')}
+                        className="flex items-center gap-2 w-full p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      >
+                        <Facebook className="h-5 w-5 text-blue-600" />
+                        <span className="text-gray-700 dark:text-gray-200">Facebook</span>
+                      </button>
+                      <button
+                        onClick={() => handleShare('instagram')}
+                        className="flex items-center gap-2 w-full p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      >
+                        <Instagram className="h-5 w-5 text-pink-600" />
+                        <span className="text-gray-700 dark:text-gray-200">Instagram</span>
+                      </button>
+                      <button
+                        onClick={() => copyToClipboard(getShareText())}
+                        className="flex items-center gap-2 w-full p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      >
+                        <Copy className="h-5 w-5 text-gray-500" />
+                        <span className="text-gray-700 dark:text-gray-200">{t('copyLink')}</span>
+                      </button>
+                    </div>
+                  )}
+
+                  {showCopySuccess && (
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1 bg-green-600 text-white text-sm rounded-lg whitespace-nowrap">
+                      {t('copiedToClipboard')}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

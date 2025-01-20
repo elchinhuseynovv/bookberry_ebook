@@ -1,38 +1,74 @@
 {
   "appName": "BookBerry",
   "digitalLibrary": "Digital Library",
-  "auth": {
-    "login": "Login",
-    "email": "Email",
-    "emailPlaceholder": "Enter your email address",
-    "password": "Password",
-    "passwordPlaceholder": "Enter your password",
-    "forgotPassword": "Forgot password?",
-    "createAccount": "Create Account",
-    "backToLogin": "Back to Login",
-    "resetPassword": "Reset Password",
-    "resetPasswordDescription": "Enter your email address and we'll send you a password reset link",
-    "sendResetLink": "Send Reset Link",
-    "checkYourEmail": "Check your email",
-    "resetEmailSent": "We've sent password reset instructions",
-    "confirmPassword": "Confirm Password",
-    "confirmPasswordPlaceholder": "Re-enter your password"
+  "library": "Library",
+  "audiobooks": "Audiobooks",
+  "bookmarks": "Bookmarks",
+  "settings": "Settings",
+  "minutes": "minutes",
+  "read": "Read",
+  "listen": "Listen",
+  "allLanguages": "All Languages",
+  "searchBooks": "Search books...",
+  "noBooks": "No books found",
+  "copyLink": "Copy link",
+  "copiedToClipboard": "Copied to clipboard!",
+  "shareToInstagramGuide": "Text copied for sharing on Instagram",
+
+  "language": {
+    "title": "Language",
+    "az": "Azerbaijani",
+    "en": "English",
+    "ru": "Russian"
   },
+
   "profile": {
-    "emailRequired": "Email address is required"
+    "title": "Profile",
+    "name": "Name",
+    "surname": "Surname",
+    "age": "Age",
+    "phoneNumber": "Phone Number",
+    "email": "Email",
+    "namePlaceholder": "Enter your name",
+    "surnamePlaceholder": "Enter your surname",
+    "agePlaceholder": "Enter your age",
+    "phonePlaceholder": "+XXX XX XXX XXXX",
+    "emailPlaceholder": "Enter your email address",
+    "save": "Save",
+    "emailRequired": "Email address is required",
+    "nameRequired": "Name is required",
+    "surnameRequired": "Surname is required",
+    "phoneRequired": "Phone number is required",
+    "invalidPhone": "Please enter a valid phone number",
+    "invalidAge": "Please enter a valid age"
   },
+
   "subscription": {
     "title": "Subscription",
+    "currentPlan": "Current Plan",
     "choosePlan": "Choose Your Plan",
     "freePlan": "Free Plan",
     "premiumPlan": "Premium Plan",
-    "select": "Select",
-    "selected": "Selected",
     "free": "Free",
     "currency": "USD",
     "monthly": "monthly",
     "yearly": "yearly",
+    "select": "Select",
+    "selected": "Selected",
+    "selectPlanRequired": "Please select a subscription plan",
     "continueToPayment": "Continue to Payment",
+    "payment": {
+      "title": "Payment Details",
+      "cardNumber": "Card Number",
+      "expiry": "Expiry Date",
+      "cvv": "CVV",
+      "nameOnCard": "Name on Card",
+      "cardNumberRequired": "Card number is required",
+      "expiryRequired": "Expiry date is required",
+      "cvvRequired": "CVV is required",
+      "nameRequired": "Name on card is required",
+      "payNow": "Pay Now"
+    },
     "features": {
       "basicAccess": "Basic library access",
       "limitedBooks": "Access to 10 books per month",
@@ -48,25 +84,57 @@
       "readingStats": "Reading statistics",
       "bookmarks": "Unlimited bookmarks",
       "highlights": "Notes and highlights"
-    },
-    "payment": {
-      "title": "Payment Details",
-      "cardNumber": "Card Number",
-      "expiry": "Expiry Date",
-      "cvv": "CVV",
-      "nameOnCard": "Name on Card",
-      "payNow": "Pay Now",
-      "cardNumberRequired": "Please enter your card number",
-      "expiryRequired": "Please enter the card expiry date",
-      "cvvRequired": "Please enter the CVV code",
-      "nameRequired": "Please enter the name on your card",
-      "invalidCardNumber": "Please enter a valid card number",
-      "invalidExpiry": "Please enter a valid expiry date (MM/YY)",
-      "invalidCvv": "Please enter a valid CVV code",
-      "cardNumberPlaceholder": "1234 5678 9012 3456",
-      "expiryPlaceholder": "MM/YY",
-      "cvvPlaceholder": "123",
-      "nameOnCardPlaceholder": "Full Name"
     }
+  },
+
+  "readingPreferences": {
+    "title": "Reading Preferences",
+    "fontSize": "Font Size",
+    "textAlignment": "Text Alignment",
+    "autoPlayAudio": "Auto-play Audio",
+    "showPageNumber": "Show Page Number",
+    "highlightLinks": "Highlight Links"
+  },
+
+  "notifications": {
+    "title": "Notifications",
+    "dailyReminder": "Daily Reminder",
+    "weeklyProgress": "Weekly Progress",
+    "newBookAlerts": "New Book Alerts",
+    "systemNotifications": "System Notifications",
+    "reminderTime": "Reminder Time"
+  },
+
+  "accessibility": {
+    "title": "Accessibility",
+    "highContrast": "High Contrast",
+    "reduceAnimations": "Reduce Animations",
+    "screenReader": "Screen Reader",
+    "dyslexicFont": "Dyslexic Font",
+    "textToSpeech": "Text to Speech"
+  },
+
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "sepia": "Sepia"
+  },
+
+  "bookDetails": {
+    "title": "Book Details",
+    "description": "Description",
+    "publishedYear": "Published Year",
+    "pages": "Pages",
+    "language": "Language",
+    "genre": "Genre",
+    "reviews": "Reviews"
+  },
+
+  "favorites": {
+    "title": "Favorites",
+    "empty": "No favorite books yet",
+    "addSome": "Add some books you love from the library",
+    "added": "Added to favorites",
+    "removed": "Removed from favorites"
   }
 }

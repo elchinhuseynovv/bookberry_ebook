@@ -1,38 +1,74 @@
 {
   "appName": "BookBerry",
   "digitalLibrary": "Цифровая Библиотека",
-  "auth": {
-    "login": "Войти",
-    "email": "Эл. почта",
-    "emailPlaceholder": "Введите адрес эл. почты",
-    "password": "Пароль",
-    "passwordPlaceholder": "Введите пароль",
-    "forgotPassword": "Забыли пароль?",
-    "createAccount": "Создать аккаунт",
-    "backToLogin": "Вернуться к входу",
-    "resetPassword": "Сброс пароля",
-    "resetPasswordDescription": "Введите адрес эл. почты, и мы отправим вам ссылку для сброса пароля",
-    "sendResetLink": "Отправить ссылку",
-    "checkYourEmail": "Проверьте почту",
-    "resetEmailSent": "Мы отправили инструкции по сбросу пароля",
-    "confirmPassword": "Подтвердите пароль",
-    "confirmPasswordPlaceholder": "Введите пароль повторно"
+  "library": "Библиотека",
+  "audiobooks": "Аудиокниги",
+  "bookmarks": "Закладки",
+  "settings": "Настройки",
+  "minutes": "минут",
+  "read": "Читать",
+  "listen": "Слушать",
+  "allLanguages": "Все языки",
+  "searchBooks": "Поиск книг...",
+  "noBooks": "Книги не найдены",
+  "copyLink": "Копировать ссылку",
+  "copiedToClipboard": "Скопировано в буфер обмена!",
+  "shareToInstagramGuide": "Текст скопирован для публикации в Instagram",
+
+  "language": {
+    "title": "Язык",
+    "az": "Азербайджанский",
+    "en": "Английский",
+    "ru": "Русский"
   },
+
   "profile": {
-    "emailRequired": "Требуется адрес эл. почты"
+    "title": "Профиль",
+    "name": "Имя",
+    "surname": "Фамилия",
+    "age": "Возраст",
+    "phoneNumber": "Номер телефона",
+    "email": "Эл. почта",
+    "namePlaceholder": "Введите ваше имя",
+    "surnamePlaceholder": "Введите вашу фамилию",
+    "agePlaceholder": "Введите ваш возраст",
+    "phonePlaceholder": "+7 XXX XXX XXXX",
+    "emailPlaceholder": "Введите адрес эл. почты",
+    "save": "Сохранить",
+    "emailRequired": "Требуется адрес эл. почты",
+    "nameRequired": "Требуется имя",
+    "surnameRequired": "Требуется фамилия",
+    "phoneRequired": "Требуется номер телефона",
+    "invalidPhone": "Введите корректный номер телефона",
+    "invalidAge": "Введите корректный возраст"
   },
+
   "subscription": {
     "title": "Подписка",
+    "currentPlan": "Текущий план",
     "choosePlan": "Выберите план",
     "freePlan": "Бесплатный план",
     "premiumPlan": "Премиум план",
-    "select": "Выбрать",
-    "selected": "Выбрано",
     "free": "Бесплатно",
     "currency": "РУБ",
     "monthly": "в месяц",
     "yearly": "в год",
+    "select": "Выбрать",
+    "selected": "Выбрано",
+    "selectPlanRequired": "Пожалуйста, выберите план подписки",
     "continueToPayment": "Перейти к оплате",
+    "payment": {
+      "title": "Детали оплаты",
+      "cardNumber": "Номер карты",
+      "expiry": "Срок действия",
+      "cvv": "CVV",
+      "nameOnCard": "Имя на карте",
+      "cardNumberRequired": "Требуется номер карты",
+      "expiryRequired": "Требуется срок действия",
+      "cvvRequired": "Требуется CVV",
+      "nameRequired": "Требуется имя на карте",
+      "payNow": "Оплатить"
+    },
     "features": {
       "basicAccess": "Базовый доступ к библиотеке",
       "limitedBooks": "Доступ к 10 книгам в месяц",
@@ -48,25 +84,57 @@
       "readingStats": "Статистика чтения",
       "bookmarks": "Неограниченные закладки",
       "highlights": "Заметки и выделения"
-    },
-    "payment": {
-      "title": "Детали оплаты",
-      "cardNumber": "Номер карты",
-      "expiry": "Срок действия",
-      "cvv": "CVV",
-      "nameOnCard": "Имя на карте",
-      "payNow": "Оплатить",
-      "cardNumberRequired": "Введите номер карты",
-      "expiryRequired": "Введите срок действия карты",
-      "cvvRequired": "Введите CVV код",
-      "nameRequired": "Введите имя на карте",
-      "invalidCardNumber": "Введите корректный номер карты",
-      "invalidExpiry": "Введите корректный срок действия (ММ/ГГ)",
-      "invalidCvv": "Введите корректный CVV код",
-      "cardNumberPlaceholder": "1234 5678 9012 3456",
-      "expiryPlaceholder": "ММ/ГГ",
-      "cvvPlaceholder": "123",
-      "nameOnCardPlaceholder": "Имя и Фамилия"
     }
+  },
+
+  "readingPreferences": {
+    "title": "Настройки чтения",
+    "fontSize": "Размер шрифта",
+    "textAlignment": "Выравнивание текста",
+    "autoPlayAudio": "Автовоспроизведение аудио",
+    "showPageNumber": "Показывать номер страницы",
+    "highlightLinks": "Подсвечивать ссылки"
+  },
+
+  "notifications": {
+    "title": "Уведомления",
+    "dailyReminder": "Ежедневное напоминание",
+    "weeklyProgress": "Еженедельный прогресс",
+    "newBookAlerts": "Уведомления о новых книгах",
+    "systemNotifications": "Системные уведомления",
+    "reminderTime": "Время напоминания"
+  },
+
+  "accessibility": {
+    "title": "Специальные возможности",
+    "highContrast": "Высокий контраст",
+    "reduceAnimations": "Уменьшить анимацию",
+    "screenReader": "Экранный диктор",
+    "dyslexicFont": "Шрифт для дислексии",
+    "textToSpeech": "Преобразование текста в речь"
+  },
+
+  "theme": {
+    "light": "Светлая",
+    "dark": "Темная",
+    "sepia": "Сепия"
+  },
+
+  "bookDetails": {
+    "title": "Детали книги",
+    "description": "Описание",
+    "publishedYear": "Год издания",
+    "pages": "Страниц",
+    "language": "Язык",
+    "genre": "Жанр",
+    "reviews": "Отзывы"
+  },
+
+  "favorites": {
+    "title": "Избранное",
+    "empty": "Нет избранных книг",
+    "addSome": "Добавьте любимые книги из библиотеки",
+    "added": "Добавлено в избранное",
+    "removed": "Удалено из избранного"
   }
 }

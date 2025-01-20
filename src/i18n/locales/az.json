@@ -1,38 +1,74 @@
 {
   "appName": "BookBerry",
   "digitalLibrary": "Rəqəmsal Kitabxana",
-  "auth": {
-    "login": "Daxil ol",
-    "email": "E-poçt",
-    "emailPlaceholder": "E-poçt ünvanınızı daxil edin",
-    "password": "Şifrə",
-    "passwordPlaceholder": "Şifrənizi daxil edin",
-    "forgotPassword": "Şifrəni unutmusunuz?",
-    "createAccount": "Hesab yarat",
-    "backToLogin": "Girişə qayıt",
-    "resetPassword": "Şifrəni sıfırla",
-    "resetPasswordDescription": "E-poçt ünvanınızı daxil edin və biz sizə şifrə sıfırlama linki göndərəcəyik",
-    "sendResetLink": "Link göndər",
-    "checkYourEmail": "E-poçtunuzu yoxlayın",
-    "resetEmailSent": "Şifrə sıfırlama təlimatlarını göndərdik",
-    "confirmPassword": "Şifrəni təsdiqlə",
-    "confirmPasswordPlaceholder": "Şifrəni təkrar daxil edin"
+  "library": "Kitabxana",
+  "audiobooks": "Audiokitablar",
+  "bookmarks": "Əlfəcinlər",
+  "settings": "Tənzimləmələr",
+  "minutes": "dəqiqə",
+  "read": "Oxu",
+  "listen": "Dinlə",
+  "allLanguages": "Bütün dillər",
+  "searchBooks": "Kitabları axtar...",
+  "noBooks": "Kitab tapılmadı",
+  "copyLink": "Linki kopyala",
+  "copiedToClipboard": "Buferə kopyalandı!",
+  "shareToInstagramGuide": "Instagram-da paylaşmaq üçün mətni kopyaladıq",
+
+  "language": {
+    "title": "Dil",
+    "az": "Azərbaycanca",
+    "en": "English",
+    "ru": "Русский"
   },
+
   "profile": {
-    "emailRequired": "E-poçt ünvanı tələb olunur"
+    "title": "Profil",
+    "name": "Ad",
+    "surname": "Soyad",
+    "age": "Yaş",
+    "phoneNumber": "Telefon nömrəsi",
+    "email": "E-poçt",
+    "namePlaceholder": "Adınızı daxil edin",
+    "surnamePlaceholder": "Soyadınızı daxil edin",
+    "agePlaceholder": "Yaşınızı daxil edin",
+    "phonePlaceholder": "+994 XX XXX XX XX",
+    "emailPlaceholder": "E-poçt ünvanınızı daxil edin",
+    "save": "Yadda saxla",
+    "emailRequired": "E-poçt ünvanı tələb olunur",
+    "nameRequired": "Ad tələb olunur",
+    "surnameRequired": "Soyad tələb olunur",
+    "phoneRequired": "Telefon nömrəsi tələb olunur",
+    "invalidPhone": "Düzgün telefon nömrəsi daxil edin",
+    "invalidAge": "Düzgün yaş daxil edin"
   },
+
   "subscription": {
     "title": "Abunəlik",
-    "choosePlan": "Abunəlik planı seçin",
+    "currentPlan": "Cari Plan",
+    "choosePlan": "Planınızı seçin",
     "freePlan": "Pulsuz Plan",
     "premiumPlan": "Premium Plan",
-    "select": "Seç",
-    "selected": "Seçildi",
     "free": "Pulsuz",
     "currency": "AZN",
     "monthly": "aylıq",
     "yearly": "illik",
+    "select": "Seç",
+    "selected": "Seçildi",
+    "selectPlanRequired": "Zəhmət olmasa abunəlik planı seçin",
     "continueToPayment": "Ödənişə keç",
+    "payment": {
+      "title": "Ödəniş məlumatları",
+      "cardNumber": "Kart nömrəsi",
+      "expiry": "Bitmə tarixi",
+      "cvv": "CVV",
+      "nameOnCard": "Kartın üzərindəki ad",
+      "cardNumberRequired": "Kart nömrəsi tələb olunur",
+      "expiryRequired": "Bitmə tarixi tələb olunur",
+      "cvvRequired": "CVV tələb olunur",
+      "nameRequired": "Kartın üzərindəki ad tələb olunur",
+      "payNow": "İndi ödə"
+    },
     "features": {
       "basicAccess": "Əsas kitabxana girişi",
       "limitedBooks": "Ayda 10 kitaba giriş",
@@ -48,25 +84,57 @@
       "readingStats": "Oxuma statistikası",
       "bookmarks": "Limitsiz əlfəcinlər",
       "highlights": "Qeydlər və vurğulamalar"
-    },
-    "payment": {
-      "title": "Ödəniş məlumatları",
-      "cardNumber": "Kart nömrəsi",
-      "expiry": "Bitmə tarixi",
-      "cvv": "CVV",
-      "nameOnCard": "Kartdakı ad",
-      "payNow": "İndi ödə",
-      "cardNumberRequired": "Kart nömrəsi tələb olunur",
-      "expiryRequired": "Bitmə tarixi tələb olunur",
-      "cvvRequired": "CVV tələb olunur",
-      "nameRequired": "Kartdakı ad tələb olunur",
-      "invalidCardNumber": "Düzgün kart nömrəsi daxil edin",
-      "invalidExpiry": "Düzgün bitmə tarixi daxil edin (MM/YY)",
-      "invalidCvv": "Düzgün CVV daxil edin",
-      "cardNumberPlaceholder": "1234 5678 9012 3456",
-      "expiryPlaceholder": "MM/YY",
-      "cvvPlaceholder": "123",
-      "nameOnCardPlaceholder": "Ad və Soyad"
     }
+  },
+
+  "readingPreferences": {
+    "title": "Oxuma Tənzimləmələri",
+    "fontSize": "Şrift ölçüsü",
+    "textAlignment": "Mətn düzləndirməsi",
+    "autoPlayAudio": "Avtomatik səs oxutma",
+    "showPageNumber": "Səhifə nömrəsini göstər",
+    "highlightLinks": "Linkləri vurğula"
+  },
+
+  "notifications": {
+    "title": "Bildirişlər",
+    "dailyReminder": "Gündəlik xatırlatma",
+    "weeklyProgress": "Həftəlik irəliləyiş",
+    "newBookAlerts": "Yeni kitab bildirişləri",
+    "systemNotifications": "Sistem bildirişləri",
+    "reminderTime": "Xatırlatma vaxtı"
+  },
+
+  "accessibility": {
+    "title": "Əlçatanlıq",
+    "highContrast": "Yüksək kontrast",
+    "reduceAnimations": "Animasiyaları azalt",
+    "screenReader": "Ekran oxuyucusu",
+    "dyslexicFont": "Disleksiya şrifti",
+    "textToSpeech": "Mətndən səsə"
+  },
+
+  "theme": {
+    "light": "İşıqlı",
+    "dark": "Qaranlıq",
+    "sepia": "Sepiya"
+  },
+
+  "bookDetails": {
+    "title": "Kitab haqqında",
+    "description": "Təsvir",
+    "publishedYear": "Nəşr ili",
+    "pages": "Səhifə sayı",
+    "language": "Dil",
+    "genre": "Janr",
+    "reviews": "Rəylər"
+  },
+
+  "favorites": {
+    "title": "Sevimlilər",
+    "empty": "Sevimli kitablarınız yoxdur",
+    "addSome": "Kitabxanadan sevdiyiniz kitabları əlavə edin",
+    "added": "Sevimlilərə əlavə edildi",
+    "removed": "Sevimlilərdən çıxarıldı"
   }
 }

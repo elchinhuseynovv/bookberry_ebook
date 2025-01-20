@@ -15,6 +15,7 @@ import { Search } from 'lucide-react';
 import { useAuth } from './hooks/useAuth';
 import { useTheme } from './hooks/useTheme';
 import { useSearch } from './hooks/useSearch';
+import { FavoriteBooks } from './components/FavoriteBooks';
 
 function App() {
   const { t } = useTranslation();
@@ -63,6 +64,49 @@ function App() {
     switch (currentView) {
       case 'settings':
         return <SettingsView />;
+      case 'favorites':
+        return (
+          <>
+            <div className="relative mb-8">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={t('searchBooks')}
+                className={`w-full h-12 rounded-xl border-2 px-12 font-medium transition-all duration-300
+                  ${theme === 'dark' 
+                    ? 'bg-gray-800/90 border-purple-500/30 text-white placeholder-gray-400 focus:border-purple-400'
+                    : theme === 'sepia'
+                    ? 'bg-[#f8f4ea] border-purple-400/40 text-[#5c4b37] placeholder-[#8b7355] focus:border-purple-500'
+                    : 'bg-white border-purple-200 text-gray-800 placeholder-gray-500 focus:border-purple-400'
+                  }
+                  shadow-[0_4px_12px_rgba(124,58,237,0.05)]
+                  hover:shadow-[0_4px_16px_rgba(124,58,237,0.15)]
+                  focus:shadow-[0_4px_20px_rgba(124,58,237,0.2)]
+                  focus:outline-none`}
+              />
+              <Search className={`absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 transition-colors duration-300
+                ${theme === 'dark'
+                  ? 'text-purple-400'
+                  : theme === 'sepia'
+                  ? 'text-purple-500'
+                  : 'text-purple-500'
+                }`} 
+              />
+            </div>
+
+            <LanguageFilter
+              selectedLanguage={selectedLanguage}
+              onLanguageSelect={setSelectedLanguage}
+              languages={languages}
+            />
+
+            <FavoriteBooks
+              books={[...filteredBooks, ...filteredAudioBooks].filter(book => book.isFavorite)}
+              onBookClick={handleBookClick}
+            />
+          </>
+        );
       case 'bookmarks':
         return <div>Bookmarks view coming soon</div>;
       case 'audiobooks':

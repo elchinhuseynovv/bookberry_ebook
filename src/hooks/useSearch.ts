@@ -7,20 +7,22 @@ import { useTranslation } from 'react-i18next';
 export const useSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
+  const [localBooks, setLocalBooks] = useState(books);
+  const [localAudioBooks, setLocalAudioBooks] = useState(audiobooks);
   const { t } = useTranslation();
 
   const languages = useMemo(() => {
-    const allBooks = [...books, ...audiobooks];
+    const allBooks = [...localBooks, ...localAudioBooks];
     const uniqueLanguages = new Set(
       allBooks
         .map(book => book.language)
         .filter((lang): lang is string => !!lang)
     );
     return Array.from(uniqueLanguages);
-  }, []);
+  }, [localBooks, localAudioBooks]);
 
   const filteredBooks = useMemo(() => {
-    return books.filter(book => {
+    return localBooks.filter(book => {
       const matchesSearch = 
         book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         book.author.toLowerCase().includes(searchQuery.toLowerCase());
@@ -29,10 +31,10 @@ export const useSearch = () => {
       
       return matchesSearch && matchesLanguage;
     });
-  }, [searchQuery, selectedLanguage]);
+  }, [searchQuery, selectedLanguage, localBooks]);
 
   const filteredAudioBooks = useMemo(() => {
-    return audiobooks.filter(book => {
+    return localAudioBooks.filter(book => {
       const matchesSearch = 
         book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -42,7 +44,22 @@ export const useSearch = () => {
       
       return matchesSearch && matchesLanguage;
     });
-  }, [searchQuery, selectedLanguage]);
+  }, [searchQuery, selectedLanguage, localAudioBooks]);
+
+  // Initialize favorites from localStorage
+  useState(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    if (favorites.length > 0) {
+      setLocalBooks(books.map(book => ({
+        ...book,
+        isFavorite: favorites.includes(book.id)
+      })));
+      setLocalAudioBooks(audiobooks.map(book => ({
+        ...book,
+        isFavorite: favorites.includes(book.id)
+      })));
+    }
+  }, []);
 
   return {
     searchQuery,
@@ -51,6 +68,8 @@ export const useSearch = () => {
     setSelectedLanguage,
     languages,
     filteredBooks,
-    filteredAudioBooks
+    filteredAudioBooks,
+    setFilteredBooks: setLocalBooks,
+    setFilteredAudioBooks: setLocalAudioBooks
   };
 };

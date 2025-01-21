@@ -31,7 +31,9 @@ function App() {
     setSelectedLanguage,
     languages,
     filteredBooks, 
-    filteredAudioBooks 
+    filteredAudioBooks,
+    setFilteredBooks,
+    setFilteredAudioBooks
   } = useSearch();
   const {
     isAuthenticated,
@@ -58,6 +60,31 @@ function App() {
 
   const handleBookClick = (book: Book) => {
     setSelectedBook(book);
+  };
+
+  const handleToggleFavorite = (book: Book) => {
+    const updatedBooks = filteredBooks.map(b => 
+      b.id === book.id ? { ...b, isFavorite: book.isFavorite } : b
+    );
+    const updatedAudioBooks = filteredAudioBooks.map(b => 
+      b.id === book.id ? { ...b, isFavorite: book.isFavorite } : b
+    );
+
+    // Save to localStorage
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    if (book.isFavorite) {
+      favorites.push(book.id);
+    } else {
+      const index = favorites.indexOf(book.id);
+      if (index > -1) {
+        favorites.splice(index, 1);
+      }
+    }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+
+    // Update state
+    setFilteredBooks(updatedBooks);
+    setFilteredAudioBooks(updatedAudioBooks);
   };
 
   const renderContent = () => {
@@ -246,6 +273,7 @@ function App() {
             <BookDetailsView
               book={selectedBook}
               onClose={() => setSelectedBook(null)}
+              onToggleFavorite={handleToggleFavorite}
             />
           )}
         </MainLayout>

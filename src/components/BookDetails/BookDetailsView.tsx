@@ -10,9 +10,10 @@ import { az } from '../../constants/translations';
 interface Props {
   book: Book;
   onClose: () => void;
+  onToggleFavorite: (book: Book) => void;
 }
 
-export const BookDetailsView: React.FC<Props> = ({ book, onClose }) => {
+export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavorite }) => {
   // Handle escape key press
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -49,7 +50,7 @@ export const BookDetailsView: React.FC<Props> = ({ book, onClose }) => {
           <X size={20} />
         </button>
 
-        <BookHeader book={book} />
+        <BookHeader book={book} onToggleFavorite={onToggleFavorite} />
         
         <div className="space-y-8 p-8">
           <BookProgress book={book} />

@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Book } from '../../types';
-import { BookmarkPlus, BookmarkCheck, Share2, Star, Clock, Check, Copy, Facebook, Instagram, MessageCircle } from 'lucide-react';
+import { BookmarkPlus, BookmarkCheck, Share2, Star, Clock, Check, Copy, Facebook, Instagram, MessageCircle, Heart, HeartOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { storage } from '../../services/storage';
 
 interface Props {
   book: Book;
+  onToggleFavorite: (book: Book) => void;
 }
 
-export const BookHeader: React.FC<Props> = ({ book }) => {
+export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite }) => {
   const { t } = useTranslation();
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(book.isFavorite || false);
 
   const handleReadClick = () => {
     if (book.pdfUrl) {
@@ -32,6 +35,12 @@ export const BookHeader: React.FC<Props> = ({ book }) => {
       }
     }
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+  };
+
+  const handleFavoriteClick = () => {
+    const newFavoriteState = !isFavorite;
+    setIsFavorite(newFavoriteState);
+    onToggleFavorite({ ...book, isFavorite: newFavoriteState });
   };
 
   const isShareSupported = () => {
@@ -188,6 +197,17 @@ export const BookHeader: React.FC<Props> = ({ book }) => {
                     <BookmarkCheck className="h-5 w-5 text-purple-400" />
                   ) : (
                     <BookmarkPlus className="h-5 w-5" />
+                  )}
+                </button>
+                <button 
+                  onClick={handleFavoriteClick}
+                  className="rounded-xl bg-white/10 backdrop-blur-sm px-6 py-2.5 font-medium text-white shadow-lg hover:bg-white/20 transition-colors"
+                  aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+                >
+                  {isFavorite ? (
+                    <Heart className="h-5 w-5 fill-red-500 text-red-500" />
+                  ) : (
+                    <Heart className="h-5 w-5" />
                   )}
                 </button>
                 <div className="relative">

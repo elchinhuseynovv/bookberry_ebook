@@ -22,6 +22,33 @@
     "ru": "Русский"
   },
 
+  "auth": {
+    "login": "Войти",
+    "createAccount": "Создать аккаунт",
+    "forgotPassword": "Забыли пароль?",
+    "resetPassword": "Сбросить пароль",
+    "backToLogin": "Вернуться к входу",
+    "email": "Email",
+    "emailPlaceholder": "Введите ваш email",
+    "password": "Пароль",
+    "passwordPlaceholder": "Введите ваш пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "confirmPasswordPlaceholder": "Введите пароль повторно",
+    "name": "Имя",
+    "namePlaceholder": "Введите ваше имя",
+    "fillDetails": "Пожалуйста, заполните ваши данные",
+    "invalidCredentials": "Неверный email или пароль",
+    "userExists": "Пользователь уже существует",
+    "passwordsDoNotMatch": "Пароли не совпадают",
+    "termsAndConditions": "Условия использования",
+    "acceptTerms": "Я принимаю",
+    "logout": "Выйти",
+    "resetPasswordDescription": "Введите ваш email и мы отправим вам ссылку для сброса пароля",
+    "sendResetLink": "Отправить ссылку",
+    "checkYourEmail": "Проверьте почту",
+    "resetEmailSent": "Мы отправили инструкции по сбросу пароля"
+  },
+
   "profile": {
     "title": "Профиль",
     "name": "Имя",
@@ -50,7 +77,7 @@
     "freePlan": "Бесплатный план",
     "premiumPlan": "Премиум план",
     "free": "Бесплатно",
-    "currency": "РУБ",
+    "currency": "AZN",
     "monthly": "в месяц",
     "yearly": "в год",
     "select": "Выбрать",

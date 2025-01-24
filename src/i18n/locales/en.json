@@ -22,6 +22,33 @@
     "ru": "Russian"
   },
 
+  "auth": {
+    "login": "Login",
+    "createAccount": "Create Account",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "backToLogin": "Back to Login",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "fillDetails": "Please fill in your details",
+    "invalidCredentials": "Invalid email or password",
+    "userExists": "User already exists",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "termsAndConditions": "Terms and Conditions",
+    "acceptTerms": "I accept the",
+    "logout": "Sign Out",
+    "resetPasswordDescription": "Enter your email and we'll send you a password reset link",
+    "sendResetLink": "Send Reset Link",
+    "checkYourEmail": "Check Your Email",
+    "resetEmailSent": "We've sent password reset instructions"
+  },
+
   "profile": {
     "title": "Profile",
     "name": "Name",
@@ -50,7 +77,7 @@
     "freePlan": "Free Plan",
     "premiumPlan": "Premium Plan",
     "free": "Free",
-    "currency": "USD",
+    "currency": "AZN",
     "monthly": "monthly",
     "yearly": "yearly",
     "select": "Select",

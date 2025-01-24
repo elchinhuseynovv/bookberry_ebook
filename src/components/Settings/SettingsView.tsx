@@ -65,6 +65,105 @@ export const SettingsView: React.FC = () => {
     textToSpeech: false
   });
 
+  // Load profile data on mount and whenever settings view is shown
+  useEffect(() => {
+    const loadProfileData = () => {
+      if (currentUser?.email) {
+        const userProfile = profileDB.getProfile(currentUser.email);
+        if (userProfile) {
+          setProfile(userProfile);
+        } else {
+          setProfile({ ...defaultProfile, email: currentUser.email });
+        }
+      }
+    };
+
+    loadProfileData();
+
+    // Add event listener for visibility changes
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        loadProfileData();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [currentUser]);
+
+  // Reload profile data when switching to account tab
+  useEffect(() => {
+    if (activeTab === 'account' && currentUser?.email) {
+      const userProfile = profileDB.getProfile(currentUser.email);
+      if (userProfile) {
+        setProfile(userProfile);
+      }
+    }
+  }, [activeTab, currentUser]);
+
+  // Load other settings when component mounts
+  useEffect(() => {
+    if (currentUser?.email) {
+      const savedSecuritySettings = storage.getSecuritySettings();
+      if (savedSecuritySettings) {
+        setSecuritySettings(savedSecuritySettings);
+      }
+
+      const savedReadingPreferences = storage.getReadingPreferences();
+      if (savedReadingPreferences) {
+        setReadingPreferences(savedReadingPreferences);
+      }
+
+      const savedNotificationSettings = storage.getNotificationSettings();
+      if (savedNotificationSettings) {
+        setNotificationSettings(savedNotificationSettings);
+      }
+
+      const savedAccessibilitySettings = storage.getAccessibilitySettings();
+      if (savedAccessibilitySettings) {
+        setAccessibilitySettings(savedAccessibilitySettings);
+      }
+    }
+  }, [currentUser]);
+
+  const handleProfileSave = (updatedProfile: UserProfile) => {
+    if (currentUser?.email) {
+      const profileToSave = {
+        ...updatedProfile,
+        email: currentUser.email
+      };
+      profileDB.updateProfile(currentUser.email, profileToSave);
+      setProfile(profileToSave); // Immediately update the state
+    }
+  };
+
+  const handleSecuritySave = (settings: SecuritySettings) => {
+    setSecuritySettings(settings);
+    storage.setSecuritySettings(settings);
+  };
+
+  const handleReadingPreferencesSave = (preferences: ReadingPreferences) => {
+    setReadingPreferences(preferences);
+    storage.setReadingPreferences(preferences);
+  };
+
+  const handleNotificationsSave = (settings: NotificationSettings) => {
+    setNotificationSettings(settings);
+    storage.setNotificationSettings(settings);
+  };
+
+  const handleAccessibilitySave = (settings: AccessibilitySettings) => {
+    setAccessibilitySettings(settings);
+    storage.setAccessibilitySettings(settings);
+  };
+
+  const handlePlanChange = (plan: SubscriptionPlan) => {
+    setCurrentPlan(plan);
+  };
+
   const tabs = [
     { 
       id: 'account', 
@@ -121,73 +220,6 @@ export const SettingsView: React.FC = () => {
       shadowColor: 'shadow-emerald-500/20 dark:shadow-emerald-400/10'
     }
   ];
-
-  useEffect(() => {
-    if (currentUser?.email) {
-      const savedProfile = profileDB.getProfile(currentUser.email);
-      if (savedProfile) {
-        setProfile(savedProfile);
-      } else {
-        setProfile({ ...defaultProfile, email: currentUser.email });
-      }
-
-      const savedSecuritySettings = storage.getSecuritySettings();
-      if (savedSecuritySettings) {
-        setSecuritySettings(savedSecuritySettings);
-      }
-
-      const savedReadingPreferences = storage.getReadingPreferences();
-      if (savedReadingPreferences) {
-        setReadingPreferences(savedReadingPreferences);
-      }
-
-      const savedNotificationSettings = storage.getNotificationSettings();
-      if (savedNotificationSettings) {
-        setNotificationSettings(savedNotificationSettings);
-      }
-
-      const savedAccessibilitySettings = storage.getAccessibilitySettings();
-      if (savedAccessibilitySettings) {
-        setAccessibilitySettings(savedAccessibilitySettings);
-      }
-    }
-  }, [currentUser]);
-
-  const handleProfileSave = (updatedProfile: UserProfile) => {
-    if (currentUser?.email) {
-      const profileToSave = {
-        ...updatedProfile,
-        email: currentUser.email
-      };
-      setProfile(profileToSave);
-      profileDB.updateProfile(currentUser.email, profileToSave);
-    }
-  };
-
-  const handleSecuritySave = (settings: SecuritySettings) => {
-    setSecuritySettings(settings);
-    storage.setSecuritySettings(settings);
-  };
-
-  const handleReadingPreferencesSave = (preferences: ReadingPreferences) => {
-    setReadingPreferences(preferences);
-    storage.setReadingPreferences(preferences);
-  };
-
-  const handleNotificationsSave = (settings: NotificationSettings) => {
-    setNotificationSettings(settings);
-    storage.setNotificationSettings(settings);
-  };
-
-  const handleAccessibilitySave = (settings: AccessibilitySettings) => {
-    setAccessibilitySettings(settings);
-    storage.setAccessibilitySettings(settings);
-  };
-
-  const handlePlanChange = (plan: SubscriptionPlan) => {
-    setCurrentPlan(plan);
-    // Here you would typically handle the subscription change with your backend
-  };
 
   return (
     <div className="space-y-8">

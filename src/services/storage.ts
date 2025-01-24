@@ -5,6 +5,7 @@ const SECURITY_SETTINGS = 'bookberry_security_settings';
 const READING_PREFERENCES = 'bookberry_reading_preferences';
 const NOTIFICATION_SETTINGS = 'bookberry_notification_settings';
 const ACCESSIBILITY_SETTINGS = 'bookberry_accessibility_settings';
+const READING_PREFERENCES_KEY = 'bookberry_reading_preferences';
 
 // Helper functions
 const getItem = <T>(key: string): T | null => {
@@ -58,12 +59,47 @@ export const storage = {
   },
 
   // Reading preferences
-  getReadingPreferences() {
-    return getItem(READING_PREFERENCES);
+  async setReadingPreferences(preferences: any): Promise<void> {
+    return new Promise((resolve) => {
+      // Simulate network delay
+      setTimeout(() => {
+        try {
+          localStorage.setItem(READING_PREFERENCES_KEY, JSON.stringify(preferences));
+          // Apply preferences to document
+          this.applyReadingPreferences(preferences);
+          resolve();
+        } catch (error) {
+          console.error('Error saving reading preferences:', error);
+          throw error;
+        }
+      }, 500);
+    });
   },
 
-  setReadingPreferences(preferences: any) {
-    setItem(READING_PREFERENCES, preferences);
+  getReadingPreferences(): any {
+    try {
+      const stored = localStorage.getItem(READING_PREFERENCES_KEY);
+      return stored ? JSON.parse(stored) : null;
+    } catch (error) {
+      console.error('Error getting reading preferences:', error);
+      return null;
+    }
+  },
+
+  applyReadingPreferences(preferences: any): void {
+    if (!preferences) return;
+
+    // Apply font size
+    document.documentElement.style.setProperty('--reading-font-size', `${preferences.fontSize}px`);
+
+    // Apply text alignment
+    document.documentElement.style.setProperty('--text-align', preferences.textAlignment);
+
+    // Apply link highlighting
+    document.documentElement.classList.toggle('highlight-links', preferences.highlightLinks);
+
+    // Apply page numbers
+    document.documentElement.classList.toggle('show-page-numbers', preferences.showPageNumber);
   },
 
   // Notification settings

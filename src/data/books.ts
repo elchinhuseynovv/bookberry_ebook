@@ -44,6 +44,7 @@ export const books: Book[] = [
     pages: 256,
     genre: 'Dastan',
     rating: 4.9,
+    pdfUrl: 'https://cdn.oyu.edu.az/ebooks/edebiyyathsunasliq/Kitabi%20Dede%20Qorqud.pdf',
     reviews: [
       {
         id: '3',

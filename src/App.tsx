@@ -16,6 +16,7 @@ import { useAuth } from './hooks/useAuth';
 import { useTheme } from './hooks/useTheme';
 import { useSearch } from './hooks/useSearch';
 import { FavoriteBooks } from './components/FavoriteBooks';
+import { BookmarksList } from './components/BookmarksList';
 
 function App() {
   const { t } = useTranslation();
@@ -60,6 +61,12 @@ function App() {
 
   const handleBookClick = (book: Book) => {
     setSelectedBook(book);
+  };
+
+  const handleBookmarkClick = (book: Book, page: number) => {
+    setSelectedBook(book);
+    // Store the page number to be opened
+    localStorage.setItem(`last-page-${book.pdfUrl}`, page.toString());
   };
 
   const handleToggleFavorite = (book: Book) => {
@@ -135,7 +142,12 @@ function App() {
           </>
         );
       case 'bookmarks':
-        return <div>Bookmarks view coming soon</div>;
+        return (
+          <BookmarksList
+            books={[...filteredBooks, ...filteredAudioBooks]}
+            onBookClick={handleBookmarkClick}
+          />
+        );
       case 'audiobooks':
         return (
           <>

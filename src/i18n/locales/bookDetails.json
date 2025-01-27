@@ -1,0 +1,26 @@
+{
+  "az": {
+    "bookDetails": "Kitab haqqında",
+    "publishedYear": "Nəşr ili",
+    "pages": "Səhifə sayı",
+    "language": "Dil",
+    "genre": "Janr",
+    "description": "Təsvir"
+  },
+  "en": {
+    "bookDetails": "Book Details",
+    "publishedYear": "Published Year",
+    "pages": "Pages",
+    "language": "Language",
+    "genre": "Genre",
+    "description": "Description"
+  },
+  "ru": {
+    "bookDetails": "О книге",
+    "publishedYear": "Год издания",
+    "pages": "Страниц",
+    "language": "Язык",
+    "genre": "Жанр",
+    "description": "Описание"
+  }
+}

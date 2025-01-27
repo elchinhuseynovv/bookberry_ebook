@@ -1,0 +1,26 @@
+{
+  "az": {
+    "language": {
+      "title": "Dil",
+      "az": "Azərbaycanca",
+      "en": "İngiliscə",
+      "ru": "Rusca"
+    }
+  },
+  "en": {
+    "language": {
+      "title": "Language",
+      "az": "Azerbaijani",
+      "en": "English",
+      "ru": "Russian"
+    }
+  },
+  "ru": {
+    "language": {
+      "title": "Язык",
+      "az": "Азербайджанский",
+      "en": "Английский",
+      "ru": "Русский"
+    }
+  }
+}

@@ -5,6 +5,8 @@ import az from './locales/az.json';
 import en from './locales/en.json';
 import ru from './locales/ru.json';
 import bookmarks from './locales/bookmarks.json';
+import bookDetails from './locales/bookDetails.json';
+import languages from './locales/languages.json';
 
 i18n
   .use(LanguageDetector)
@@ -14,19 +16,25 @@ i18n
       az: {
         translation: {
           ...az,
-          ...bookmarks.az
+          ...bookmarks.az,
+          ...bookDetails.az,
+          ...languages.az
         }
       },
       en: {
         translation: {
           ...en,
-          ...bookmarks.en
+          ...bookmarks.en,
+          ...bookDetails.en,
+          ...languages.en
         }
       },
       ru: {
         translation: {
           ...ru,
-          ...bookmarks.ru
+          ...bookmarks.ru,
+          ...bookDetails.ru,
+          ...languages.ru
         }
       }
     },

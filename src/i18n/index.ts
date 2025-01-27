@@ -4,6 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import az from './locales/az.json';
 import en from './locales/en.json';
 import ru from './locales/ru.json';
+import bookmarks from './locales/bookmarks.json';
 
 i18n
   .use(LanguageDetector)
@@ -11,13 +12,22 @@ i18n
   .init({
     resources: {
       az: {
-        translation: az
+        translation: {
+          ...az,
+          ...bookmarks.az
+        }
       },
       en: {
-        translation: en
+        translation: {
+          ...en,
+          ...bookmarks.en
+        }
       },
       ru: {
-        translation: ru
+        translation: {
+          ...ru,
+          ...bookmarks.ru
+        }
       }
     },
     fallbackLng: 'az',

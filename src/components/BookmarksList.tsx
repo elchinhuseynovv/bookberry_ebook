@@ -62,7 +62,7 @@ export const BookmarksList: React.FC<Props> = ({ books, onBookClick }) => {
           
           <div className="p-6">
             <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">
-              {t('bookmarks.pages')}
+              {t('bookmark_pages')}
             </h4>
             <div className="flex flex-wrap gap-2">
               {pages.map((page) => (
@@ -73,7 +73,7 @@ export const BookmarksList: React.FC<Props> = ({ books, onBookClick }) => {
                            text-purple-600 dark:text-purple-400 text-sm font-medium
                            hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
                 >
-                  {t('bookmarks.page')} {page}
+                  {t('bookmark_page')} {page}
                 </button>
               ))}
             </div>

@@ -9,9 +9,10 @@ import { PDFReader } from '../BookReader/PDFReader';
 interface Props {
   book: Book;
   onToggleFavorite: (book: Book) => void;
+  initialPage?: number;
 }
 
-export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite }) => {
+export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite, initialPage }) => {
   const { t } = useTranslation();
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
@@ -297,7 +298,8 @@ export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite }) => {
       </div>
       {showPdfReader && book.pdfUrl && (
         <PDFReader 
-          url={epubUrl || book.pdfUrl} 
+          url={epubUrl || book.pdfUrl}
+          initialPage={initialPage}
           onClose={() => {
             setShowPdfReader(false);
             if (epubUrl) {

@@ -11,9 +11,10 @@ interface Props {
   book: Book;
   onClose: () => void;
   onToggleFavorite: (book: Book) => void;
+  initialPage?: number; // Add this prop
 }
 
-export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavorite }) => {
+export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavorite, initialPage }) => {
   // Handle escape key press
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -50,7 +51,11 @@ export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavori
           <X size={20} />
         </button>
 
-        <BookHeader book={book} onToggleFavorite={onToggleFavorite} />
+        <BookHeader 
+          book={book} 
+          onToggleFavorite={onToggleFavorite}
+          initialPage={initialPage} // Pass the initialPage prop
+        />
         
         <div className="space-y-8 p-8">
           <BookProgress book={book} />

@@ -9,9 +9,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 interface Props {
   url: string;
   onClose: () => void;
+  initialPage?: number;
 }
 
-export const PDFReader: React.FC<Props> = ({ url, onClose }) => {
+export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
   const { t } = useTranslation();
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState(1);
@@ -22,13 +23,30 @@ export const PDFReader: React.FC<Props> = ({ url, onClose }) => {
     return stored ? JSON.parse(stored) : [];
   });
 
-  // Load the last viewed page if it exists
+  // Load the initial page or last viewed page
   useEffect(() => {
-    const lastPage = localStorage.getItem(`last-page-${url}`);
-    if (lastPage) {
-      setPageNumber(parseInt(lastPage, 10));
+    if (initialPage) {
+      // If we have an initial page (from bookmark), go there directly
+      setPageNumber(initialPage);
+    } else {
+      // Only show the resume prompt if we're not coming from a bookmark
+      const lastPage = localStorage.getItem(`last-page-${url}`);
+      if (lastPage) {
+        const savedPage = parseInt(lastPage, 10);
+        if (savedPage !== pageNumber) {
+          const confirmNavigation = window.confirm(
+            t('bookmarks.resumePrompt', {
+              defaultValue: 'Would you like to resume from your last reading position (page {{page}})?',
+              page: savedPage
+            })
+          );
+          if (confirmNavigation) {
+            setPageNumber(savedPage);
+          }
+        }
+      }
     }
-  }, [url]);
+  }, [url, initialPage, t]);
 
   // Save the current page when it changes
   useEffect(() => {

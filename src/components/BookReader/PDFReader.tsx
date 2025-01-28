@@ -113,8 +113,8 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90">
       {/* Header */}
-      <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-4 bg-white/10 backdrop-blur-sm">
-        <div className="flex items-center gap-4">
+      <div className="absolute top-0 left-0 right-0 flex flex-wrap items-center justify-between gap-2 p-4 bg-white/10 backdrop-blur-sm">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => adjustZoom(-0.1)}
             className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
@@ -134,7 +134,7 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
           </span>
         </div>
 
-        <div className="flex items-center gap-4 text-white">
+        <div className="flex items-center gap-2 order-last w-full sm:w-auto sm:order-none">
           <button
             onClick={toggleBookmark}
             className={`p-2 rounded-lg transition-colors ${
@@ -144,49 +144,49 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
             }`}
             title={isCurrentPageBookmarked ? t('bookmarks.remove') : t('bookmarks.add')}
           >
-            {isCurrentPageBookmarked ? <Bookmark size={20} /> : <BookmarkPlus size={20} />}
+            {isCurrentPageBookmarked ? <Bookmark size={20} className="text-white" /> : <BookmarkPlus size={20} className="text-white" />}
           </button>
 
-          {/* New Page Search Design */}
-          <div className="relative page-search-container flex items-center bg-gray-800 rounded-lg border border-gray-600">
-            <div className="flex-1 flex items-center min-w-[200px]">
-              <form onSubmit={handlePageSearch} className="flex-1 flex items-center px-3">
-                <input
-                  type="number"
-                  value={searchPage}
-                  onChange={(e) => setSearchPage(e.target.value)}
-                  min={1}
-                  max={numPages || 1}
-                  className="w-16 bg-transparent text-white text-center focus:outline-none"
-                  placeholder={pageNumber.toString()}
-                />
-                <span className="text-gray-400 mx-2">/</span>
-                <span className="text-gray-400">{numPages || '--'}</span>
-              </form>
-              <button
-                type="submit"
-                onClick={handlePageSearch}
-                className="p-2 text-white hover:bg-gray-700 rounded-r-lg transition-colors border-l border-gray-600"
-              >
-                <Search size={18} />
-              </button>
-            </div>
+          {/* Page Navigation */}
+          <div className="flex-1 sm:flex-none flex items-center bg-gray-800 rounded-lg border border-gray-600 min-w-0 sm:min-w-[200px]">
+            <form onSubmit={handlePageSearch} className="flex-1 flex items-center px-3">
+              <input
+                type="number"
+                value={searchPage}
+                onChange={(e) => setSearchPage(e.target.value)}
+                min={1}
+                max={numPages || 1}
+                className="w-12 sm:w-16 bg-transparent text-white text-center focus:outline-none"
+                placeholder={pageNumber.toString()}
+              />
+              <span className="text-gray-400 mx-2">/</span>
+              <span className="text-gray-400">{numPages || '--'}</span>
+            </form>
+            <button
+              type="submit"
+              onClick={handlePageSearch}
+              className="p-2 text-white hover:bg-gray-700 rounded-r-lg transition-colors border-l border-gray-600"
+            >
+              <Search size={18} />
+            </button>
           </div>
 
-          <button
-            onClick={() => changePage(-1)}
-            disabled={pageNumber <= 1}
-            className="p-2 rounded-lg bg-white/10 hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            onClick={() => changePage(1)}
-            disabled={pageNumber >= (numPages || 0)}
-            className="p-2 rounded-lg bg-white/10 hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            <ChevronRight size={20} />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => changePage(-1)}
+              disabled={pageNumber <= 1}
+              className="p-2 rounded-lg bg-white/10 hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronLeft size={20} className="text-white" />
+            </button>
+            <button
+              onClick={() => changePage(1)}
+              disabled={pageNumber >= (numPages || 0)}
+              className="p-2 rounded-lg bg-white/10 hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronRight size={20} className="text-white" />
+            </button>
+          </div>
         </div>
 
         <button
@@ -198,7 +198,7 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
       </div>
 
       {/* PDF Viewer */}
-      <div className="h-full w-full overflow-auto pt-20 pb-4 px-4">
+      <div className="h-full w-full overflow-auto pt-28 sm:pt-20 pb-4 px-4">
         {loading && (
           <div className="flex items-center justify-center h-full">
             <div className="text-white text-lg">{t('loading')}...</div>

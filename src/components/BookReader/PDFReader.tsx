@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut, Bookmark, BookmarkPlus } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut, Bookmark, BookmarkPlus, Search } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 // Set up PDF.js worker
@@ -18,18 +18,31 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [scale, setScale] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [showPageSearch, setShowPageSearch] = useState(false);
+  const [searchPage, setSearchPage] = useState('');
   const [bookmarks, setBookmarks] = useState<number[]>(() => {
     const stored = localStorage.getItem(`bookmarks-${url}`);
     return stored ? JSON.parse(stored) : [];
   });
 
+  // Close search on click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.page-search-container')) {
+        setShowPageSearch(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   // Load the initial page or last viewed page
   useEffect(() => {
     if (initialPage) {
-      // If we have an initial page (from bookmark), go there directly
       setPageNumber(initialPage);
     } else {
-      // Only show the resume prompt if we're not coming from a bookmark
       const lastPage = localStorage.getItem(`last-page-${url}`);
       if (lastPage) {
         const savedPage = parseInt(lastPage, 10);
@@ -64,6 +77,16 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
         const newPage = prevPage + offset;
         return Math.max(1, Math.min(newPage, numPages));
       });
+    }
+  };
+
+  const handlePageSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const page = parseInt(searchPage, 10);
+    if (numPages && !isNaN(page) && page >= 1 && page <= numPages) {
+      setPageNumber(page);
+      setSearchPage('');
+      setShowPageSearch(false);
     }
   };
 
@@ -123,9 +146,33 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
           >
             {isCurrentPageBookmarked ? <Bookmark size={20} /> : <BookmarkPlus size={20} />}
           </button>
-          <span>
-            {pageNumber} / {numPages || '--'}
-          </span>
+
+          {/* New Page Search Design */}
+          <div className="relative page-search-container flex items-center bg-gray-800 rounded-lg border border-gray-600">
+            <div className="flex-1 flex items-center min-w-[200px]">
+              <form onSubmit={handlePageSearch} className="flex-1 flex items-center px-3">
+                <input
+                  type="number"
+                  value={searchPage}
+                  onChange={(e) => setSearchPage(e.target.value)}
+                  min={1}
+                  max={numPages || 1}
+                  className="w-16 bg-transparent text-white text-center focus:outline-none"
+                  placeholder={pageNumber.toString()}
+                />
+                <span className="text-gray-400 mx-2">/</span>
+                <span className="text-gray-400">{numPages || '--'}</span>
+              </form>
+              <button
+                type="submit"
+                onClick={handlePageSearch}
+                className="p-2 text-white hover:bg-gray-700 rounded-r-lg transition-colors border-l border-gray-600"
+              >
+                <Search size={18} />
+              </button>
+            </div>
+          </div>
+
           <button
             onClick={() => changePage(-1)}
             disabled={pageNumber <= 1}

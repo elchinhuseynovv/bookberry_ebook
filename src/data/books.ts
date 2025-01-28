@@ -13,6 +13,7 @@ export const books: Book[] = [
     pages: 288,
     genre: 'Roman',
     rating: 4.8,
+    pdfUrl: 'https://www.kkoworld.com/kitablar/Qurban_Seid_Eli_ve_Nino_aze.pdf',
     reviews: [
       {
         id: '1',

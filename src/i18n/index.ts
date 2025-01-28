@@ -7,6 +7,7 @@ import ru from './locales/ru.json';
 import bookmarks from './locales/bookmarks.json';
 import bookDetails from './locales/bookDetails.json';
 import languages from './locales/languages.json';
+import bookmarkMessages from './locales/bookmarkMessages.json';
 
 i18n
   .use(LanguageDetector)
@@ -19,7 +20,8 @@ i18n
           ...bookmarks.az,
           ...bookDetails.az,
           ...languages.az
-        }
+        },
+        bookmarkMessages: bookmarkMessages.az
       },
       en: {
         translation: {
@@ -27,7 +29,8 @@ i18n
           ...bookmarks.en,
           ...bookDetails.en,
           ...languages.en
-        }
+        },
+        bookmarkMessages: bookmarkMessages.en
       },
       ru: {
         translation: {
@@ -35,7 +38,8 @@ i18n
           ...bookmarks.ru,
           ...bookDetails.ru,
           ...languages.ru
-        }
+        },
+        bookmarkMessages: bookmarkMessages.ru
       }
     },
     fallbackLng: 'az',

@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const BookmarksList: React.FC<Props> = ({ books, onBookClick }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['translation', 'bookmarkMessages']);
 
   const getBookmarks = () => {
     return books.map(book => {
@@ -28,10 +28,10 @@ export const BookmarksList: React.FC<Props> = ({ books, onBookClick }) => {
       <div className="flex flex-col items-center justify-center py-12 text-center">
         <Bookmark className="h-16 w-16 text-gray-300 dark:text-gray-600 mb-4" />
         <h3 className="text-xl font-medium text-gray-600 dark:text-gray-300 mb-2">
-          {t('bookmarks.empty')}
+          {t('empty', { ns: 'bookmarkMessages' })}
         </h3>
         <p className="text-gray-500 dark:text-gray-400">
-          {t('bookmarks.addSome')}
+          {t('addSome', { ns: 'bookmarkMessages' })}
         </p>
       </div>
     );

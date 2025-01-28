@@ -1,0 +1,14 @@
+{
+  "az": {
+    "empty": "Əlfəcinləriniz yoxdur",
+    "addSome": "Kitabxanadan kitabları əlfəcinlərə əlavə edin"
+  },
+  "en": {
+    "empty": "No bookmarked pages yet",
+    "addSome": "Add bookmarks while reading your favorite books"
+  },
+  "ru": {
+    "empty": "Закладки отсутствуют",
+    "addSome": "Добавьте закладки во время чтения книг"
+  }
+}

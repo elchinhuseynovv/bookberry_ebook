@@ -30,6 +30,14 @@ export interface Book {
   reviews?: Review[];
   pdfUrl?: string;
   isFavorite?: boolean;
+  categoryId?: string;
+}
+
+export interface BookCategory {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
 }
 
 export interface Review {
@@ -43,5 +51,3 @@ export interface Review {
 
 export type ViewMode = 'library' | 'audiobooks' | 'favorites' | 'bookmarks' | 'settings';
 export type ThemeMode = 'light' | 'dark' | 'sepia';
-
-// ... rest of the types remain unchanged

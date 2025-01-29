@@ -251,5 +251,32 @@ export const books: Book[] = [
     pages: 280,
     genre: 'Detektiv',
     rating: 4.5
+  },
+  {
+   id: '21',
+    title: 'Böyük Oyun',
+    author: 'Çingiz Abdullayev',
+    cover: 'https://www.teaspress.az/storage/1354/conversions/boyuk-oyun-front-book.jpg',
+    progress: 0,
+    description: 'Beynəlxalq intriqalar və siyasi oyunların mərkəzində cərəyan edən detektiv əsər.',
+    publishedYear: 2020,
+    language: 'Azərbaycanca',
+    pages: 312,
+    genre: 'Detektiv',
+    rating: 4.5
+  },
+  {
+    id: '22',
+    title: 'Bahadır və Sona',
+    author: 'Nəriman Nərimanov',
+    cover: 'https://bakubookcenter.az/get-product-image?fileId=85084',
+    progress: 15,
+    description: 'XIX əsrin sonu XX əsrin əvvəllərində Azərbaycan cəmiyyətində baş verən hadisələri əks etdirən məhəbbət romanı.',
+    publishedYear: 1896,
+    language: 'Azərbaycanca',
+    pages: 184,
+    genre: 'Roman',
+    rating: 4.6,
+    pdfUrl: 'https://achiqkitab.aztc.gov.az/az/file/view/nerimanov-bahadir-ve-sona.pdf'
   }
 ];

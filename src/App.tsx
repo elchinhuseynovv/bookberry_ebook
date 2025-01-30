@@ -13,7 +13,6 @@ import { Search } from 'lucide-react';
 import { useAuth } from './hooks/useAuth';
 import { useTheme } from './hooks/useTheme';
 import { useSearch } from './hooks/useSearch';
-import { genres } from './data/genres';
 import { SettingsView } from './components/Settings/SettingsView';
 import { FavoriteBooks } from './components/FavoriteBooks';
 import { BookmarksList } from './components/BookmarksList';
@@ -97,6 +96,14 @@ function App() {
       book.genre?.toLowerCase() === genre.toLowerCase()
     );
   };
+
+  // Define all available genres
+  const genres = [
+    { id: 'roman', name: 'Roman' },
+    { id: 'dastan', name: 'Dastan' },
+    { id: 'detective', name: 'Detektiv' },
+    { id: 'historical', name: 'Tarixi Roman' }
+  ];
 
   const renderContent = () => {
     switch (currentView) {

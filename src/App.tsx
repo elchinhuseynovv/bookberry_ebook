@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MainLayout } from './components/layout/MainLayout';
-import { BookCard } from './components/BookCard';
-import { AudioBookCard } from './components/AudioBookCard';
-import { SettingsView } from './components/Settings/SettingsView';
 import { BookDetailsView } from './components/BookDetails/BookDetailsView';
 import { LoginPage } from './components/auth/LoginPage';
 import { SignUpPage } from './components/auth/SignUpPage';
 import { ResetPasswordPage } from './components/auth/ResetPasswordPage';
 import { SplashScreen } from './components/SplashScreen';
 import { LanguageFilter } from './components/LanguageFilter';
+import { GenreSection } from './components/GenreSection';
 import { Book, ViewMode } from './types';
 import { Search } from 'lucide-react';
 import { useAuth } from './hooks/useAuth';
 import { useTheme } from './hooks/useTheme';
 import { useSearch } from './hooks/useSearch';
+import { genres } from './data/genres';
+import { SettingsView } from './components/Settings/SettingsView';
 import { FavoriteBooks } from './components/FavoriteBooks';
 import { BookmarksList } from './components/BookmarksList';
+import { AudioBookCard } from './components/AudioBookCard';
 
 function App() {
   const { t } = useTranslation();
@@ -65,21 +66,19 @@ function App() {
 
   const handleBookmarkClick = (book: Book, page: number) => {
     setSelectedBook(book);
-    // Store the page number to be opened
     localStorage.setItem(`last-page-${book.pdfUrl}`, page.toString());
   };
 
   const handleToggleFavorite = (book: Book) => {
     const updatedBooks = filteredBooks.map(b => 
-      b.id === book.id ? { ...b, isFavorite: book.isFavorite } : b
+      b.id === book.id ? { ...b, isFavorite: !book.isFavorite } : b
     );
     const updatedAudioBooks = filteredAudioBooks.map(b => 
-      b.id === book.id ? { ...b, isFavorite: book.isFavorite } : b
+      b.id === book.id ? { ...b, isFavorite: !book.isFavorite } : b
     );
 
-    // Save to localStorage
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    if (book.isFavorite) {
+    if (!book.isFavorite) {
       favorites.push(book.id);
     } else {
       const index = favorites.indexOf(book.id);
@@ -89,9 +88,14 @@ function App() {
     }
     localStorage.setItem('favorites', JSON.stringify(favorites));
 
-    // Update state
     setFilteredBooks(updatedBooks);
     setFilteredAudioBooks(updatedAudioBooks);
+  };
+
+  const getBooksByGenre = (genre: string) => {
+    return [...filteredBooks, ...filteredAudioBooks].filter(book => 
+      book.genre?.toLowerCase() === genre.toLowerCase()
+    );
   };
 
   const renderContent = () => {
@@ -235,16 +239,15 @@ function App() {
               languages={languages}
             />
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 auto-rows-fr pb-20">
-              {filteredBooks.length > 0 ? (
-                filteredBooks.map((book) => (
-                  <BookCard key={book.id} book={book} onClick={handleBookClick} />
-                ))
-              ) : (
-                <div className="col-span-full text-center py-8 text-gray-500">
-                  {t('noBooks')}
-                </div>
-              )}
+            <div className="space-y-8 pb-20">
+              {genres.map((genre) => (
+                <GenreSection
+                  key={genre.id}
+                  genre={genre.name}
+                  books={getBooksByGenre(genre.name)}
+                  onBookClick={handleBookClick}
+                />
+              ))}
             </div>
           </>
         );

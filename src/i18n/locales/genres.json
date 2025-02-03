@@ -1,0 +1,32 @@
+{
+  "az": {
+    "genres": {
+      "Roman": "Roman",
+      "Dastan": "Dastan",
+      "Detektiv": "Detektiv",
+      "Tarixi Roman": "Tarixi Roman",
+      "Dram": "Dram",
+      "Hekayə": "Hekayə"
+    }
+  },
+  "en": {
+    "genres": {
+      "Roman": "Novel",
+      "Dastan": "Epic",
+      "Detektiv": "Detective",
+      "Tarixi Roman": "Historical Novel",
+      "Dram": "Drama",
+      "Hekayə": "Story"
+    }
+  },
+  "ru": {
+    "genres": {
+      "Roman": "Роман",
+      "Dastan": "Дастан",
+      "Detektiv": "Детектив",
+      "Tarixi Roman": "Исторический роман",
+      "Dram": "Драма",
+      "Hekayə": "Рассказ"
+    }
+  }
+}

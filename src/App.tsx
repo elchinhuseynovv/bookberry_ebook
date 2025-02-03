@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MainLayout } from './components/layout/MainLayout';
 import { BookDetailsView } from './components/BookDetails/BookDetailsView';
@@ -92,10 +92,22 @@ function App() {
   };
 
   const getBooksByGenre = (genre: string) => {
-    return [...filteredBooks, ...filteredAudioBooks].filter(book => 
+    return filteredBooks.filter(book => 
       book.genre?.toLowerCase() === genre.toLowerCase()
     );
   };
+
+  const getAudioBooksByGenre = (genre: string) => {
+    return filteredAudioBooks.filter(book => 
+      book.genre?.toLowerCase() === genre.toLowerCase()
+    );
+  };
+
+  // Get unique genres from audiobooks
+  const audioBookGenres = useMemo(() => {
+    const genres = new Set(filteredAudioBooks.map(book => book.genre).filter(Boolean));
+    return Array.from(genres);
+  }, [filteredAudioBooks]);
 
   // Define all available genres
   const genres = [
@@ -196,16 +208,15 @@ function App() {
               languages={languages}
             />
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 auto-rows-fr pb-20">
-              {filteredAudioBooks.length > 0 ? (
-                filteredAudioBooks.map((book) => (
-                  <AudioBookCard key={book.id} book={book} onClick={handleBookClick} />
-                ))
-              ) : (
-                <div className="col-span-full text-center py-8 text-gray-500">
-                  {t('noBooks')}
-                </div>
-              )}
+            <div className="space-y-8 pb-20">
+              {audioBookGenres.map((genre) => (
+                <GenreSection
+                  key={genre}
+                  genre={genre}
+                  books={getAudioBooksByGenre(genre)}
+                  onBookClick={handleBookClick}
+                />
+              ))}
             </div>
           </>
         );

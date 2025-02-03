@@ -15,6 +15,7 @@ export const audiobooks: Book[] = [
     language: 'Azərbaycanca',
     genre: 'Roman',
     rating: 4.8,
+    categoryId: 'novel',
     reviews: [
       {
         id: '1',
@@ -39,6 +40,7 @@ export const audiobooks: Book[] = [
     publishedYear: 1815,
     language: 'Azərbaycanca',
     genre: 'Dastan',
+    categoryId: 'historical',
     rating: 4.9
   },
   {
@@ -54,6 +56,7 @@ export const audiobooks: Book[] = [
     publishedYear: 1928,
     language: 'Azərbaycanca',
     genre: 'Dram',
+    categoryId: 'drama',
     rating: 4.7
   },
   {
@@ -69,6 +72,7 @@ export const audiobooks: Book[] = [
     publishedYear: 1926,
     language: 'Azərbaycanca',
     genre: 'Hekayə',
+    categoryId: 'novel',
     rating: 4.6
   }
 ];

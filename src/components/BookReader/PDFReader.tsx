@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut, Bookmark, BookmarkPlus, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut, Bookmark, BookmarkPlus, Search, Highlighter, Trash2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 // Set up PDF.js worker
@@ -12,6 +12,19 @@ interface Props {
   initialPage?: number;
 }
 
+interface Highlight {
+  id: string;
+  pageNumber: number;
+  text: string;
+  position: {
+    boundingRect: DOMRect;
+    rects: DOMRect[];
+    pageX: number;
+    pageY: number;
+    scale: number;
+  };
+}
+
 export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
   const { t } = useTranslation();
   const [numPages, setNumPages] = useState<number | null>(null);
@@ -20,8 +33,14 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
   const [loading, setLoading] = useState(true);
   const [showPageSearch, setShowPageSearch] = useState(false);
   const [searchPage, setSearchPage] = useState('');
+  const pageRef = useRef<HTMLDivElement>(null);
   const [bookmarks, setBookmarks] = useState<number[]>(() => {
     const stored = localStorage.getItem(`bookmarks-${url}`);
+    return stored ? JSON.parse(stored) : [];
+  });
+  const [isHighlighting, setIsHighlighting] = useState(false);
+  const [highlights, setHighlights] = useState<Highlight[]>(() => {
+    const stored = localStorage.getItem(`highlights-${url}`);
     return stored ? JSON.parse(stored) : [];
   });
 
@@ -108,7 +127,75 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
     });
   };
 
+  const toggleHighlighting = () => {
+    setIsHighlighting(!isHighlighting);
+  };
+
+  const handleTextSelection = () => {
+    if (!isHighlighting) return;
+
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed) return;
+
+    const range = selection.getRangeAt(0);
+    const textContent = selection.toString().trim();
+    
+    if (!textContent || !pageRef.current) return;
+
+    const pageElement = pageRef.current;
+    const pageRect = pageElement.getBoundingClientRect();
+    const selectionRects = Array.from(range.getClientRects());
+    
+    // Convert client rectangles to page-relative coordinates
+    const rects = selectionRects.map(rect => {
+      const { top, left, width, height } = rect;
+      return new DOMRect(
+        left - pageRect.left,
+        top - pageRect.top,
+        width,
+        height
+      );
+    });
+
+    const highlight: Highlight = {
+      id: crypto.randomUUID(),
+      pageNumber,
+      text: textContent,
+      position: {
+        boundingRect: range.getBoundingClientRect(),
+        rects,
+        pageX: pageRect.left,
+        pageY: pageRect.top,
+        scale
+      }
+    };
+
+    setHighlights(prev => {
+      const newHighlights = [...prev, highlight];
+      localStorage.setItem(`highlights-${url}`, JSON.stringify(newHighlights));
+      return newHighlights;
+    });
+
+    selection.removeAllRanges();
+  };
+
+  const removeHighlight = (highlightId: string) => {
+    setHighlights(prev => {
+      const newHighlights = prev.filter(h => h.id !== highlightId);
+      localStorage.setItem(`highlights-${url}`, JSON.stringify(newHighlights));
+      return newHighlights;
+    });
+  };
+
+  const clearAllHighlights = () => {
+    if (window.confirm(t('highlight.clearConfirm'))) {
+      setHighlights([]);
+      localStorage.removeItem(`highlights-${url}`);
+    }
+  };
+
   const isCurrentPageBookmarked = bookmarks.includes(pageNumber);
+  const currentPageHighlights = highlights.filter(h => h.pageNumber === pageNumber);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90">
@@ -146,6 +233,29 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
           >
             {isCurrentPageBookmarked ? <Bookmark size={20} className="text-white" /> : <BookmarkPlus size={20} className="text-white" />}
           </button>
+
+          <div className="flex items-center gap-1">
+            <button
+              onClick={toggleHighlighting}
+              className={`p-2 rounded-lg transition-colors ${
+                isHighlighting
+                  ? 'bg-yellow-500 hover:bg-yellow-600'
+                  : 'bg-white/10 hover:bg-white/20'
+              }`}
+              title={isHighlighting ? t('highlight.disable') : t('highlight.enable')}
+            >
+              <Highlighter size={20} className="text-white" />
+            </button>
+            {currentPageHighlights.length > 0 && (
+              <button
+                onClick={clearAllHighlights}
+                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+                title={t('highlight.clearAll')}
+              >
+                <Trash2 size={20} />
+              </button>
+            )}
+          </div>
 
           {/* Page Navigation */}
           <div className="flex-1 sm:flex-none flex items-center bg-gray-800 rounded-lg border border-gray-600 min-w-0 sm:min-w-[200px]">
@@ -198,7 +308,10 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
       </div>
 
       {/* PDF Viewer */}
-      <div className="h-full w-full overflow-auto pt-28 sm:pt-20 pb-4 px-4">
+      <div 
+        className="h-full w-full overflow-auto pt-28 sm:pt-20 pb-4 px-4"
+        onMouseUp={handleTextSelection}
+      >
         {loading && (
           <div className="flex items-center justify-center h-full">
             <div className="text-white text-lg">{t('loading')}...</div>
@@ -210,12 +323,47 @@ export const PDFReader: React.FC<Props> = ({ url, onClose, initialPage }) => {
           loading={<div className="text-white text-lg">{t('loading')}...</div>}
           error={<div className="text-red-500">{t('errorLoadingPDF')}</div>}
         >
-          <Page
-            pageNumber={pageNumber}
-            scale={scale}
-            loading={<div className="text-white text-lg">{t('loading')}...</div>}
-            className="flex justify-center"
-          />
+          <div className="relative flex justify-center">
+            <div ref={pageRef} className="relative">
+              <Page
+                pageNumber={pageNumber}
+                scale={scale}
+                loading={<div className="text-white text-lg">{t('loading')}...</div>}
+              />
+              {/* Highlights overlay */}
+              {currentPageHighlights.map((highlight) => (
+                <div key={highlight.id} className="absolute inset-0">
+                  {highlight.position.rects.map((rect, index) => (
+                    <div
+                      key={index}
+                      className="absolute bg-yellow-300/40 cursor-pointer group"
+                      style={{
+                        left: rect.x,
+                        top: rect.y,
+                        width: rect.width,
+                        height: rect.height
+                      }}
+                      title={highlight.text}
+                      onClick={() => removeHighlight(highlight.id)}
+                    >
+                      <div className="hidden group-hover:flex absolute right-0 top-0 -translate-y-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-2 text-sm">
+                        {highlight.text}
+                        <button
+                          className="ml-2 text-red-500 hover:text-red-600"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            removeHighlight(highlight.id);
+                          }}
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
         </Document>
       </div>
     </div>

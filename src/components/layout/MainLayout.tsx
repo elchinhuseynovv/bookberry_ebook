@@ -24,12 +24,16 @@ export const MainLayout: React.FC<Props> = ({
 }) => {
   const { t } = useTranslation();
 
+  const handleLogoClick = () => {
+    onViewChange('library');
+  };
+
   return (
     <div className={`min-h-screen ${themeClasses[theme]} transition-colors duration-300`}>
       <main className="p-4 pb-32">
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Logo />
+            <Logo onClick={handleLogoClick} />
             <h1 className="text-3xl font-bold text-purple-600 tracking-tight hidden sm:block">
               {t('appName')}
             </h1>

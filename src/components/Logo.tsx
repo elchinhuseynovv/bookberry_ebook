@@ -1,9 +1,16 @@
 import React from 'react';
 import { Grape } from 'lucide-react';
 
-export const Logo: React.FC = () => {
+interface Props {
+  onClick?: () => void;
+}
+
+export const Logo: React.FC<Props> = ({ onClick }) => {
   return (
-    <div className="flex items-center gap-3">
+    <div 
+      className="flex items-center gap-3 cursor-pointer"
+      onClick={onClick}
+    >
       <div className="relative">
         <Grape 
           size={32} 

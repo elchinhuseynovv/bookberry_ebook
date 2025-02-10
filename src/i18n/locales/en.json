@@ -15,6 +15,9 @@
   "copiedToClipboard": "Copied to clipboard!",
   "shareToInstagramGuide": "Text copied for sharing on Instagram",
   "converting": "Converting...",
+  "download": "Download",
+  "downloading": "Downloading...",
+  "downloadError": "Download failed. Please try again.",
 
   "language": {
     "title": "Language",

@@ -15,6 +15,9 @@
   "copiedToClipboard": "Buferə kopyalandı!",
   "shareToInstagramGuide": "Instagram-da paylaşmaq üçün mətni kopyaladıq",
   "converting": "Çevrilir...",
+  "download": "Yüklə",
+  "downloading": "Yüklənir...",
+  "downloadError": "Yükləmə xətası baş verdi. Yenidən cəhd edin.",
 
   "language": {
     "title": "Dil",

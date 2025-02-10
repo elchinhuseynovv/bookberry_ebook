@@ -15,6 +15,9 @@
   "copiedToClipboard": "Скопировано в буфер обмена!",
   "shareToInstagramGuide": "Текст скопирован для публикации в Instagram",
   "converting": "Конвертация...",
+  "download": "Скачать",
+  "downloading": "Загрузка...",
+  "downloadError": "Ошибка загрузки. Попробуйте еще раз.",
 
   "language": {
     "title": "Язык",

@@ -53,6 +53,21 @@
     "resetEmailSent": "We've sent password reset instructions"
   },
 
+  "security": {
+    "title": "Security",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "currentPasswordPlaceholder": "Enter your current password",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "Enter your new password",
+    "confirmNewPassword": "Confirm New Password",
+    "confirmNewPasswordPlaceholder": "Re-enter your new password",
+    "twoFactorAuth": "Two-Factor Authentication",
+    "twoFactorAuthDescription": "Add an extra layer of security to your account",
+    "enabled": "Enabled",
+    "disabled": "Disabled"
+  },
+
   "profile": {
     "title": "Profile",
     "name": "Name",

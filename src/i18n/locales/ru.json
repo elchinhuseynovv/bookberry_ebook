@@ -53,6 +53,21 @@
     "resetEmailSent": "Мы отправили инструкции по сбросу пароля"
   },
 
+  "security": {
+    "title": "Безопасность",
+    "changePassword": "Изменить пароль",
+    "currentPassword": "Текущий пароль",
+    "currentPasswordPlaceholder": "Введите текущий пароль",
+    "newPassword": "Новый пароль",
+    "newPasswordPlaceholder": "Введите новый пароль",
+    "confirmNewPassword": "Подтвердите новый пароль",
+    "confirmNewPasswordPlaceholder": "Введите новый пароль повторно",
+    "twoFactorAuth": "Двухфакторная аутентификация",
+    "twoFactorAuthDescription": "Добавьте дополнительный уровень безопасности",
+    "enabled": "Включено",
+    "disabled": "Отключено"
+  },
+
   "profile": {
     "title": "Профиль",
     "name": "Имя",

@@ -53,6 +53,21 @@
     "resetEmailSent": "Şifrə sıfırlama təlimatlarını göndərdik"
   },
 
+  "security": {
+    "title": "Təhlükəsizlik",
+    "changePassword": "Şifrəni dəyiş",
+    "currentPassword": "Cari şifrə",
+    "currentPasswordPlaceholder": "Cari şifrənizi daxil edin",
+    "newPassword": "Yeni şifrə",
+    "newPasswordPlaceholder": "Yeni şifrənizi daxil edin",
+    "confirmNewPassword": "Yeni şifrəni təsdiqlə",
+    "confirmNewPasswordPlaceholder": "Yeni şifrəni təkrar daxil edin",
+    "twoFactorAuth": "İki faktorlu doğrulama",
+    "twoFactorAuthDescription": "Hesabınıza əlavə təhlükəsizlik qatı əlavə edin",
+    "enabled": "Aktivdir",
+    "disabled": "Deaktivdir"
+  },
+
   "profile": {
     "title": "Profil",
     "name": "Ad",

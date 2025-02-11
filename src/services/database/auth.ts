@@ -69,6 +69,32 @@ class AuthDatabase {
     const currentUserEmail = storage.getCurrentUserEmail();
     return currentUserEmail ? this.users.get(currentUserEmail) || null : null;
   }
+
+  public async verifyPassword(email: string, password: string): Promise<boolean> {
+    const user = this.users.get(email);
+    return user?.password === password;
+  }
+
+  public async updatePassword(email: string, newPassword: string): Promise<void> {
+    const user = this.users.get(email);
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    user.password = newPassword;
+    this.users.set(email, user);
+    this.saveUsers();
+  }
+
+  public async sendPasswordResetEmail(email: string): Promise<void> {
+    const user = this.users.get(email);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    // In a real app, this would send an email
+    // For now, we'll just simulate success
+    return Promise.resolve();
+  }
 }
 
 export const authDB = new AuthDatabase();

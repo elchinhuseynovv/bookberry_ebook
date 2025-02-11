@@ -15,14 +15,14 @@ import {
   AccessibilitySettings,
   SecuritySettings 
 } from '../../types';
-import { Settings as SettingsIcon, BookOpen, Bell, Eye, Globe, CreditCard } from 'lucide-react';
+import { Settings as SettingsIcon, BookOpen, Bell, Eye, Globe, CreditCard, Shield } from 'lucide-react';
 import { storage } from '../../services/storage';
 import { useAuth } from '../../hooks/useAuth';
 import { profileDB } from '../../services/database/profile';
 import { subscriptionPlans } from '../../constants/subscriptionPlans';
 import { SubscriptionPlan } from '../../types/subscription';
 
-type TabId = 'account' | 'subscription' | 'reading' | 'notifications' | 'accessibility' | 'language';
+type TabId = 'account' | 'security' | 'subscription' | 'reading' | 'notifications' | 'accessibility' | 'language';
 
 const defaultProfile: UserProfile = {
   name: '',
@@ -136,7 +136,7 @@ export const SettingsView: React.FC = () => {
         email: currentUser.email
       };
       profileDB.updateProfile(currentUser.email, profileToSave);
-      setProfile(profileToSave); // Immediately update the state
+      setProfile(profileToSave);
     }
   };
 
@@ -173,6 +173,15 @@ export const SettingsView: React.FC = () => {
       activeGradient: 'from-purple-500 to-violet-600',
       borderColor: 'border-purple-200 dark:border-purple-800',
       shadowColor: 'shadow-purple-500/20 dark:shadow-purple-400/10'
+    },
+    {
+      id: 'security',
+      label: t('security.title'),
+      icon: Shield,
+      gradient: 'from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40',
+      activeGradient: 'from-green-500 to-emerald-600',
+      borderColor: 'border-green-200 dark:border-green-800',
+      shadowColor: 'shadow-green-500/20 dark:shadow-green-400/10'
     },
     { 
       id: 'subscription',
@@ -244,6 +253,9 @@ export const SettingsView: React.FC = () => {
       <div className="space-y-8">
         {activeTab === 'account' && (
           <ProfileSection profile={profile} onSave={handleProfileSave} />
+        )}
+        {activeTab === 'security' && (
+          <SecuritySection settings={securitySettings} onSave={handleSecuritySave} />
         )}
         {activeTab === 'subscription' && (
           <SubscriptionSection

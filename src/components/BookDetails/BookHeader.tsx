@@ -25,34 +25,38 @@ export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite, initialPag
   const [downloadError, setDownloadError] = useState<string | null>(null);
 
   const handleDownload = async () => {
-    if (!book.pdfUrl) return;
+    if (!book.pdfUrl && !book.audioUrl) return;
 
     try {
       setIsDownloading(true);
       setDownloadError(null);
 
-      const response = await fetch(book.pdfUrl);
+      const url = book.isAudio ? book.audioUrl : book.pdfUrl;
+      const response = await fetch(url!);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
       const contentType = response.headers.get('content-type');
-      if (!contentType?.includes('application/pdf')) {
+      if (book.isAudio && !contentType?.includes('audio')) {
+        throw new Error('Invalid file format');
+      }
+      if (!book.isAudio && !contentType?.includes('application/pdf')) {
         throw new Error('Invalid file format');
       }
 
       const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
+      const downloadUrl = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url;
-      a.download = `${book.title.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+      a.href = downloadUrl;
+      a.download = `${book.title.replace(/[^a-zA-Z0-9]/g, '_')}.${book.isAudio ? 'mp3' : 'pdf'}`;
       document.body.appendChild(a);
       a.click();
-      window.URL.revokeObjectURL(url);
+      window.URL.revokeObjectURL(downloadUrl);
       document.body.removeChild(a);
     } catch (error) {
-      console.error('Error downloading book:', error);
+      console.error('Error downloading:', error);
       setDownloadError(t('downloadError'));
       
       // Auto-hide error after 3 seconds
@@ -257,7 +261,7 @@ export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite, initialPag
                   >
                     {isConverting ? t('converting') : book.isAudio ? t('listen') : t('read')}
                   </button>
-                  {book.pdfUrl && (
+                  {(book.pdfUrl || book.audioUrl) && (
                     <div className="relative">
                       <button 
                         onClick={handleDownload}

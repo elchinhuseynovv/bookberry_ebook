@@ -1,6 +1,6 @@
 import React from 'react';
 import { Book } from '../types';
-import { Headphones, Clock } from 'lucide-react';
+import { Headphones, Clock, Download } from 'lucide-react';
 import { az } from '../constants/translations';
 
 interface Props {
@@ -9,6 +9,34 @@ interface Props {
 }
 
 export const AudioBookCard: React.FC<Props> = ({ book, onClick }) => {
+  const handleDownload = async (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click when downloading
+    
+    if (!book.audioUrl) {
+      console.error('No audio URL available');
+      return;
+    }
+
+    try {
+      const response = await fetch(book.audioUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${book.title.replace(/[^a-zA-Z0-9]/g, '_')}.mp3`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Error downloading audiobook:', error);
+    }
+  };
+
   return (
     <div
       onClick={() => onClick(book)}
@@ -23,6 +51,15 @@ export const AudioBookCard: React.FC<Props> = ({ book, onClick }) => {
         <div className="absolute top-3 right-3 rounded-full bg-black/60 p-2">
           <Headphones className="h-4 w-4 text-white" />
         </div>
+        {book.audioUrl && (
+          <button
+            onClick={handleDownload}
+            className="absolute top-3 left-3 rounded-full bg-black/60 p-2 hover:bg-black/80 transition-colors"
+            title={az.download}
+          >
+            <Download className="h-4 w-4 text-white" />
+          </button>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-100" />
       </div>
       <div className="absolute bottom-0 left-0 right-0 p-4 text-white">

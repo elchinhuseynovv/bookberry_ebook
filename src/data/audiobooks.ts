@@ -16,6 +16,10 @@ export const audiobooks: Book[] = [
     genre: 'Roman',
     rating: 4.8,
     categoryId: 'novel',
+    audioUrl: 'https://example.com/audiobooks/ali-ve-nino.mp3',
+    fileSize: '245 MB',
+    format: 'MP3',
+    quality: '320 kbps',
     reviews: [
       {
         id: '1',
@@ -41,7 +45,11 @@ export const audiobooks: Book[] = [
     language: 'Azərbaycanca',
     genre: 'Dastan',
     categoryId: 'historical',
-    rating: 4.9
+    rating: 4.9,
+    audioUrl: 'https://example.com/audiobooks/dede-qorqud.mp3',
+    fileSize: '312 MB',
+    format: 'MP3',
+    quality: '320 kbps'
   },
   {
     id: 'audio-3',
@@ -57,7 +65,11 @@ export const audiobooks: Book[] = [
     language: 'Azərbaycanca',
     genre: 'Dram',
     categoryId: 'drama',
-    rating: 4.7
+    rating: 4.7,
+    audioUrl: 'https://example.com/audiobooks/sevil.mp3',
+    fileSize: '198 MB',
+    format: 'MP3',
+    quality: '320 kbps'
   },
   {
     id: 'audio-4',
@@ -73,6 +85,10 @@ export const audiobooks: Book[] = [
     language: 'Azərbaycanca',
     genre: 'Hekayə',
     categoryId: 'novel',
-    rating: 4.6
+    rating: 4.6,
+    audioUrl: 'https://example.com/audiobooks/qaraca-qiz.mp3',
+    fileSize: '156 MB',
+    format: 'MP3',
+    quality: '320 kbps'
   }
 ];

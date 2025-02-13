@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Book } from '../../types';
 import { BookHeader } from './BookHeader';
 import { BookInfo } from './BookInfo';
+import { AudioBookInfo } from './AudioBookInfo';
 import { BookProgress } from './BookProgress';
 import { BookReviews } from './BookReviews';
 import { X } from 'lucide-react';
@@ -59,7 +60,11 @@ export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavori
         
         <div className="space-y-8 p-4 md:p-8">
           <BookProgress book={book} />
-          <BookInfo book={book} />
+          {book.isAudio ? (
+            <AudioBookInfo book={book} />
+          ) : (
+            <BookInfo book={book} />
+          )}
           <BookReviews book={book} />
         </div>
       </div>

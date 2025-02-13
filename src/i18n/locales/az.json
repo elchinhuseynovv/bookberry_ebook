@@ -19,168 +19,18 @@
   "downloading": "Yüklənir...",
   "downloadError": "Yükləmə xətası baş verdi. Yenidən cəhd edin.",
 
+  "audiobook": {
+    "details": "Audiokitab məlumatları",
+    "duration": "Müddət",
+    "narrator": "Səsləndirən",
+    "format": "Format",
+    "quality": "Keyfiyyət"
+  },
+
   "language": {
     "title": "Dil",
     "az": "Azərbaycanca",
     "en": "English",
     "ru": "Русский"
-  },
-
-  "auth": {
-    "login": "Daxil ol",
-    "createAccount": "Hesab yarat",
-    "forgotPassword": "Şifrəni unutmusunuz?",
-    "resetPassword": "Şifrəni sıfırla",
-    "backToLogin": "Girişə qayıt",
-    "email": "Email",
-    "emailPlaceholder": "Emailinizi daxil edin",
-    "password": "Şifrə",
-    "passwordPlaceholder": "Şifrənizi daxil edin",
-    "confirmPassword": "Şifrəni təsdiqlə",
-    "confirmPasswordPlaceholder": "Şifrəni təkrar daxil edin",
-    "name": "Ad",
-    "namePlaceholder": "Adınızı daxil edin",
-    "fillDetails": "Zəhmət olmasa məlumatlarınızı doldurun",
-    "invalidCredentials": "Yanlış email və ya şifrə",
-    "userExists": "İstifadəçi artıq mövcuddur",
-    "passwordsDoNotMatch": "Şifrələr uyğun gəlmir",
-    "termsAndConditions": "İstifadə şərtləri",
-    "acceptTerms": "Qəbul edirəm",
-    "logout": "Çıxış et",
-    "resetPasswordDescription": "Emailinizi daxil edin və biz sizə şifrə sıfırlama linki göndərəcəyik",
-    "sendResetLink": "Link göndər",
-    "checkYourEmail": "Emailinizi yoxlayın",
-    "resetEmailSent": "Şifrə sıfırlama təlimatlarını göndərdik"
-  },
-
-  "security": {
-    "title": "Təhlükəsizlik",
-    "changePassword": "Şifrəni dəyiş",
-    "currentPassword": "Cari şifrə",
-    "currentPasswordPlaceholder": "Cari şifrənizi daxil edin",
-    "newPassword": "Yeni şifrə",
-    "newPasswordPlaceholder": "Yeni şifrənizi daxil edin",
-    "confirmNewPassword": "Yeni şifrəni təsdiqlə",
-    "confirmNewPasswordPlaceholder": "Yeni şifrəni təkrar daxil edin",
-    "twoFactorAuth": "İki faktorlu doğrulama",
-    "twoFactorAuthDescription": "Hesabınıza əlavə təhlükəsizlik qatı əlavə edin",
-    "enabled": "Aktivdir",
-    "disabled": "Deaktivdir"
-  },
-
-  "profile": {
-    "title": "Profil",
-    "name": "Ad",
-    "surname": "Soyad",
-    "age": "Yaş",
-    "phoneNumber": "Telefon nömrəsi",
-    "email": "E-poçt",
-    "namePlaceholder": "Adınızı daxil edin",
-    "surnamePlaceholder": "Soyadınızı daxil edin",
-    "agePlaceholder": "Yaşınızı daxil edin",
-    "phonePlaceholder": "+994 XX XXX XX XX",
-    "emailPlaceholder": "E-poçt ünvanınızı daxil edin",
-    "save": "Yadda saxla",
-    "emailRequired": "E-poçt ünvanı tələb olunur",
-    "nameRequired": "Ad tələb olunur",
-    "surnameRequired": "Soyad tələb olunur",
-    "phoneRequired": "Telefon nömrəsi tələb olunur",
-    "invalidPhone": "Düzgün telefon nömrəsi daxil edin",
-    "invalidAge": "Düzgün yaş daxil edin"
-  },
-
-  "subscription": {
-    "title": "Abunəlik",
-    "currentPlan": "Cari Plan",
-    "choosePlan": "Planınızı seçin",
-    "freePlan": "Pulsuz Plan",
-    "premiumPlan": "Premium Plan",
-    "free": "Pulsuz",
-    "currency": "AZN",
-    "monthly": "aylıq",
-    "yearly": "illik",
-    "select": "Seç",
-    "selected": "Seçildi",
-    "selectPlanRequired": "Zəhmət olmasa abunəlik planı seçin",
-    "continueToPayment": "Ödənişə keç",
-    "payment": {
-      "title": "Ödəniş məlumatları",
-      "cardNumber": "Kart nömrəsi",
-      "expiry": "Bitmə tarixi",
-      "cvv": "CVV",
-      "nameOnCard": "Kartın üzərindəki ad",
-      "cardNumberRequired": "Kart nömrəsi tələb olunur",
-      "expiryRequired": "Bitmə tarixi tələb olunur",
-      "cvvRequired": "CVV tələb olunur",
-      "nameRequired": "Kartın üzərindəki ad tələb olunur",
-      "payNow": "İndi ödə"
-    },
-    "features": {
-      "basicAccess": "Əsas kitabxana girişi",
-      "limitedBooks": "Ayda 10 kitaba giriş",
-      "adsSupported": "Reklamlı oxuma",
-      "fullAccess": "Tam kitabxana girişi",
-      "unlimitedBooks": "Limitsiz kitablar",
-      "noAds": "Reklamsız oxuma",
-      "offlineReading": "Oflayn oxuma",
-      "prioritySupport": "Prioritet dəstək",
-      "audiobooks": "Audiokitablara giriş",
-      "deviceSync": "Bütün cihazlarda sinxronizasiya",
-      "customCollections": "Xüsusi kolleksiyalar",
-      "readingStats": "Oxuma statistikası",
-      "bookmarks": "Limitsiz əlfəcinlər",
-      "highlights": "Qeydlər və vurğulamalar"
-    }
-  },
-
-  "readingPreferences": {
-    "title": "Oxuma Tənzimləmələri",
-    "fontSize": "Şrift ölçüsü",
-    "textAlignment": "Mətn düzləndirməsi",
-    "autoPlayAudio": "Avtomatik səs oxutma",
-    "showPageNumber": "Səhifə nömrəsini göstər",
-    "highlightLinks": "Linkləri vurğula"
-  },
-
-  "notifications": {
-    "title": "Bildirişlər",
-    "dailyReminder": "Gündəlik xatırlatma",
-    "weeklyProgress": "Həftəlik irəliləyiş",
-    "newBookAlerts": "Yeni kitab bildirişləri",
-    "systemNotifications": "Sistem bildirişləri",
-    "reminderTime": "Xatırlatma vaxtı"
-  },
-
-  "accessibility": {
-    "title": "Əlçatanlıq",
-    "highContrast": "Yüksək kontrast",
-    "reduceAnimations": "Animasiyaları azalt",
-    "screenReader": "Ekran oxuyucusu",
-    "dyslexicFont": "Disleksiya şrifti",
-    "textToSpeech": "Mətndən səsə"
-  },
-
-  "theme": {
-    "light": "İşıqlı",
-    "dark": "Qaranlıq",
-    "sepia": "Sepiya"
-  },
-
-  "bookDetails": {
-    "title": "Kitab haqqında",
-    "description": "Təsvir",
-    "publishedYear": "Nəşr ili",
-    "pages": "Səhifə sayı",
-    "language": "Dil",
-    "genre": "Janr",
-    "reviews": "Rəylər"
-  },
-
-  "favorites": {
-    "title": "Sevimlilər",
-    "empty": "Sevimli kitablarınız yoxdur",
-    "addSome": "Kitabxanadan sevdiyiniz kitabları əlavə edin",
-    "added": "Sevimlilərə əlavə edildi",
-    "removed": "Sevimlilərdən çıxarıldı"
   }
 }

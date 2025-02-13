@@ -29,8 +29,12 @@ export interface Book {
   rating?: number;
   reviews?: Review[];
   pdfUrl?: string;
+  audioUrl?: string;
   isFavorite?: boolean;
   categoryId?: string;
+  fileSize?: string;
+  format?: string;
+  quality?: string;
 }
 
 export interface BookCategory {

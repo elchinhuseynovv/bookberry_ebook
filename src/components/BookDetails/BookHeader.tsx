@@ -207,28 +207,28 @@ export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite, initialPag
         </div>
 
         {/* Content */}
-        <div className="relative px-8 pt-20 pb-8">
-          <div className="flex flex-col md:flex-row gap-8">
+        <div className="relative px-4 md:px-8 pt-16 md:pt-20 pb-6 md:pb-8">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8">
             {/* Book cover */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 mx-auto md:mx-0">
               <img
                 src={book.cover}
                 alt={book.title}
-                className="w-48 h-72 object-cover rounded-2xl shadow-2xl"
+                className="w-40 h-60 md:w-48 md:h-72 object-cover rounded-2xl shadow-2xl"
               />
             </div>
 
             {/* Book info */}
-            <div className="flex flex-col justify-end">
+            <div className="flex flex-col justify-end text-center md:text-left">
               <div className="space-y-4">
-                <h1 className="text-4xl font-bold text-white">
+                <h1 className="text-3xl md:text-4xl font-bold text-white">
                   {book.title}
                 </h1>
-                <p className="text-xl text-gray-200">
+                <p className="text-lg md:text-xl text-gray-200">
                   {book.author}
                 </p>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center md:justify-start gap-4">
                   {book.rating && (
                     <div className="flex items-center gap-1">
                       <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
@@ -245,7 +245,7 @@ export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite, initialPag
                   )}
                 </div>
 
-                <div className="flex gap-3 pt-4">
+                <div className="flex flex-wrap justify-center md:justify-start gap-3 pt-4">
                   <button 
                     onClick={handleReadClick}
                     disabled={isConverting}

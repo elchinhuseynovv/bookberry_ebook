@@ -24,8 +24,8 @@ export const BottomNav: React.FC<Props> = ({ currentView, onViewChange }) => {
     <div className="fixed bottom-0 left-0 right-0 z-50">
       <div className="absolute inset-0 bg-gradient-to-t from-white via-white to-transparent dark:from-gray-900 dark:via-gray-900 opacity-80" />
       <nav className="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg border-t border-purple-100 dark:border-purple-900/50">
-        <div className="max-w-lg mx-auto px-4">
-          <div className="flex items-stretch justify-between">
+        <div className="max-w-lg mx-auto">
+          <div className="flex items-stretch justify-between px-2 py-1">
             {navItems.map(({ view, icon, label }) => (
               <NavButton
                 key={view}

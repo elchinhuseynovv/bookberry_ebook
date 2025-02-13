@@ -30,11 +30,11 @@ export const MainLayout: React.FC<Props> = ({
 
   return (
     <div className={`min-h-screen ${themeClasses[theme]} transition-colors duration-300`}>
-      <main className="p-4 pb-32">
-        <div className="mb-8 flex items-center justify-between">
+      <main className="px-3 pb-24 pt-4 sm:px-4">
+        <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Logo onClick={handleLogoClick} />
-            <h1 className="text-3xl font-bold text-purple-600 tracking-tight hidden sm:block">
+            <h1 className="text-2xl font-bold text-purple-600 tracking-tight hidden sm:block">
               {t('appName')}
             </h1>
           </div>

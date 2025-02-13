@@ -1,5 +1,5 @@
 import React from 'react';
-import { LucideIcon } from 'lucide-react';
+import { DivideIcon as LucideIcon } from 'lucide-react';
 import { ViewMode } from '../../types';
 
 interface Props {
@@ -22,13 +22,13 @@ export const NavButton: React.FC<Props> = ({
   return (
     <button
       onClick={onClick}
-      className="relative flex flex-1 flex-col items-center gap-1 py-2"
+      className="relative flex flex-1 flex-col items-center justify-center gap-1 py-2 min-w-[3rem] max-w-[5rem] mx-auto"
     >
       {/* Indicator */}
       <div
         className={`
-          absolute -top-1.5 left-1/2 -translate-x-1/2
-          w-12 h-1.5 rounded-full
+          absolute -top-1 left-1/2 -translate-x-1/2
+          w-8 h-1 rounded-full
           transition-all duration-300 transform
           ${isActive
             ? 'bg-purple-600 scale-100 opacity-100'
@@ -41,16 +41,16 @@ export const NavButton: React.FC<Props> = ({
       <div
         className={`
           relative flex items-center justify-center
-          w-12 h-12 rounded-2xl
+          w-10 h-10 rounded-xl
           transition-all duration-300 transform
           ${isActive
             ? 'bg-purple-100 dark:bg-purple-900/30 scale-110'
-            : 'bg-transparent group-hover:bg-purple-50 dark:group-hover:bg-purple-900/20 group-hover:scale-105'
+            : 'bg-transparent hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:scale-105'
           }
         `}
       >
         <Icon 
-          size={22} 
+          size={20} 
           className={`
             transition-all duration-300
             ${isActive 
@@ -63,7 +63,7 @@ export const NavButton: React.FC<Props> = ({
 
       {/* Label */}
       <span className={`
-        text-xs font-medium tracking-wide
+        text-[0.65rem] font-medium tracking-wide leading-none
         ${isActive ? 'text-purple-600' : 'text-gray-400'}
       `}>
         {label}

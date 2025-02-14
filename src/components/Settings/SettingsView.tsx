@@ -34,7 +34,7 @@ const defaultProfile: UserProfile = {
 };
 
 export const SettingsView: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState<TabId>('account');
   const { currentUser } = useAuth();
   const [profile, setProfile] = useState<UserProfile>(defaultProfile);
@@ -64,6 +64,18 @@ export const SettingsView: React.FC = () => {
     dyslexicFont: false,
     textToSpeech: false
   });
+
+  // Get language-specific title
+  const getLanguageTitle = () => {
+    switch (i18n.language) {
+      case 'az':
+        return 'Dil';
+      case 'ru':
+        return 'Язык';
+      default:
+        return 'Language';
+    }
+  };
 
   // Load profile data on mount and whenever settings view is shown
   useEffect(() => {
@@ -221,7 +233,7 @@ export const SettingsView: React.FC = () => {
     },
     { 
       id: 'language', 
-      label: t('language.title'), 
+      label: getLanguageTitle(), 
       icon: Globe,
       gradient: 'from-emerald-100 to-teal-100 dark:from-emerald-900/40 dark:to-teal-900/40',
       activeGradient: 'from-emerald-500 to-teal-600',

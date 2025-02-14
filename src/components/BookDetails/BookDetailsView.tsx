@@ -58,7 +58,8 @@ export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavori
           initialPage={initialPage}
         />
         
-        <div className="space-y-8 p-4 md:p-8">
+        {/* Add pb-32 for mobile to prevent content from being hidden behind the bottom navigation */}
+        <div className="space-y-8 p-4 md:p-8 pb-32 md:pb-8">
           <BookProgress book={book} />
           {book.isAudio ? (
             <AudioBookInfo book={book} />

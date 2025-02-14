@@ -1,23 +1,23 @@
 {
   "az": {
-    "language": {
-      "title": "Dil",
+    "language": "Dil",
+    "languages": {
       "az": "Azərbaycanca",
       "en": "İngiliscə",
       "ru": "Rusca"
     }
   },
   "en": {
-    "language": {
-      "title": "Language",
+    "language": "Language",
+    "languages": {
       "az": "Azerbaijani",
       "en": "English",
       "ru": "Russian"
     }
   },
   "ru": {
-    "language": {
-      "title": "Язык",
+    "language": "Язык",
+    "languages": {
       "az": "Азербайджанский",
       "en": "Английский",
       "ru": "Русский"

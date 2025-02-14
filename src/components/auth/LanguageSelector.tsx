@@ -6,9 +6,9 @@ export const AuthLanguageSelector: React.FC = () => {
   const { t, i18n } = useTranslation();
 
   const languages = [
-    { code: 'az', name: t('language.az') },
-    { code: 'en', name: t('language.en') },
-    { code: 'ru', name: t('language.ru') }
+    { code: 'az', name: t('languages.az') },
+    { code: 'en', name: t('languages.en') },
+    { code: 'ru', name: t('languages.ru') }
   ];
 
   return (
@@ -31,4 +31,4 @@ export const AuthLanguageSelector: React.FC = () => {
       </div>
     </div>
   );
-};
+}

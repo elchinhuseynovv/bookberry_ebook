@@ -127,12 +127,7 @@
     "textToSpeech": "Text to speech"
   },
 
-  "language": {
-    "title": "Language",
-    "az": "Azerbaijani",
-    "en": "English",
-    "ru": "Russian"
-  },
+  "language": "Language",
 
   "auth": {
     "login": "Login",

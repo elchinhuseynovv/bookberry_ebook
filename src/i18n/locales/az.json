@@ -127,12 +127,7 @@
     "textToSpeech": "Mətndən səsə"
   },
 
-  "language": {
-    "title": "Dil",
-    "az": "Azərbaycanca",
-    "en": "English",
-    "ru": "Русский"
-  },
+  "language": "Dil",
 
   "auth": {
     "login": "Daxil ol",

@@ -7,10 +7,21 @@ export const LanguageSelector: React.FC = () => {
   const { t, i18n } = useTranslation();
 
   const languages = [
-    { code: 'az', name: t('language.az') },
-    { code: 'en', name: t('language.en') },
-    { code: 'ru', name: t('language.ru') }
+    { code: 'az', name: 'Azərbaycan' },
+    { code: 'en', name: 'English' },
+    { code: 'ru', name: 'русский' }
   ];
+
+  const getTitle = () => {
+    switch (i18n.language) {
+      case 'az':
+        return 'Dil';
+      case 'ru':
+        return 'Язык';
+      default:
+        return 'Language';
+    }
+  };
 
   const handleLanguageChange = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
@@ -20,7 +31,7 @@ export const LanguageSelector: React.FC = () => {
     <div className="space-y-6">
       <SettingHeader
         icon={<Globe size={24} />}
-        title={t('language.title')}
+        title={getTitle()}
         className="text-emerald-700 dark:text-emerald-400"
       />
 

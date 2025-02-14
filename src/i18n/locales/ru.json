@@ -19,6 +19,114 @@
   "downloading": "Загрузка...",
   "downloadError": "Ошибка загрузки. Попробуйте еще раз.",
 
+  "favorites": {
+    "title": "Избранное",
+    "empty": "Нет избранных книг",
+    "addSome": "Добавьте любимые книги из библиотеки"
+  },
+
+  "profile": {
+    "title": "Профиль",
+    "name": "Имя",
+    "surname": "Фамилия",
+    "namePlaceholder": "Введите ваше имя",
+    "surnamePlaceholder": "Введите вашу фамилию",
+    "age": "Возраст",
+    "agePlaceholder": "Введите ваш возраст",
+    "phoneNumber": "Номер телефона",
+    "phonePlaceholder": "+7 XXX XXX XX XX",
+    "email": "Email",
+    "emailPlaceholder": "Введите ваш email адрес",
+    "save": "Сохранить",
+    "saving": "Сохранение...",
+    "saveSuccess": "Успешно сохранено",
+    "saveError": "Произошла ошибка"
+  },
+
+  "security": {
+    "title": "Безопасность",
+    "currentPassword": "Текущий пароль",
+    "currentPasswordPlaceholder": "Введите текущий пароль",
+    "newPassword": "Новый пароль",
+    "newPasswordPlaceholder": "Введите новый пароль",
+    "confirmNewPassword": "Подтвердите новый пароль",
+    "confirmNewPasswordPlaceholder": "Повторите новый пароль",
+    "twoFactorAuth": "Двухфакторная аутентификация",
+    "twoFactorAuthDescription": "Добавьте дополнительный уровень безопасности",
+    "enabled": "Включено",
+    "disabled": "Выключено",
+    "changePassword": "Изменить пароль"
+  },
+
+  "subscription": {
+    "title": "Подписка",
+    "currentPlan": "Текущая подписка",
+    "free": "Бесплатно",
+    "freePlan": "Бесплатный план",
+    "premiumPlan": "Премиум план",
+    "choosePlan": "Выберите план подписки",
+    "select": "Выбрать",
+    "selected": "Выбрано",
+    "selectPlanRequired": "Пожалуйста, выберите план подписки",
+    "continueToPayment": "Перейти к оплате",
+    "currency": "AZN",
+    "monthly": "в месяц",
+    "yearly": "в год",
+    "features": {
+      "basicAccess": "Базовый доступ к библиотеке",
+      "limitedBooks": "Доступ к 10 книгам в месяц",
+      "adsSupported": "Чтение с рекламой",
+      "fullAccess": "Полный доступ к библиотеке",
+      "unlimitedBooks": "Неограниченное количество книг",
+      "noAds": "Чтение без рекламы",
+      "offlineReading": "Офлайн чтение",
+      "prioritySupport": "Приоритетная поддержка",
+      "audiobooks": "Доступ к аудиокнигам",
+      "deviceSync": "Синхронизация между устройствами",
+      "customCollections": "Пользовательские коллекции",
+      "readingStats": "Статистика чтения",
+      "bookmarks": "Неограниченные закладки",
+      "highlights": "Заметки и выделения"
+    },
+    "payment": {
+      "title": "Детали оплаты",
+      "cardNumber": "Номер карты",
+      "expiry": "Срок действия",
+      "cvv": "CVV",
+      "nameOnCard": "Имя на карте",
+      "payNow": "Оплатить"
+    }
+  },
+
+  "readingPreferences": {
+    "title": "Настройки чтения",
+    "fontSize": "Размер шрифта",
+    "textAlignment": "Выравнивание текста",
+    "autoPlayAudio": "Автовоспроизведение аудио",
+    "showPageNumber": "Показывать номера страниц",
+    "highlightLinks": "Подсвечивать ссылки",
+    "preview": "Предпросмотр",
+    "previewText": "Этот текст показывает, как будут выглядеть ваши настройки чтения. Отрегулируйте размер шрифта и выравнивание текста, чтобы увидеть изменения."
+  },
+
+  "notifications": {
+    "title": "Уведомления",
+    "dailyReminder": "Ежедневное напоминание",
+    "weeklyProgress": "Еженедельный отчет",
+    "newBookAlerts": "Уведомления о новых книгах",
+    "systemNotifications": "Системные уведомления",
+    "reminderTime": "Время напоминания"
+  },
+
+  "accessibility": {
+    "title": "Специальные возможности",
+    "highContrast": "Высокий контраст",
+    "reduceAnimations": "Уменьшить анимации",
+    "screenReader": "Экранный диктор",
+    "dyslexicFont": "Шрифт для дислексии",
+    "textToSpeech": "Преобразование текста в речь"
+  },
+
   "language": {
     "title": "Язык",
     "az": "Азербайджанский",
@@ -37,7 +145,7 @@
     "password": "Пароль",
     "passwordPlaceholder": "Введите ваш пароль",
     "confirmPassword": "Подтвердите пароль",
-    "confirmPasswordPlaceholder": "Введите пароль повторно",
+    "confirmPasswordPlaceholder": "Повторите ваш пароль",
     "name": "Имя",
     "namePlaceholder": "Введите ваше имя",
     "fillDetails": "Пожалуйста, заполните ваши данные",
@@ -49,138 +157,7 @@
     "logout": "Выйти",
     "resetPasswordDescription": "Введите ваш email и мы отправим вам ссылку для сброса пароля",
     "sendResetLink": "Отправить ссылку",
-    "checkYourEmail": "Проверьте почту",
-    "resetEmailSent": "Мы отправили инструкции по сбросу пароля"
-  },
-
-  "security": {
-    "title": "Безопасность",
-    "changePassword": "Изменить пароль",
-    "currentPassword": "Текущий пароль",
-    "currentPasswordPlaceholder": "Введите текущий пароль",
-    "newPassword": "Новый пароль",
-    "newPasswordPlaceholder": "Введите новый пароль",
-    "confirmNewPassword": "Подтвердите новый пароль",
-    "confirmNewPasswordPlaceholder": "Введите новый пароль повторно",
-    "twoFactorAuth": "Двухфакторная аутентификация",
-    "twoFactorAuthDescription": "Добавьте дополнительный уровень безопасности",
-    "enabled": "Включено",
-    "disabled": "Отключено"
-  },
-
-  "profile": {
-    "title": "Профиль",
-    "name": "Имя",
-    "surname": "Фамилия",
-    "age": "Возраст",
-    "phoneNumber": "Номер телефона",
-    "email": "Эл. почта",
-    "namePlaceholder": "Введите ваше имя",
-    "surnamePlaceholder": "Введите вашу фамилию",
-    "agePlaceholder": "Введите ваш возраст",
-    "phonePlaceholder": "+7 XXX XXX XXXX",
-    "emailPlaceholder": "Введите адрес эл. почты",
-    "save": "Сохранить",
-    "emailRequired": "Требуется адрес эл. почты",
-    "nameRequired": "Требуется имя",
-    "surnameRequired": "Требуется фамилия",
-    "phoneRequired": "Требуется номер телефона",
-    "invalidPhone": "Введите корректный номер телефона",
-    "invalidAge": "Введите корректный возраст"
-  },
-
-  "subscription": {
-    "title": "Подписка",
-    "currentPlan": "Текущий план",
-    "choosePlan": "Выберите план",
-    "freePlan": "Бесплатный план",
-    "premiumPlan": "Премиум план",
-    "free": "Бесплатно",
-    "currency": "AZN",
-    "monthly": "в месяц",
-    "yearly": "в год",
-    "select": "Выбрать",
-    "selected": "Выбрано",
-    "selectPlanRequired": "Пожалуйста, выберите план подписки",
-    "continueToPayment": "Перейти к оплате",
-    "payment": {
-      "title": "Детали оплаты",
-      "cardNumber": "Номер карты",
-      "expiry": "Срок действия",
-      "cvv": "CVV",
-      "nameOnCard": "Имя на карте",
-      "cardNumberRequired": "Требуется номер карты",
-      "expiryRequired": "Требуется срок действия",
-      "cvvRequired": "Требуется CVV",
-      "nameRequired": "Требуется имя на карте",
-      "payNow": "Оплатить"
-    },
-    "features": {
-      "basicAccess": "Базовый доступ к библиотеке",
-      "limitedBooks": "Доступ к 10 книгам в месяц",
-      "adsSupported": "Чтение с рекламой",
-      "fullAccess": "Полный доступ к библиотеке",
-      "unlimitedBooks": "Неограниченное количество книг",
-      "noAds": "Чтение без рекламы",
-      "offlineReading": "Офлайн чтение",
-      "prioritySupport": "Приоритетная поддержка",
-      "audiobooks": "Доступ к аудиокнигам",
-      "deviceSync": "Синхронизация на всех устройствах",
-      "customCollections": "Пользовательские коллекции",
-      "readingStats": "Статистика чтения",
-      "bookmarks": "Неограниченные закладки",
-      "highlights": "Заметки и выделения"
-    }
-  },
-
-  "readingPreferences": {
-    "title": "Настройки чтения",
-    "fontSize": "Размер шрифта",
-    "textAlignment": "Выравнивание текста",
-    "autoPlayAudio": "Автовоспроизведение аудио",
-    "showPageNumber": "Показывать номер страницы",
-    "highlightLinks": "Подсвечивать ссылки"
-  },
-
-  "notifications": {
-    "title": "Уведомления",
-    "dailyReminder": "Ежедневное напоминание",
-    "weeklyProgress": "Еженедельный прогресс",
-    "newBookAlerts": "Уведомления о новых книгах",
-    "systemNotifications": "Системные уведомления",
-    "reminderTime": "Время напоминания"
-  },
-
-  "accessibility": {
-    "title": "Специальные возможности",
-    "highContrast": "Высокий контраст",
-    "reduceAnimations": "Уменьшить анимацию",
-    "screenReader": "Экранный диктор",
-    "dyslexicFont": "Шрифт для дислексии",
-    "textToSpeech": "Преобразование текста в речь"
-  },
-
-  "theme": {
-    "light": "Светлая",
-    "dark": "Темная",
-    "sepia": "Сепия"
-  },
-
-  "bookDetails": {
-    "title": "Детали книги",
-    "description": "Описание",
-    "publishedYear": "Год издания",
-    "pages": "Страниц",
-    "language": "Язык",
-    "genre": "Жанр",
-    "reviews": "Отзывы"
-  },
-
-  "favorites": {
-    "title": "Избранное",
-    "empty": "Нет избранных книг",
-    "addSome": "Добавьте любимые книги из библиотеки",
-    "added": "Добавлено в избранное",
-    "removed": "Удалено из избранного"
+    "checkYourEmail": "Проверьте вашу почту",
+    "resetEmailSent": "Мы отправили инструкции по сбросу пароля на вашу почту"
   }
 }

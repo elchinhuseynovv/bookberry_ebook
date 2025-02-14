@@ -19,6 +19,114 @@
   "downloading": "Downloading...",
   "downloadError": "Download failed. Please try again.",
 
+  "favorites": {
+    "title": "Favorites",
+    "empty": "No favorite books yet",
+    "addSome": "Add books you love from the library"
+  },
+
+  "profile": {
+    "title": "Profile",
+    "name": "Name",
+    "surname": "Surname",
+    "namePlaceholder": "Enter your name",
+    "surnamePlaceholder": "Enter your surname",
+    "age": "Age",
+    "agePlaceholder": "Enter your age",
+    "phoneNumber": "Phone number",
+    "phonePlaceholder": "+1 XXX XXX XXXX",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email address",
+    "save": "Save",
+    "saving": "Saving...",
+    "saveSuccess": "Successfully saved",
+    "saveError": "An error occurred"
+  },
+
+  "security": {
+    "title": "Security",
+    "currentPassword": "Current password",
+    "currentPasswordPlaceholder": "Enter current password",
+    "newPassword": "New password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmNewPassword": "Confirm new password",
+    "confirmNewPasswordPlaceholder": "Re-enter new password",
+    "twoFactorAuth": "Two-factor authentication",
+    "twoFactorAuthDescription": "Add an extra layer of security to your account",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "changePassword": "Change Password"
+  },
+
+  "subscription": {
+    "title": "Subscription",
+    "currentPlan": "Current subscription",
+    "free": "Free",
+    "freePlan": "Free Plan",
+    "premiumPlan": "Premium Plan",
+    "choosePlan": "Choose your plan",
+    "select": "Select",
+    "selected": "Selected",
+    "selectPlanRequired": "Please select a subscription plan",
+    "continueToPayment": "Continue to Payment",
+    "currency": "AZN",
+    "monthly": "per month",
+    "yearly": "per year",
+    "features": {
+      "basicAccess": "Basic library access",
+      "limitedBooks": "Access to 10 books per month",
+      "adsSupported": "Ad-supported reading",
+      "fullAccess": "Full library access",
+      "unlimitedBooks": "Unlimited books",
+      "noAds": "Ad-free reading",
+      "offlineReading": "Offline reading",
+      "prioritySupport": "Priority support",
+      "audiobooks": "Access to audiobooks",
+      "deviceSync": "Sync across all devices",
+      "customCollections": "Custom collections",
+      "readingStats": "Reading statistics",
+      "bookmarks": "Unlimited bookmarks",
+      "highlights": "Notes and highlights"
+    },
+    "payment": {
+      "title": "Payment Details",
+      "cardNumber": "Card number",
+      "expiry": "Expiry date",
+      "cvv": "CVV",
+      "nameOnCard": "Name on card",
+      "payNow": "Pay Now"
+    }
+  },
+
+  "readingPreferences": {
+    "title": "Reading Preferences",
+    "fontSize": "Font size",
+    "textAlignment": "Text alignment",
+    "autoPlayAudio": "Auto-play audio",
+    "showPageNumber": "Show page numbers",
+    "highlightLinks": "Highlight links",
+    "preview": "Preview",
+    "previewText": "This text shows how your reading preferences will look. Adjust the font size and text alignment to see the changes."
+  },
+
+  "notifications": {
+    "title": "Notifications",
+    "dailyReminder": "Daily reminder",
+    "weeklyProgress": "Weekly progress report",
+    "newBookAlerts": "New book alerts",
+    "systemNotifications": "System notifications",
+    "reminderTime": "Reminder time"
+  },
+
+  "accessibility": {
+    "title": "Accessibility",
+    "highContrast": "High contrast",
+    "reduceAnimations": "Reduce animations",
+    "screenReader": "Screen reader",
+    "dyslexicFont": "Dyslexic font",
+    "textToSpeech": "Text to speech"
+  },
+
   "language": {
     "title": "Language",
     "az": "Azerbaijani",
@@ -46,141 +154,10 @@
     "passwordsDoNotMatch": "Passwords do not match",
     "termsAndConditions": "Terms and Conditions",
     "acceptTerms": "I accept the",
-    "logout": "Sign Out",
+    "logout": "Logout",
     "resetPasswordDescription": "Enter your email and we'll send you a password reset link",
     "sendResetLink": "Send Reset Link",
-    "checkYourEmail": "Check Your Email",
-    "resetEmailSent": "We've sent password reset instructions"
-  },
-
-  "security": {
-    "title": "Security",
-    "changePassword": "Change Password",
-    "currentPassword": "Current Password",
-    "currentPasswordPlaceholder": "Enter your current password",
-    "newPassword": "New Password",
-    "newPasswordPlaceholder": "Enter your new password",
-    "confirmNewPassword": "Confirm New Password",
-    "confirmNewPasswordPlaceholder": "Re-enter your new password",
-    "twoFactorAuth": "Two-Factor Authentication",
-    "twoFactorAuthDescription": "Add an extra layer of security to your account",
-    "enabled": "Enabled",
-    "disabled": "Disabled"
-  },
-
-  "profile": {
-    "title": "Profile",
-    "name": "Name",
-    "surname": "Surname",
-    "age": "Age",
-    "phoneNumber": "Phone Number",
-    "email": "Email",
-    "namePlaceholder": "Enter your name",
-    "surnamePlaceholder": "Enter your surname",
-    "agePlaceholder": "Enter your age",
-    "phonePlaceholder": "+XXX XX XXX XXXX",
-    "emailPlaceholder": "Enter your email address",
-    "save": "Save",
-    "emailRequired": "Email address is required",
-    "nameRequired": "Name is required",
-    "surnameRequired": "Surname is required",
-    "phoneRequired": "Phone number is required",
-    "invalidPhone": "Please enter a valid phone number",
-    "invalidAge": "Please enter a valid age"
-  },
-
-  "subscription": {
-    "title": "Subscription",
-    "currentPlan": "Current Plan",
-    "choosePlan": "Choose Your Plan",
-    "freePlan": "Free Plan",
-    "premiumPlan": "Premium Plan",
-    "free": "Free",
-    "currency": "AZN",
-    "monthly": "monthly",
-    "yearly": "yearly",
-    "select": "Select",
-    "selected": "Selected",
-    "selectPlanRequired": "Please select a subscription plan",
-    "continueToPayment": "Continue to Payment",
-    "payment": {
-      "title": "Payment Details",
-      "cardNumber": "Card Number",
-      "expiry": "Expiry Date",
-      "cvv": "CVV",
-      "nameOnCard": "Name on Card",
-      "cardNumberRequired": "Card number is required",
-      "expiryRequired": "Expiry date is required",
-      "cvvRequired": "CVV is required",
-      "nameRequired": "Name on card is required",
-      "payNow": "Pay Now"
-    },
-    "features": {
-      "basicAccess": "Basic library access",
-      "limitedBooks": "Access to 10 books per month",
-      "adsSupported": "Ad-supported reading",
-      "fullAccess": "Full library access",
-      "unlimitedBooks": "Unlimited books",
-      "noAds": "Ad-free reading",
-      "offlineReading": "Offline reading",
-      "prioritySupport": "Priority support",
-      "audiobooks": "Access to audiobooks",
-      "deviceSync": "Sync across all devices",
-      "customCollections": "Custom collections",
-      "readingStats": "Reading statistics",
-      "bookmarks": "Unlimited bookmarks",
-      "highlights": "Notes and highlights"
-    }
-  },
-
-  "readingPreferences": {
-    "title": "Reading Preferences",
-    "fontSize": "Font Size",
-    "textAlignment": "Text Alignment",
-    "autoPlayAudio": "Auto-play Audio",
-    "showPageNumber": "Show Page Number",
-    "highlightLinks": "Highlight Links"
-  },
-
-  "notifications": {
-    "title": "Notifications",
-    "dailyReminder": "Daily Reminder",
-    "weeklyProgress": "Weekly Progress",
-    "newBookAlerts": "New Book Alerts",
-    "systemNotifications": "System Notifications",
-    "reminderTime": "Reminder Time"
-  },
-
-  "accessibility": {
-    "title": "Accessibility",
-    "highContrast": "High Contrast",
-    "reduceAnimations": "Reduce Animations",
-    "screenReader": "Screen Reader",
-    "dyslexicFont": "Dyslexic Font",
-    "textToSpeech": "Text to Speech"
-  },
-
-  "theme": {
-    "light": "Light",
-    "dark": "Dark",
-    "sepia": "Sepia"
-  },
-
-  "bookDetails": {
-    "title": "Book Details",
-    "description": "Description",
-    "publishedYear": "Published Year",
-    "pages": "Pages",
-    "language": "Language",
-    "genre": "Genre",
-    "reviews": "Reviews"
-  },
-
-  "favorites": {
-    "title": "Favorites",
-    "empty": "No favorite books yet",
-    "addSome": "Add some books you love from the library",
-    "added": "Added to favorites",
-    "removed": "Removed from favorites"
+    "checkYourEmail": "Check your email",
+    "resetEmailSent": "We've sent password reset instructions to your email"
   }
 }

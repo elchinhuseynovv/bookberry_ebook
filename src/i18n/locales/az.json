@@ -19,12 +19,112 @@
   "downloading": "Yüklənir...",
   "downloadError": "Yükləmə xətası baş verdi. Yenidən cəhd edin.",
 
-  "audiobook": {
-    "details": "Audiokitab məlumatları",
-    "duration": "Müddət",
-    "narrator": "Səsləndirən",
-    "format": "Format",
-    "quality": "Keyfiyyət"
+  "favorites": {
+    "title": "Sevimlilər",
+    "empty": "Hələ sevimli kitabınız yoxdur",
+    "addSome": "Kitabxanadan sevdiyiniz kitabları əlavə edin"
+  },
+
+  "profile": {
+    "title": "Profil",
+    "name": "Ad",
+    "surname": "Soyad",
+    "namePlaceholder": "Adınızı daxil edin",
+    "surnamePlaceholder": "Soyadınızı daxil edin",
+    "age": "Yaş",
+    "agePlaceholder": "Yaşınızı daxil edin",
+    "phoneNumber": "Telefon nömrəsi",
+    "phonePlaceholder": "+994 XX XXX XX XX",
+    "email": "Email",
+    "emailPlaceholder": "Email ünvanınızı daxil edin",
+    "save": "Yadda saxla",
+    "saving": "Yadda saxlanılır...",
+    "saveSuccess": "Uğurla yadda saxlanıldı",
+    "saveError": "Xəta baş verdi"
+  },
+
+  "security": {
+    "title": "Təhlükəsizlik",
+    "currentPassword": "Cari şifrə",
+    "currentPasswordPlaceholder": "Cari şifrəni daxil edin",
+    "newPassword": "Yeni şifrə",
+    "newPasswordPlaceholder": "Yeni şifrəni daxil edin",
+    "confirmNewPassword": "Yeni şifrəni təsdiqlə",
+    "confirmNewPasswordPlaceholder": "Yeni şifrəni təkrar daxil edin",
+    "twoFactorAuth": "İki faktorlu doğrulama",
+    "twoFactorAuthDescription": "Hesabınıza əlavə təhlükəsizlik qatı əlavə edin",
+    "enabled": "Aktivdir",
+    "disabled": "Deaktivdir",
+    "changePassword": "Şifrəni dəyiş"
+  },
+
+  "subscription": {
+    "title": "Abunəlik",
+    "currentPlan": "Cari abunəliyiniz",
+    "free": "Pulsuz",
+    "freePlan": "Pulsuz Plan",
+    "premiumPlan": "Premium Plan",
+    "choosePlan": "Abunəlik planı seçin",
+    "select": "Seç",
+    "selected": "Seçildi",
+    "selectPlanRequired": "Zəhmət olmasa abunəlik planı seçin",
+    "continueToPayment": "Ödənişə keç",
+    "currency": "AZN",
+    "monthly": "aylıq",
+    "yearly": "illik",
+    "features": {
+      "basicAccess": "Əsas kitabxana girişi",
+      "limitedBooks": "Ayda 10 kitaba giriş",
+      "adsSupported": "Reklamlı oxuma",
+      "fullAccess": "Tam kitabxana girişi",
+      "unlimitedBooks": "Limitsiz kitablar",
+      "noAds": "Reklamsız oxuma",
+      "offlineReading": "Oflayn oxuma",
+      "prioritySupport": "Prioritet dəstək",
+      "audiobooks": "Audiokitablara giriş",
+      "deviceSync": "Bütün cihazlarda sinxronizasiya",
+      "customCollections": "Xüsusi kolleksiyalar",
+      "readingStats": "Oxuma statistikası",
+      "bookmarks": "Limitsiz əlfəcinlər",
+      "highlights": "Qeydlər və vurğulamalar"
+    },
+    "payment": {
+      "title": "Ödəniş məlumatları",
+      "cardNumber": "Kart nömrəsi",
+      "expiry": "Bitmə tarixi",
+      "cvv": "CVV",
+      "nameOnCard": "Kartın üzərindəki ad",
+      "payNow": "Ödəniş et"
+    }
+  },
+
+  "readingPreferences": {
+    "title": "Oxuma tənzimləmələri",
+    "fontSize": "Şrift ölçüsü",
+    "textAlignment": "Mətn düzləndirməsi",
+    "autoPlayAudio": "Avtomatik səs oxutma",
+    "showPageNumber": "Səhifə nömrələrini göstər",
+    "highlightLinks": "Linkləri vurğula",
+    "preview": "Önbaxış",
+    "previewText": "Bu mətn oxuma tənzimləmələrinin necə görünəcəyini göstərir. Şrift ölçüsünü və mətn düzləndirməsini dəyişərək nəticəni görə bilərsiniz."
+  },
+
+  "notifications": {
+    "title": "Bildirişlər",
+    "dailyReminder": "Gündəlik xatırlatma",
+    "weeklyProgress": "Həftəlik hesabat",
+    "newBookAlerts": "Yeni kitab bildirişləri",
+    "systemNotifications": "Sistem bildirişləri",
+    "reminderTime": "Xatırlatma vaxtı"
+  },
+
+  "accessibility": {
+    "title": "Əlçatanlıq",
+    "highContrast": "Yüksək kontrast",
+    "reduceAnimations": "Animasiyaları azalt",
+    "screenReader": "Ekran oxuyucusu",
+    "dyslexicFont": "Disleksiya şrifti",
+    "textToSpeech": "Mətndən səsə"
   },
 
   "language": {
@@ -32,5 +132,32 @@
     "az": "Azərbaycanca",
     "en": "English",
     "ru": "Русский"
+  },
+
+  "auth": {
+    "login": "Daxil ol",
+    "createAccount": "Hesab yarat",
+    "forgotPassword": "Şifrəni unutmusunuz?",
+    "resetPassword": "Şifrəni sıfırla",
+    "backToLogin": "Girişə qayıt",
+    "email": "Email",
+    "emailPlaceholder": "Emailinizi daxil edin",
+    "password": "Şifrə",
+    "passwordPlaceholder": "Şifrənizi daxil edin",
+    "confirmPassword": "Şifrəni təsdiqlə",
+    "confirmPasswordPlaceholder": "Şifrəni təkrar daxil edin",
+    "name": "Ad",
+    "namePlaceholder": "Adınızı daxil edin",
+    "fillDetails": "Zəhmət olmasa məlumatlarınızı doldurun",
+    "invalidCredentials": "Yanlış email və ya şifrə",
+    "userExists": "İstifadəçi artıq mövcuddur",
+    "passwordsDoNotMatch": "Şifrələr uyğun gəlmir",
+    "termsAndConditions": "İstifadə şərtləri",
+    "acceptTerms": "Qəbul edirəm",
+    "logout": "Çıxış",
+    "resetPasswordDescription": "Emailinizi daxil edin və biz sizə şifrə sıfırlama linki göndərəcəyik",
+    "sendResetLink": "Link göndər",
+    "checkYourEmail": "Emailinizi yoxlayın",
+    "resetEmailSent": "Şifrə sıfırlama təlimatlarını göndərdik"
   }
 }

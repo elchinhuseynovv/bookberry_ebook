@@ -80,7 +80,7 @@ export const SecuritySection: React.FC<Props> = ({ settings, onSave }) => {
     try {
       setIsLoading(true);
       await authDB.sendPasswordResetEmail(currentUser.email);
-      setSuccess(t('auth.resetPasswordEmailSent'));
+      setSuccess(t('auth.resetEmailSent'));
       setTimeout(() => setSuccess(null), 3000);
     } catch (err) {
       setError(err instanceof Error ? err.message : t('auth.resetPasswordError'));

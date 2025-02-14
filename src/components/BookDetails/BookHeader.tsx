@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { storage } from '../../services/storage';
 import { pdfToEpubConverter } from '../../services/conversion/pdfToEpub';
 import { PDFReader } from '../BookReader/PDFReader';
+import { downloadManager } from '../../services/download/downloadManager';
 
 interface Props {
   book: Book;
@@ -25,36 +26,12 @@ export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite, initialPag
   const [downloadError, setDownloadError] = useState<string | null>(null);
 
   const handleDownload = async () => {
-    if (!book.pdfUrl && !book.audioUrl) return;
-
     try {
       setIsDownloading(true);
       setDownloadError(null);
 
-      const url = book.isAudio ? book.audioUrl : book.pdfUrl;
-      const response = await fetch(url!);
+      await downloadManager.downloadBook(book);
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const contentType = response.headers.get('content-type');
-      if (book.isAudio && !contentType?.includes('audio')) {
-        throw new Error('Invalid file format');
-      }
-      if (!book.isAudio && !contentType?.includes('application/pdf')) {
-        throw new Error('Invalid file format');
-      }
-
-      const blob = await response.blob();
-      const downloadUrl = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = downloadUrl;
-      a.download = `${book.title.replace(/[^a-zA-Z0-9]/g, '_')}.${book.isAudio ? 'mp3' : 'pdf'}`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(downloadUrl);
-      document.body.removeChild(a);
     } catch (error) {
       console.error('Error downloading:', error);
       setDownloadError(t('downloadError'));
@@ -261,25 +238,26 @@ export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite, initialPag
                   >
                     {isConverting ? t('converting') : book.isAudio ? t('listen') : t('read')}
                   </button>
-                  {(book.pdfUrl || book.audioUrl) && (
-                    <div className="relative">
-                      <button 
-                        onClick={handleDownload}
-                        disabled={isDownloading}
-                        className={`rounded-xl bg-white/10 backdrop-blur-sm px-6 py-2.5 font-medium text-white shadow-lg hover:bg-white/20 transition-colors
-                          ${isDownloading ? 'cursor-not-allowed opacity-75' : ''}`}
-                        aria-label={isDownloading ? t('downloading') : t('download')}
-                      >
-                        <Download className={`h-5 w-5 ${isDownloading ? 'animate-pulse' : ''}`} />
-                      </button>
-                      {downloadError && (
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-red-600 text-white text-sm rounded-lg whitespace-nowrap flex items-center gap-2">
-                          <AlertCircle className="h-4 w-4" />
-                          {downloadError}
-                        </div>
-                      )}
-                    </div>
-                  )}
+
+                  {/* Download Button - Always visible */}
+                  <div className="relative">
+                    <button 
+                      onClick={handleDownload}
+                      disabled={isDownloading}
+                      className={`rounded-xl bg-white/10 backdrop-blur-sm px-6 py-2.5 font-medium text-white shadow-lg hover:bg-white/20 transition-colors
+                        ${isDownloading ? 'cursor-not-allowed opacity-75' : ''}`}
+                      aria-label={isDownloading ? t('downloading') : t('download')}
+                    >
+                      <Download className={`h-5 w-5 ${isDownloading ? 'animate-pulse' : ''}`} />
+                    </button>
+                    {downloadError && (
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-red-600 text-white text-sm rounded-lg whitespace-nowrap flex items-center gap-2">
+                        <AlertCircle className="h-4 w-4" />
+                        {downloadError}
+                      </div>
+                    )}
+                  </div>
+
                   <button 
                     onClick={handleBookmarkClick}
                     className="rounded-xl bg-white/10 backdrop-blur-sm px-6 py-2.5 font-medium text-white shadow-lg hover:bg-white/20 transition-colors"

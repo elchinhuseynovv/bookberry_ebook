@@ -334,8 +334,9 @@ export const CustomerServiceSection: React.FC = () => {
                 onChange={(e) => setNewMessage(e.target.value)}
                 placeholder={t('customerService.messagePlaceholder')}
                 className="flex-1 rounded-xl border-2 border-gray-200 bg-white px-4 py-2 
+                         text-gray-900 placeholder-gray-500
                          focus:border-cyan-400 focus:outline-none dark:border-gray-700 
-                         dark:bg-gray-900 dark:focus:border-cyan-500"
+                         dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-400"
               />
               <button
                 type="submit"

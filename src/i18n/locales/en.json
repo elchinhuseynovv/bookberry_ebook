@@ -19,6 +19,13 @@
   "downloading": "Downloading...",
   "downloadError": "Download failed. Please try again.",
 
+  "customerService": {
+    "title": "Support",
+    "welcomeMessage": "Welcome to BookBerry support! How can I help you today?",
+    "autoResponse": "Your message has been received. Our support team will get back to you shortly.",
+    "messagePlaceholder": "Type your message..."
+  },
+
   "favorites": {
     "title": "Favorites",
     "empty": "No favorite books yet",
@@ -68,7 +75,7 @@
     "select": "Select",
     "selected": "Selected",
     "selectPlanRequired": "Please select a subscription plan",
-    "continueToPayment": "Continue to Payment",
+    "continue ToPayment": "Continue to Payment",
     "currency": "AZN",
     "monthly": "per month",
     "yearly": "per year",

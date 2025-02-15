@@ -19,6 +19,13 @@
   "downloading": "Yüklənir...",
   "downloadError": "Yükləmə xətası baş verdi. Yenidən cəhd edin.",
 
+  "customerService": {
+    "title": "Dəstək",
+    "welcomeMessage": "BookBerry dəstək xidmətinə xoş gəlmisiniz! Sizə necə kömək edə bilərəm?",
+    "autoResponse": "Müraciətiniz qeydə alındı. Dəstək komandamız sizinlə tezliklə əlaqə saxlayacaq.",
+    "messagePlaceholder": "Mesajınızı daxil edin..."
+  },
+
   "favorites": {
     "title": "Sevimlilər",
     "empty": "Hələ sevimli kitabınız yoxdur",

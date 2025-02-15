@@ -7,6 +7,7 @@ import { NotificationsSection } from './NotificationsSection';
 import { AccessibilitySection } from './AccessibilitySection';
 import { LanguageSelector } from './LanguageSelector';
 import { SubscriptionSection } from './SubscriptionSection';
+import { CustomerServiceSection } from './CustomerServiceSection';
 import { SettingsTab } from './SettingsTab';
 import { 
   UserProfile, 
@@ -15,14 +16,14 @@ import {
   AccessibilitySettings,
   SecuritySettings 
 } from '../../types';
-import { Settings as SettingsIcon, BookOpen, Bell, Eye, Globe, CreditCard, Shield } from 'lucide-react';
+import { Settings as SettingsIcon, BookOpen, Bell, Eye, Globe, CreditCard, Shield, MessageSquare } from 'lucide-react';
 import { storage } from '../../services/storage';
 import { useAuth } from '../../hooks/useAuth';
 import { profileDB } from '../../services/database/profile';
 import { subscriptionPlans } from '../../constants/subscriptionPlans';
 import { SubscriptionPlan } from '../../types/subscription';
 
-type TabId = 'account' | 'security' | 'subscription' | 'reading' | 'notifications' | 'accessibility' | 'language';
+type TabId = 'account' | 'security' | 'subscription' | 'reading' | 'notifications' | 'accessibility' | 'language' | 'support';
 
 const defaultProfile: UserProfile = {
   name: '',
@@ -239,6 +240,15 @@ export const SettingsView: React.FC = () => {
       activeGradient: 'from-emerald-500 to-teal-600',
       borderColor: 'border-emerald-200 dark:border-emerald-800',
       shadowColor: 'shadow-emerald-500/20 dark:shadow-emerald-400/10'
+    },
+    {
+      id: 'support',
+      label: t('customerService.title'),
+      icon: MessageSquare,
+      gradient: 'from-cyan-100 to-sky-100 dark:from-cyan-900/40 dark:to-sky-900/40',
+      activeGradient: 'from-cyan-500 to-sky-600',
+      borderColor: 'border-cyan-200 dark:border-cyan-800',
+      shadowColor: 'shadow-cyan-500/20 dark:shadow-cyan-400/10'
     }
   ];
 
@@ -295,6 +305,9 @@ export const SettingsView: React.FC = () => {
         )}
         {activeTab === 'language' && (
           <LanguageSelector />
+        )}
+        {activeTab === 'support' && (
+          <CustomerServiceSection />
         )}
       </div>
     </div>

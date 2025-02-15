@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MessageSquare, Send, User, Bot, Phone, ArrowLeft, BookOpen, Settings, HelpCircle } from 'lucide-react';
 import { SettingHeader } from './SettingHeader';
+import { books } from '../../data/books';
+import { audiobooks } from '../../data/audiobooks';
+import { Book } from '../../types';
 
 interface Message {
   id: string;
   text: string;
   sender: 'user' | 'support';
   timestamp: Date;
+  suggestions?: Book[];
 }
 
 interface BotPersonality {
@@ -21,6 +25,12 @@ interface BotPersonality {
   };
 }
 
+interface ConversationState {
+  askingGenre: boolean;
+  lastGenre?: string;
+  suggestedBooks?: Book[];
+}
+
 export const CustomerServiceSection: React.FC = () => {
   const { t } = useTranslation();
   const [messages, setMessages] = useState<Message[]>([]);
@@ -28,6 +38,9 @@ export const CustomerServiceSection: React.FC = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [selectedBot, setSelectedBot] = useState<BotPersonality | null>(null);
   const [showBotSelection, setShowBotSelection] = useState(true);
+  const [conversationState, setConversationState] = useState<ConversationState>({
+    askingGenre: false
+  });
 
   const botPersonalities: BotPersonality[] = [
     {
@@ -38,24 +51,29 @@ export const CustomerServiceSection: React.FC = () => {
       style: 'bg-green-100 border-green-200 dark:bg-green-900/30 dark:border-green-800',
       responses: {
         default: [
-          "Əlbəttə, sizə kömək edə bilərəm! 😊 Nə ilə maraqlanırsınız?",
-          "Bu maraqlı sualdır! 🤔 Birlikdə həll edək.",
+          "Sizə necə kömək edə bilərəm? 😊",
+          "Maraqlı sualdır! 🤔 Birlikdə həll edək.",
           "Başa düşürəm, davam edək! 👍"
+        ],
+        ask_genre: [
+          "Hansı janrda kitablar xoşunuza gəlir? Məsələn: Roman, Detektiv, Tarixi Roman? 📚",
+          "Sizə kömək etmək üçün, hansı janrı üstün tutduğunuzu bilmək istərdim? 🤔",
+          "Kitab zövqünüz barədə daha çox məlumat verə bilərsiniz? Hansı janrları sevirsiniz? 📖"
+        ],
+        suggest_books: [
+          "Bu janrda maraqlı kitablarımız var! Baxın: ",
+          "Sizin üçün seçdiyim kitablar: ",
+          "Bu kitablar sizin xoşunuza gələ bilər: "
+        ],
+        no_books_found: [
+          "Təəssüf ki, bu janrda hal-hazırda kitabımız yoxdur. Başqa janr seçmək istərdiniz? 😊",
+          "Bu kateqoriyada kitab tapa bilmədim. Bəlkə başqa janrı yoxlayaq? 🤔",
+          "Hal-hazırda bu janrda kitabımız mövcud deyil. Sizə başqa janrlar təklif edə bilərəm! 📚"
         ],
         greetings: [
           "Salam! Necə kömək edə bilərəm? 😊",
           "Xoş gördük! Sizinlə söhbət etməkdən məmnunam! 🌟",
           "Salam! Bugün sizin üçün nə edə bilərəm? ✨"
-        ],
-        book: [
-          "Kitablar haqqında danışmağı çox sevirəm! 📚 Hansı janrla maraqlanırsınız?",
-          "Sizə maraqlı kitablar tövsiyə edə bilərəm! 📖 Nə oxumaq istərdiniz?",
-          "Kitabxanamızda çoxlu maraqlı əsərlər var! 🎯 Birlikdə baxaq!"
-        ],
-        help: [
-          "Narahat olmayın, birlikdə həll edəcəyik! 🤝",
-          "Kömək etmək üçün buradayam! 🌟 Nə çətinlik yaranıb?",
-          "Problemi detallı izah edin, sizə kömək edim! 🎯"
         ]
       }
     },
@@ -76,7 +94,7 @@ export const CustomerServiceSection: React.FC = () => {
           "Salam, BookBerry dəstək xidmətinə xoş gəlmisiniz.",
           "Xoş gördük. Sizə professional dəstək göstərməyə hazıram."
         ],
-        book: [
+        book_related: [
           "Kitabxanamızda geniş seçim mövcuddur. Hansı kateqoriya ilə maraqlanırsınız?",
           "Sizə kitab seçimində kömək edə bilərəm. Hansı mövzular sizin üçün maraqlıdır?",
           "Kitab kataloqumuzda axtarış aparmağınıza kömək edə bilərəm."
@@ -85,6 +103,16 @@ export const CustomerServiceSection: React.FC = () => {
           "Probleminizi həll etmək üçün addım-addım irəliləyək.",
           "Çətinliyi dəqiq müəyyənləşdirək və ən effektiv həll yolunu tapaq.",
           "Məsələni detallı araşdırıb, sizə ən uyğun həlli təqdim edəcəyəm."
+        ],
+        subscription: [
+          "Abunəlik planları haqqında ətraflı məlumat verə bilərəm.",
+          "Premium üzvülük üstünlükləri ilə bağlı suallarınızı cavablandıra bilərəm.",
+          "Sizin üçün ən uyğun abunəlik planını seçməyə kömək edə bilərəm."
+        ],
+        payment: [
+          "Ödəniş üsulları və təhlükəsizlik haqqında məlumat verə bilərəm.",
+          "Ödəniş prosesində qarşılaşdığınız problemi həll etməyə hazıram.",
+          "Faktura və ödəniş tarixçəsi ilə bağlı köməyə ehtiyacınız var?"
         ]
       }
     },
@@ -100,20 +128,25 @@ export const CustomerServiceSection: React.FC = () => {
           "Xətanın təfərrüatlarını bildirin, diaqnostika aparaq.",
           "Texniki dəstək protokollarını başladıram. Problemi izah edin."
         ],
-        greetings: [
-          "Texniki dəstək xidməti aktivdir. Sistemlə bağlı probleminizi bildirin.",
-          "Texniki məsələlərin həlli üçün hazıram. Buyurun.",
-          "Sistem diaqnostikası üçün hazıram. Problemi təsvir edin."
+        app_issues: [
+          "Tətbiqin hansı versiyasını istifadə edirsiniz? Xətanı dəqiqləşdirək.",
+          "Problemi yenidən yaratmağa çalışın və addımları mənə bildirin.",
+          "Sistem loqlarını yoxlamaq üçün əlavə məlumat lazımdır."
         ],
-        book: [
-          "Kitab oxuma interfeysi ilə bağlı problem yaranıb?",
-          "E-kitab yükləməsində çətinlik var?",
-          "Kitabxana sistemində hansı texniki problem ilə qarşılaşırsınız?"
+        reading_problems: [
+          "Kitab oxuma interfeysi ilə bağlı problemi təsvir edin.",
+          "Səhifələrin yüklənməsində gecikmə var? Birlikdə yoxlayaq.",
+          "PDF/EPUB fayllarının açılmasında problem yaranır?"
         ],
-        help: [
-          "Sistem loqlarını yoxlayıram. Problemi dəqiqləşdirin.",
-          "Texniki parametrləri analiz edirəm. Əlavə məlumat verin.",
-          "Diaqnostika başladılır. Xətanın təfərrüatlarını bildirin."
+        audio_issues: [
+          "Səs faylının keyfiyyəti ilə bağlı problem var?",
+          "Audiokitabın hansı hissəsində problem yaranır?",
+          "Səs oxuyucusunun tənzimləmələrini yoxlayaq."
+        ],
+        sync_problems: [
+          "Cihazlar arası sinxronizasiya problemi yaşayırsınız?",
+          "Oxuma progressinin yadda saxlanmasında problem var?",
+          "Əlfəcinlərin sinxronizasiyası ilə bağlı çətinlik yaranıb?"
         ]
       }
     },
@@ -129,30 +162,100 @@ export const CustomerServiceSection: React.FC = () => {
     }
   ];
 
+  const getBooksByGenre = (genre: string): Book[] => {
+    const allBooks = [...books, ...audiobooks];
+    return allBooks.filter(book => 
+      book.genre?.toLowerCase() === genre.toLowerCase()
+    );
+  };
+
+  const formatBookSuggestions = (books: Book[]): string => {
+    return books.slice(0, 3).map(book => 
+      `"${book.title}" (${book.author})`
+    ).join(', ');
+  };
+
+  const analyzeMessage = (message: string): Message => {
+    if (!selectedBot) return { 
+      id: crypto.randomUUID(),
+      text: '',
+      sender: 'support',
+      timestamp: new Date()
+    };
+    
+    const lowerMessage = message.toLowerCase();
+    
+    // Handle book recommendation flow
+    if (conversationState.askingGenre) {
+      // User is responding to genre question
+      const genreResponse = lowerMessage;
+      const suggestedBooks = getBooksByGenre(genreResponse);
+      
+      setConversationState({
+        askingGenre: false,
+        lastGenre: genreResponse,
+        suggestedBooks
+      });
+
+      if (suggestedBooks.length > 0) {
+        return {
+          id: crypto.randomUUID(),
+          text: getRandomResponse('suggest_books') + formatBookSuggestions(suggestedBooks),
+          sender: 'support',
+          timestamp: new Date(),
+          suggestions: suggestedBooks
+        };
+      } else {
+        return {
+          id: crypto.randomUUID(),
+          text: getRandomResponse('no_books_found'),
+          sender: 'support',
+          timestamp: new Date()
+        };
+      }
+    }
+
+    // Check if user is asking for book recommendations
+    if (lowerMessage.includes('kitab') && 
+        (lowerMessage.includes('tövsiyə') || 
+         lowerMessage.includes('məsləhət') || 
+         lowerMessage.includes('təklif'))) {
+      setConversationState({
+        askingGenre: true
+      });
+      return {
+        id: crypto.randomUUID(),
+        text: getRandomResponse('ask_genre'),
+        sender: 'support',
+        timestamp: new Date()
+      };
+    }
+
+    // Handle greetings
+    if (lowerMessage.match(/^(salam|hello|hi|hey|xoş gördük)/i)) {
+      return {
+        id: crypto.randomUUID(),
+        text: getRandomResponse('greetings'),
+        sender: 'support',
+        timestamp: new Date()
+      };
+    }
+
+    // Default response
+    return {
+      id: crypto.randomUUID(),
+      text: getRandomResponse('default'),
+      sender: 'support',
+      timestamp: new Date()
+    };
+  };
+
   const getRandomResponse = (category: string): string => {
     if (!selectedBot) return '';
     
     const responses = selectedBot.responses[category] || selectedBot.responses.default;
     const randomIndex = Math.floor(Math.random() * responses.length);
     return responses[randomIndex];
-  };
-
-  const analyzeMessage = (message: string): string => {
-    const lowerMessage = message.toLowerCase();
-    
-    if (lowerMessage.includes('salam') || lowerMessage.includes('xoş gördük')) {
-      return getRandomResponse('greetings');
-    }
-    
-    if (lowerMessage.includes('kitab') || lowerMessage.includes('oxu')) {
-      return getRandomResponse('book');
-    }
-    
-    if (lowerMessage.includes('kömək') || lowerMessage.includes('problem')) {
-      return getRandomResponse('help');
-    }
-    
-    return getRandomResponse('default');
   };
 
   const handleBotSelect = (bot: BotPersonality) => {
@@ -198,18 +301,16 @@ export const CustomerServiceSection: React.FC = () => {
     const thinkingTime = Math.min(1000 + newMessage.length * 50, 3000);
 
     setTimeout(() => {
-      const responseText = selectedBot.id === 'human' 
-        ? t('customerService.callCenterResponse')
+      const response = selectedBot.id === 'human' 
+        ? {
+            id: crypto.randomUUID(),
+            text: t('customerService.callCenterResponse'),
+            sender: 'support' as const,
+            timestamp: new Date()
+          }
         : analyzeMessage(newMessage);
-
-      const supportMessage: Message = {
-        id: crypto.randomUUID(),
-        text: responseText,
-        sender: 'support',
-        timestamp: new Date()
-      };
       
-      setMessages(prev => [...prev, supportMessage]);
+      setMessages(prev => [...prev, response]);
       setIsTyping(false);
     }, thinkingTime);
   };
@@ -220,6 +321,7 @@ export const CustomerServiceSection: React.FC = () => {
     setMessages([]);
     setNewMessage('');
     setIsTyping(false);
+    setConversationState({ askingGenre: false });
   };
 
   return (

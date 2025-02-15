@@ -23,7 +23,21 @@
     "title": "Dəstək",
     "welcomeMessage": "BookBerry dəstək xidmətinə xoş gəlmisiniz! Sizə necə kömək edə bilərəm?",
     "autoResponse": "Müraciətiniz qeydə alındı. Dəstək komandamız sizinlə tezliklə əlaqə saxlayacaq.",
-    "messagePlaceholder": "Mesajınızı daxil edin..."
+    "messagePlaceholder": "Mesajınızı daxil edin...",
+    "selectAssistant": "Sizə necə kömək edə bilərik?",
+    "backToSelection": "Geri qayıt",
+    "realAgent": "Canlı Dəstək",
+    "callCenter": "Sizi canlı dəstək xidmətimizə yönləndiririk...",
+    "callCenterHours": "Dəstək xəttimiz 09:00-18:00 saatları arasında aktivdir. Zəng mərkəzimizlə əlaqə: (012) 123-45-67",
+    "callCenterResponse": "Operatorlarımız hal-hazırda başqa müştərilərlə məşğuldur. Növbənizi gözləyin və ya daha sonra yenidən zəng edin.",
+    "bots": {
+      "friendly": "Dostcanlı Bot",
+      "professional": "Professional Bot",
+      "technical": "Texniki Bot",
+      "friendlyWelcome": "Salam! Mən sizin dostcanlı köməkçinizəm. Sizə necə kömək edə bilərəm? 😊",
+      "professionalWelcome": "Xoş gəlmisiniz. Mən sizin professional dəstək asistentinizəm. Sizə necə yardımçı ola bilərəm?",
+      "technicalWelcome": "Salam! Mən texniki dəstək botuyam. Texniki problemlərinizi həll etməyə hazıram."
+    }
   },
 
   "favorites": {

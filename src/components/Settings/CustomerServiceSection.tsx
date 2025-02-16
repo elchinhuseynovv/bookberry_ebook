@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MessageSquare, Send, User, Bot, Phone, ArrowLeft, BookOpen, Settings, HelpCircle, Globe } from 'lucide-react';
+import { MessageSquare, Send, User, Bot, Phone, ArrowLeft, Globe } from 'lucide-react';
 import { SettingHeader } from './SettingHeader';
 
 interface Message {
@@ -41,6 +41,50 @@ export const CustomerServiceSection: React.FC = () => {
     { code: 'ru', name: 'Русский' }
   ];
 
+  const getBotDescription = (botId: string) => {
+    switch (i18n.language) {
+      case 'en':
+        switch (botId) {
+          case 'friendly':
+            return "Friendly and empathetic approach";
+          case 'professional':
+            return "Professional and efficient solutions";
+          case 'technical':
+            return "Technical problem solving";
+          case 'human':
+            return "Live operator support";
+          default:
+            return "";
+        }
+      case 'ru':
+        switch (botId) {
+          case 'friendly':
+            return "Дружелюбный и эмпатичный подход";
+          case 'professional':
+            return "Профессиональные и эффективные решения";
+          case 'technical':
+            return "Решение технических проблем";
+          case 'human':
+            return "Поддержка живого оператора";
+          default:
+            return "";
+        }
+      default: // Azerbaijani (default)
+        switch (botId) {
+          case 'friendly':
+            return "Dostcanlı və empatik yanaşma";
+          case 'professional':
+            return "Professional və effektiv həllər";
+          case 'technical':
+            return "Texniki problemlərin həlli";
+          case 'human':
+            return "Canlı operator dəstəyi";
+          default:
+            return "";
+        }
+    }
+  };
+
   const botPersonalities: BotPersonality[] = [
     {
       id: 'friendly',
@@ -64,23 +108,6 @@ export const CustomerServiceSection: React.FC = () => {
             "Как я могу вам помочь? 😊",
             "Интересный вопрос! 🤔 Давайте решим вместе.",
             "Я понимаю, давайте продолжим! 👍"
-          ]
-        },
-        greetings: {
-          az: [
-            "Salam! Necə kömək edə bilərəm? 😊",
-            "Xoş gördük! Sizinlə söhbət etməkdən məmnunam! 🌟",
-            "Salam! Bugün sizin üçün nə edə bilərəm? ✨"
-          ],
-          en: [
-            "Hello! How can I help you? 😊",
-            "Welcome! I'm happy to chat with you! 🌟",
-            "Hi! What can I do for you today? ✨"
-          ],
-          ru: [
-            "Здравствуйте! Как я могу вам помочь? 😊",
-            "Добро пожаловать! Рад общению с вами! 🌟",
-            "Привет! Что я могу для вас сделать? ✨"
           ]
         }
       }
@@ -108,23 +135,6 @@ export const CustomerServiceSection: React.FC = () => {
             "Я понимаю суть вопроса. Позвольте мне помочь вам.",
             "Слушаю вас. Готов решить вашу проблему."
           ]
-        },
-        greetings: {
-          az: [
-            "Xoş gəlmisiniz. Sizə necə kömək edə bilərəm?",
-            "Salam, BookBerry dəstək xidmətinə xoş gəlmisiniz.",
-            "Xoş gördük. Sizə professional dəstək göstərməyə hazıram."
-          ],
-          en: [
-            "Welcome. How may I assist you?",
-            "Hello, welcome to BookBerry support service.",
-            "Greetings. I'm ready to provide professional assistance."
-          ],
-          ru: [
-            "Добро пожаловать. Как я могу вам помочь?",
-            "Здравствуйте, добро пожаловать в службу поддержки BookBerry.",
-            "Приветствую. Готов оказать профессиональную поддержку."
-          ]
         }
       }
     },
@@ -150,23 +160,6 @@ export const CustomerServiceSection: React.FC = () => {
             "Опишите техническую проблему, возникшую в системе.",
             "Сообщите детали ошибки, проведем диагностику.",
             "Запускаю протоколы технической поддержки. Объясните проблему."
-          ]
-        },
-        greetings: {
-          az: [
-            "Texniki dəstək xidmətinə xoş gəlmisiniz.",
-            "Salam, texniki problemləri həll etməyə hazıram.",
-            "Sistemlə bağlı hər hansı çətinliyiniz var?"
-          ],
-          en: [
-            "Welcome to technical support.",
-            "Hello, I'm ready to solve technical issues.",
-            "Having any system-related difficulties?"
-          ],
-          ru: [
-            "Добро пожаловать в службу технической поддержки.",
-            "Здравствуйте, готов решать технические проблемы.",
-            "Есть какие-либо трудности с системой?"
           ]
         }
       }
@@ -323,10 +316,7 @@ export const CustomerServiceSection: React.FC = () => {
                       {bot.name}
                     </span>
                     <span className="text-sm text-gray-600 dark:text-gray-300">
-                      {bot.id === 'friendly' && "Dostcanlı və empatik yanaşma"}
-                      {bot.id === 'professional' && "Professional və effektiv həllər"}
-                      {bot.id === 'technical' && "Texniki problemlərin həlli"}
-                      {bot.id === 'human' && "Canlı operator dəstəyi"}
+                      {getBotDescription(bot.id)}
                     </span>
                   </div>
                 </button>

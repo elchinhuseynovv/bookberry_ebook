@@ -23,143 +23,20 @@
     "title": "Support",
     "welcomeMessage": "Welcome to BookBerry support! How can I help you today?",
     "autoResponse": "Your message has been received. Our support team will get back to you shortly.",
-    "messagePlaceholder": "Type your message..."
-  },
-
-  "favorites": {
-    "title": "Favorites",
-    "empty": "No favorite books yet",
-    "addSome": "Add books you love from the library"
-  },
-
-  "profile": {
-    "title": "Profile",
-    "name": "Name",
-    "surname": "Surname",
-    "namePlaceholder": "Enter your name",
-    "surnamePlaceholder": "Enter your surname",
-    "age": "Age",
-    "agePlaceholder": "Enter your age",
-    "phoneNumber": "Phone number",
-    "phonePlaceholder": "+1 XXX XXX XXXX",
-    "email": "Email",
-    "emailPlaceholder": "Enter your email address",
-    "save": "Save",
-    "saving": "Saving...",
-    "saveSuccess": "Successfully saved",
-    "saveError": "An error occurred"
-  },
-
-  "security": {
-    "title": "Security",
-    "currentPassword": "Current password",
-    "currentPasswordPlaceholder": "Enter current password",
-    "newPassword": "New password",
-    "newPasswordPlaceholder": "Enter new password",
-    "confirmNewPassword": "Confirm new password",
-    "confirmNewPasswordPlaceholder": "Re-enter new password",
-    "twoFactorAuth": "Two-factor authentication",
-    "twoFactorAuthDescription": "Add an extra layer of security to your account",
-    "enabled": "Enabled",
-    "disabled": "Disabled",
-    "changePassword": "Change Password"
-  },
-
-  "subscription": {
-    "title": "Subscription",
-    "currentPlan": "Current subscription",
-    "free": "Free",
-    "freePlan": "Free Plan",
-    "premiumPlan": "Premium Plan",
-    "choosePlan": "Choose your plan",
-    "select": "Select",
-    "selected": "Selected",
-    "selectPlanRequired": "Please select a subscription plan",
-    "continue ToPayment": "Continue to Payment",
-    "currency": "AZN",
-    "monthly": "per month",
-    "yearly": "per year",
-    "features": {
-      "basicAccess": "Basic library access",
-      "limitedBooks": "Access to 10 books per month",
-      "adsSupported": "Ad-supported reading",
-      "fullAccess": "Full library access",
-      "unlimitedBooks": "Unlimited books",
-      "noAds": "Ad-free reading",
-      "offlineReading": "Offline reading",
-      "prioritySupport": "Priority support",
-      "audiobooks": "Access to audiobooks",
-      "deviceSync": "Sync across all devices",
-      "customCollections": "Custom collections",
-      "readingStats": "Reading statistics",
-      "bookmarks": "Unlimited bookmarks",
-      "highlights": "Notes and highlights"
-    },
-    "payment": {
-      "title": "Payment Details",
-      "cardNumber": "Card number",
-      "expiry": "Expiry date",
-      "cvv": "CVV",
-      "nameOnCard": "Name on card",
-      "payNow": "Pay Now"
+    "messagePlaceholder": "Type your message...",
+    "selectAssistant": "How can we help you?",
+    "backToSelection": "Back",
+    "realAgent": "Live Support",
+    "callCenter": "Connecting you to our live support service...",
+    "callCenterHours": "Our support line is active between 09:00-18:00. Contact our call center: (012) 123-45-67",
+    "callCenterResponse": "Our operators are currently busy with other customers. Please wait in queue or try calling back later.",
+    "bots": {
+      "friendly": "Friendly Bot",
+      "professional": "Professional Bot",
+      "technical": "Technical Bot",
+      "friendlyWelcome": "Hi! I'm your friendly assistant. How can I help you? 😊",
+      "professionalWelcome": "Welcome. I am your professional support assistant. How may I assist you?",
+      "technicalWelcome": "Hello! I'm your technical support bot. Ready to solve technical issues."
     }
-  },
-
-  "readingPreferences": {
-    "title": "Reading Preferences",
-    "fontSize": "Font size",
-    "textAlignment": "Text alignment",
-    "autoPlayAudio": "Auto-play audio",
-    "showPageNumber": "Show page numbers",
-    "highlightLinks": "Highlight links",
-    "preview": "Preview",
-    "previewText": "This text shows how your reading preferences will look. Adjust the font size and text alignment to see the changes."
-  },
-
-  "notifications": {
-    "title": "Notifications",
-    "dailyReminder": "Daily reminder",
-    "weeklyProgress": "Weekly progress report",
-    "newBookAlerts": "New book alerts",
-    "systemNotifications": "System notifications",
-    "reminderTime": "Reminder time"
-  },
-
-  "accessibility": {
-    "title": "Accessibility",
-    "highContrast": "High contrast",
-    "reduceAnimations": "Reduce animations",
-    "screenReader": "Screen reader",
-    "dyslexicFont": "Dyslexic font",
-    "textToSpeech": "Text to speech"
-  },
-
-  "language": "Language",
-
-  "auth": {
-    "login": "Login",
-    "createAccount": "Create Account",
-    "forgotPassword": "Forgot Password?",
-    "resetPassword": "Reset Password",
-    "backToLogin": "Back to Login",
-    "email": "Email",
-    "emailPlaceholder": "Enter your email",
-    "password": "Password",
-    "passwordPlaceholder": "Enter your password",
-    "confirmPassword": "Confirm Password",
-    "confirmPasswordPlaceholder": "Re-enter your password",
-    "name": "Name",
-    "namePlaceholder": "Enter your name",
-    "fillDetails": "Please fill in your details",
-    "invalidCredentials": "Invalid email or password",
-    "userExists": "User already exists",
-    "passwordsDoNotMatch": "Passwords do not match",
-    "termsAndConditions": "Terms and Conditions",
-    "acceptTerms": "I accept the",
-    "logout": "Logout",
-    "resetPasswordDescription": "Enter your email and we'll send you a password reset link",
-    "sendResetLink": "Send Reset Link",
-    "checkYourEmail": "Check your email",
-    "resetEmailSent": "We've sent password reset instructions to your email"
   }
 }

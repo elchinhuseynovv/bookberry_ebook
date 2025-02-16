@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MessageSquare, Send, User, Bot, Phone, ArrowLeft, BookOpen, Settings, HelpCircle } from 'lucide-react';
+import { MessageSquare, Send, User, Bot, Phone, ArrowLeft, BookOpen, Settings, HelpCircle, Globe } from 'lucide-react';
 import { SettingHeader } from './SettingHeader';
-import { books } from '../../data/books';
-import { audiobooks } from '../../data/audiobooks';
-import { Book } from '../../types';
 
 interface Message {
   id: string;
   text: string;
   sender: 'user' | 'support';
   timestamp: Date;
-  suggestions?: Book[];
 }
 
 interface BotPersonality {
@@ -21,26 +17,29 @@ interface BotPersonality {
   welcomeMessage: string;
   style: string;
   responses: {
-    [key: string]: string[];
+    [key: string]: {
+      az: string[];
+      en: string[];
+      ru: string[];
+    };
   };
 }
 
-interface ConversationState {
-  askingGenre: boolean;
-  lastGenre?: string;
-  suggestedBooks?: Book[];
-}
-
 export const CustomerServiceSection: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [selectedBot, setSelectedBot] = useState<BotPersonality | null>(null);
   const [showBotSelection, setShowBotSelection] = useState(true);
-  const [conversationState, setConversationState] = useState<ConversationState>({
-    askingGenre: false
-  });
+  const [showLanguageSelection, setShowLanguageSelection] = useState(true);
+  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
+
+  const languages = [
+    { code: 'az', name: 'Azərbaycanca' },
+    { code: 'en', name: 'English' },
+    { code: 'ru', name: 'Русский' }
+  ];
 
   const botPersonalities: BotPersonality[] = [
     {
@@ -50,31 +49,40 @@ export const CustomerServiceSection: React.FC = () => {
       welcomeMessage: t('customerService.bots.friendlyWelcome'),
       style: 'bg-green-100 border-green-200 dark:bg-green-900/30 dark:border-green-800',
       responses: {
-        default: [
-          "Sizə necə kömək edə bilərəm? 😊",
-          "Maraqlı sualdır! 🤔 Birlikdə həll edək.",
-          "Başa düşürəm, davam edək! 👍"
-        ],
-        ask_genre: [
-          "Hansı janrda kitablar xoşunuza gəlir? Məsələn: Roman, Detektiv, Tarixi Roman? 📚",
-          "Sizə kömək etmək üçün, hansı janrı üstün tutduğunuzu bilmək istərdim? 🤔",
-          "Kitab zövqünüz barədə daha çox məlumat verə bilərsiniz? Hansı janrları sevirsiniz? 📖"
-        ],
-        suggest_books: [
-          "Bu janrda maraqlı kitablarımız var! Baxın: ",
-          "Sizin üçün seçdiyim kitablar: ",
-          "Bu kitablar sizin xoşunuza gələ bilər: "
-        ],
-        no_books_found: [
-          "Təəssüf ki, bu janrda hal-hazırda kitabımız yoxdur. Başqa janr seçmək istərdiniz? 😊",
-          "Bu kateqoriyada kitab tapa bilmədim. Bəlkə başqa janrı yoxlayaq? 🤔",
-          "Hal-hazırda bu janrda kitabımız mövcud deyil. Sizə başqa janrlar təklif edə bilərəm! 📚"
-        ],
-        greetings: [
-          "Salam! Necə kömək edə bilərəm? 😊",
-          "Xoş gördük! Sizinlə söhbət etməkdən məmnunam! 🌟",
-          "Salam! Bugün sizin üçün nə edə bilərəm? ✨"
-        ]
+        default: {
+          az: [
+            "Sizə necə kömək edə bilərəm? 😊",
+            "Maraqlı sualdır! 🤔 Birlikdə həll edək.",
+            "Başa düşürəm, davam edək! 👍"
+          ],
+          en: [
+            "How can I help you? 😊",
+            "Interesting question! 🤔 Let's solve it together.",
+            "I understand, let's continue! 👍"
+          ],
+          ru: [
+            "Как я могу вам помочь? 😊",
+            "Интересный вопрос! 🤔 Давайте решим вместе.",
+            "Я понимаю, давайте продолжим! 👍"
+          ]
+        },
+        greetings: {
+          az: [
+            "Salam! Necə kömək edə bilərəm? 😊",
+            "Xoş gördük! Sizinlə söhbət etməkdən məmnunam! 🌟",
+            "Salam! Bugün sizin üçün nə edə bilərəm? ✨"
+          ],
+          en: [
+            "Hello! How can I help you? 😊",
+            "Welcome! I'm happy to chat with you! 🌟",
+            "Hi! What can I do for you today? ✨"
+          ],
+          ru: [
+            "Здравствуйте! Как я могу вам помочь? 😊",
+            "Добро пожаловать! Рад общению с вами! 🌟",
+            "Привет! Что я могу для вас сделать? ✨"
+          ]
+        }
       }
     },
     {
@@ -84,36 +92,40 @@ export const CustomerServiceSection: React.FC = () => {
       welcomeMessage: t('customerService.bots.professionalWelcome'),
       style: 'bg-blue-100 border-blue-200 dark:bg-blue-900/30 dark:border-blue-800',
       responses: {
-        default: [
-          "Sizə necə yardımçı ola bilərəm? Xahiş edirəm, sualınızı təqdim edin.",
-          "Məsələni anlayıram. İcazə verin sizə kömək edim.",
-          "Buyurun, sizi dinləyirəm. Probleminizi həll etməyə hazıram."
-        ],
-        greetings: [
-          "Xoş gəlmisiniz. Sizə necə kömək edə bilərəm?",
-          "Salam, BookBerry dəstək xidmətinə xoş gəlmisiniz.",
-          "Xoş gördük. Sizə professional dəstək göstərməyə hazıram."
-        ],
-        book_related: [
-          "Kitabxanamızda geniş seçim mövcuddur. Hansı kateqoriya ilə maraqlanırsınız?",
-          "Sizə kitab seçimində kömək edə bilərəm. Hansı mövzular sizin üçün maraqlıdır?",
-          "Kitab kataloqumuzda axtarış aparmağınıza kömək edə bilərəm."
-        ],
-        help: [
-          "Probleminizi həll etmək üçün addım-addım irəliləyək.",
-          "Çətinliyi dəqiq müəyyənləşdirək və ən effektiv həll yolunu tapaq.",
-          "Məsələni detallı araşdırıb, sizə ən uyğun həlli təqdim edəcəyəm."
-        ],
-        subscription: [
-          "Abunəlik planları haqqında ətraflı məlumat verə bilərəm.",
-          "Premium üzvülük üstünlükləri ilə bağlı suallarınızı cavablandıra bilərəm.",
-          "Sizin üçün ən uyğun abunəlik planını seçməyə kömək edə bilərəm."
-        ],
-        payment: [
-          "Ödəniş üsulları və təhlükəsizlik haqqında məlumat verə bilərəm.",
-          "Ödəniş prosesində qarşılaşdığınız problemi həll etməyə hazıram.",
-          "Faktura və ödəniş tarixçəsi ilə bağlı köməyə ehtiyacınız var?"
-        ]
+        default: {
+          az: [
+            "Sizə necə yardımçı ola bilərəm? Xahiş edirəm, sualınızı təqdim edin.",
+            "Məsələni anlayıram. İcazə verin sizə kömək edim.",
+            "Buyurun, sizi dinləyirəm. Probleminizi həll etməyə hazıram."
+          ],
+          en: [
+            "How may I assist you? Please present your question.",
+            "I understand the matter. Let me help you.",
+            "Go ahead, I'm listening. Ready to solve your problem."
+          ],
+          ru: [
+            "Как я могу вам помочь? Пожалуйста, изложите ваш вопрос.",
+            "Я понимаю суть вопроса. Позвольте мне помочь вам.",
+            "Слушаю вас. Готов решить вашу проблему."
+          ]
+        },
+        greetings: {
+          az: [
+            "Xoş gəlmisiniz. Sizə necə kömək edə bilərəm?",
+            "Salam, BookBerry dəstək xidmətinə xoş gəlmisiniz.",
+            "Xoş gördük. Sizə professional dəstək göstərməyə hazıram."
+          ],
+          en: [
+            "Welcome. How may I assist you?",
+            "Hello, welcome to BookBerry support service.",
+            "Greetings. I'm ready to provide professional assistance."
+          ],
+          ru: [
+            "Добро пожаловать. Как я могу вам помочь?",
+            "Здравствуйте, добро пожаловать в службу поддержки BookBerry.",
+            "Приветствую. Готов оказать профессиональную поддержку."
+          ]
+        }
       }
     },
     {
@@ -123,31 +135,40 @@ export const CustomerServiceSection: React.FC = () => {
       welcomeMessage: t('customerService.bots.technicalWelcome'),
       style: 'bg-purple-100 border-purple-200 dark:bg-purple-900/30 dark:border-purple-800',
       responses: {
-        default: [
-          "Sistemdə yaranmış texniki problemi təsvir edin.",
-          "Xətanın təfərrüatlarını bildirin, diaqnostika aparaq.",
-          "Texniki dəstək protokollarını başladıram. Problemi izah edin."
-        ],
-        app_issues: [
-          "Tətbiqin hansı versiyasını istifadə edirsiniz? Xətanı dəqiqləşdirək.",
-          "Problemi yenidən yaratmağa çalışın və addımları mənə bildirin.",
-          "Sistem loqlarını yoxlamaq üçün əlavə məlumat lazımdır."
-        ],
-        reading_problems: [
-          "Kitab oxuma interfeysi ilə bağlı problemi təsvir edin.",
-          "Səhifələrin yüklənməsində gecikmə var? Birlikdə yoxlayaq.",
-          "PDF/EPUB fayllarının açılmasında problem yaranır?"
-        ],
-        audio_issues: [
-          "Səs faylının keyfiyyəti ilə bağlı problem var?",
-          "Audiokitabın hansı hissəsində problem yaranır?",
-          "Səs oxuyucusunun tənzimləmələrini yoxlayaq."
-        ],
-        sync_problems: [
-          "Cihazlar arası sinxronizasiya problemi yaşayırsınız?",
-          "Oxuma progressinin yadda saxlanmasında problem var?",
-          "Əlfəcinlərin sinxronizasiyası ilə bağlı çətinlik yaranıb?"
-        ]
+        default: {
+          az: [
+            "Sistemdə yaranmış texniki problemi təsvir edin.",
+            "Xətanın təfərrüatlarını bildirin, diaqnostika aparaq.",
+            "Texniki dəstək protokollarını başladıram. Problemi izah edin."
+          ],
+          en: [
+            "Please describe the technical issue you're experiencing.",
+            "Provide details about the error, let's run diagnostics.",
+            "Initiating technical support protocols. Explain the problem."
+          ],
+          ru: [
+            "Опишите техническую проблему, возникшую в системе.",
+            "Сообщите детали ошибки, проведем диагностику.",
+            "Запускаю протоколы технической поддержки. Объясните проблему."
+          ]
+        },
+        greetings: {
+          az: [
+            "Texniki dəstək xidmətinə xoş gəlmisiniz.",
+            "Salam, texniki problemləri həll etməyə hazıram.",
+            "Sistemlə bağlı hər hansı çətinliyiniz var?"
+          ],
+          en: [
+            "Welcome to technical support.",
+            "Hello, I'm ready to solve technical issues.",
+            "Having any system-related difficulties?"
+          ],
+          ru: [
+            "Добро пожаловать в службу технической поддержки.",
+            "Здравствуйте, готов решать технические проблемы.",
+            "Есть какие-либо трудности с системой?"
+          ]
+        }
       }
     },
     {
@@ -157,105 +178,28 @@ export const CustomerServiceSection: React.FC = () => {
       welcomeMessage: t('customerService.callCenter'),
       style: 'bg-red-100 border-red-200 dark:bg-red-900/30 dark:border-red-800',
       responses: {
-        default: [t('customerService.callCenterResponse')]
+        default: {
+          az: [t('customerService.callCenterResponse')],
+          en: ["Our operators are currently busy with other customers. Please wait in queue or try calling back later."],
+          ru: ["Наши операторы в данный момент заняты с другими клиентами. Пожалуйста, подождите в очереди или перезвоните позже."]
+        }
       }
     }
   ];
 
-  const getBooksByGenre = (genre: string): Book[] => {
-    const allBooks = [...books, ...audiobooks];
-    return allBooks.filter(book => 
-      book.genre?.toLowerCase() === genre.toLowerCase()
-    );
-  };
-
-  const formatBookSuggestions = (books: Book[]): string => {
-    return books.slice(0, 3).map(book => 
-      `"${book.title}" (${book.author})`
-    ).join(', ');
-  };
-
-  const analyzeMessage = (message: string): Message => {
-    if (!selectedBot) return { 
-      id: crypto.randomUUID(),
-      text: '',
-      sender: 'support',
-      timestamp: new Date()
-    };
-    
-    const lowerMessage = message.toLowerCase();
-    
-    // Handle book recommendation flow
-    if (conversationState.askingGenre) {
-      // User is responding to genre question
-      const genreResponse = lowerMessage;
-      const suggestedBooks = getBooksByGenre(genreResponse);
-      
-      setConversationState({
-        askingGenre: false,
-        lastGenre: genreResponse,
-        suggestedBooks
-      });
-
-      if (suggestedBooks.length > 0) {
-        return {
-          id: crypto.randomUUID(),
-          text: getRandomResponse('suggest_books') + formatBookSuggestions(suggestedBooks),
-          sender: 'support',
-          timestamp: new Date(),
-          suggestions: suggestedBooks
-        };
-      } else {
-        return {
-          id: crypto.randomUUID(),
-          text: getRandomResponse('no_books_found'),
-          sender: 'support',
-          timestamp: new Date()
-        };
-      }
-    }
-
-    // Check if user is asking for book recommendations
-    if (lowerMessage.includes('kitab') && 
-        (lowerMessage.includes('tövsiyə') || 
-         lowerMessage.includes('məsləhət') || 
-         lowerMessage.includes('təklif'))) {
-      setConversationState({
-        askingGenre: true
-      });
-      return {
-        id: crypto.randomUUID(),
-        text: getRandomResponse('ask_genre'),
-        sender: 'support',
-        timestamp: new Date()
-      };
-    }
-
-    // Handle greetings
-    if (lowerMessage.match(/^(salam|hello|hi|hey|xoş gördük)/i)) {
-      return {
-        id: crypto.randomUUID(),
-        text: getRandomResponse('greetings'),
-        sender: 'support',
-        timestamp: new Date()
-      };
-    }
-
-    // Default response
-    return {
-      id: crypto.randomUUID(),
-      text: getRandomResponse('default'),
-      sender: 'support',
-      timestamp: new Date()
-    };
+  const handleLanguageSelect = (langCode: string) => {
+    setSelectedLanguage(langCode);
+    i18n.changeLanguage(langCode);
+    setShowLanguageSelection(false);
   };
 
   const getRandomResponse = (category: string): string => {
-    if (!selectedBot) return '';
+    if (!selectedBot || !selectedLanguage) return '';
     
     const responses = selectedBot.responses[category] || selectedBot.responses.default;
-    const randomIndex = Math.floor(Math.random() * responses.length);
-    return responses[randomIndex];
+    const languageResponses = responses[selectedLanguage as keyof typeof responses] || responses.en;
+    const randomIndex = Math.floor(Math.random() * languageResponses.length);
+    return languageResponses[randomIndex];
   };
 
   const handleBotSelect = (bot: BotPersonality) => {
@@ -284,7 +228,7 @@ export const CustomerServiceSection: React.FC = () => {
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newMessage.trim() || !selectedBot) return;
+    if (!newMessage.trim() || !selectedBot || !selectedLanguage) return;
 
     const userMessage: Message = {
       id: crypto.randomUUID(),
@@ -297,31 +241,33 @@ export const CustomerServiceSection: React.FC = () => {
     setNewMessage('');
     setIsTyping(true);
 
-    // Simulate thinking time based on message length
-    const thinkingTime = Math.min(1000 + newMessage.length * 50, 3000);
-
     setTimeout(() => {
-      const response = selectedBot.id === 'human' 
-        ? {
-            id: crypto.randomUUID(),
-            text: t('customerService.callCenterResponse'),
-            sender: 'support' as const,
-            timestamp: new Date()
-          }
-        : analyzeMessage(newMessage);
+      const response: Message = {
+        id: crypto.randomUUID(),
+        text: selectedBot.id === 'human' 
+          ? getRandomResponse('default')
+          : getRandomResponse(
+              newMessage.toLowerCase().match(/^(salam|hello|hi|hey|привет)/i)
+                ? 'greetings'
+                : 'default'
+            ),
+        sender: 'support',
+        timestamp: new Date()
+      };
       
       setMessages(prev => [...prev, response]);
       setIsTyping(false);
-    }, thinkingTime);
+    }, Math.min(1000 + newMessage.length * 50, 3000));
   };
 
   const handleReset = () => {
     setSelectedBot(null);
     setShowBotSelection(true);
+    setShowLanguageSelection(true);
+    setSelectedLanguage(null);
     setMessages([]);
     setNewMessage('');
     setIsTyping(false);
-    setConversationState({ askingGenre: false });
   };
 
   return (
@@ -333,7 +279,30 @@ export const CustomerServiceSection: React.FC = () => {
       />
 
       <div className="space-y-6 rounded-2xl bg-white/50 p-6 dark:bg-gray-800/50">
-        {showBotSelection ? (
+        {showLanguageSelection ? (
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+              <Globe className="h-6 w-6" />
+              <span>Select Language / Dil seçin / Выберите язык</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => handleLanguageSelect(lang.code)}
+                  className="flex items-center gap-3 p-4 rounded-xl border-2 border-cyan-200 dark:border-cyan-800
+                           hover:bg-cyan-50 dark:hover:bg-cyan-900/30 transition-all
+                           hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <Globe className="h-5 w-5 text-cyan-500" />
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {lang.name}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : showBotSelection ? (
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               {t('customerService.selectAssistant')}
@@ -366,13 +335,21 @@ export const CustomerServiceSection: React.FC = () => {
           </div>
         ) : (
           <>
-            <button
-              onClick={handleReset}
-              className="flex items-center gap-2 text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300 mb-4"
-            >
-              <ArrowLeft size={20} />
-              {t('customerService.backToSelection')}
-            </button>
+            <div className="flex items-center justify-between gap-4">
+              <button
+                onClick={handleReset}
+                className="flex items-center gap-2 text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300"
+              >
+                <ArrowLeft size={20} />
+                {t('customerService.backToSelection')}
+              </button>
+              <div className="flex items-center gap-2">
+                <Globe className="h-5 w-5 text-gray-400" />
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  {languages.find(lang => lang.code === selectedLanguage)?.name}
+                </span>
+              </div>
+            </div>
 
             <div className="h-[400px] space-y-4 overflow-y-auto rounded-xl bg-white p-4 dark:bg-gray-900">
               {messages.map((message) => (

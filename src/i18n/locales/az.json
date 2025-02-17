@@ -19,6 +19,14 @@
   "downloading": "Yüklənir...",
   "downloadError": "Yükləmə xətası baş verdi. Yenidən cəhd edin.",
 
+  "audiobook": {
+    "details": "Audiokitab haqqında",
+    "duration": "Müddət",
+    "narrator": "Səsləndirən",
+    "format": "Format",
+    "quality": "Keyfiyyət"
+  },
+
   "customerService": {
     "title": "Dəstək",
     "welcomeMessage": "BookBerry dəstək xidmətinə xoş gəlmisiniz! Sizə necə kömək edə bilərəm?",
@@ -108,72 +116,6 @@
       "readingStats": "Oxuma statistikası",
       "bookmarks": "Limitsiz əlfəcinlər",
       "highlights": "Qeydlər və vurğulamalar"
-    },
-    "payment": {
-      "title": "Ödəniş məlumatları",
-      "cardNumber": "Kart nömrəsi",
-      "expiry": "Bitmə tarixi",
-      "cvv": "CVV",
-      "nameOnCard": "Kartın üzərindəki ad",
-      "payNow": "Ödəniş et"
     }
-  },
-
-  "readingPreferences": {
-    "title": "Oxuma tənzimləmələri",
-    "fontSize": "Şrift ölçüsü",
-    "textAlignment": "Mətn düzləndirməsi",
-    "autoPlayAudio": "Avtomatik səs oxutma",
-    "showPageNumber": "Səhifə nömrələrini göstər",
-    "highlightLinks": "Linkləri vurğula",
-    "preview": "Önbaxış",
-    "previewText": "Bu mətn oxuma tənzimləmələrinin necə görünəcəyini göstərir. Şrift ölçüsünü və mətn düzləndirməsini dəyişərək nəticəni görə bilərsiniz."
-  },
-
-  "notifications": {
-    "title": "Bildirişlər",
-    "dailyReminder": "Gündəlik xatırlatma",
-    "weeklyProgress": "Həftəlik hesabat",
-    "newBookAlerts": "Yeni kitab bildirişləri",
-    "systemNotifications": "Sistem bildirişləri",
-    "reminderTime": "Xatırlatma vaxtı"
-  },
-
-  "accessibility": {
-    "title": "Əlçatanlıq",
-    "highContrast": "Yüksək kontrast",
-    "reduceAnimations": "Animasiyaları azalt",
-    "screenReader": "Ekran oxuyucusu",
-    "dyslexicFont": "Disleksiya şrifti",
-    "textToSpeech": "Mətndən səsə"
-  },
-
-  "language": "Dil",
-
-  "auth": {
-    "login": "Daxil ol",
-    "createAccount": "Hesab yarat",
-    "forgotPassword": "Şifrəni unutmusunuz?",
-    "resetPassword": "Şifrəni sıfırla",
-    "backToLogin": "Girişə qayıt",
-    "email": "Email",
-    "emailPlaceholder": "Emailinizi daxil edin",
-    "password": "Şifrə",
-    "passwordPlaceholder": "Şifrənizi daxil edin",
-    "confirmPassword": "Şifrəni təsdiqlə",
-    "confirmPasswordPlaceholder": "Şifrəni təkrar daxil edin",
-    "name": "Ad",
-    "namePlaceholder": "Adınızı daxil edin",
-    "fillDetails": "Zəhmət olmasa məlumatlarınızı doldurun",
-    "invalidCredentials": "Yanlış email və ya şifrə",
-    "userExists": "İstifadəçi artıq mövcuddur",
-    "passwordsDoNotMatch": "Şifrələr uyğun gəlmir",
-    "termsAndConditions": "İstifadə şərtləri",
-    "acceptTerms": "Qəbul edirəm",
-    "logout": "Çıxış",
-    "resetPasswordDescription": "Emailinizi daxil edin və biz sizə şifrə sıfırlama linki göndərəcəyik",
-    "sendResetLink": "Link göndər",
-    "checkYourEmail": "Emailinizi yoxlayın",
-    "resetEmailSent": "Şifrə sıfırlama təlimatlarını göndərdik"
   }
 }

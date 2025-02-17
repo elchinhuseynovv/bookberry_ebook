@@ -19,6 +19,14 @@
   "downloading": "Загрузка...",
   "downloadError": "Ошибка загрузки. Попробуйте еще раз.",
 
+  "audiobook": {
+    "details": "Об аудиокниге",
+    "duration": "Длительность",
+    "narrator": "Диктор",
+    "format": "Формат",
+    "quality": "Качество"
+  },
+
   "customerService": {
     "title": "Поддержка",
     "welcomeMessage": "Добро пожаловать в службу поддержки BookBerry! Как я могу вам помочь?",

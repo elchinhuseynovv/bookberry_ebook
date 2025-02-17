@@ -6,7 +6,10 @@
       "Detektiv": "Detektiv",
       "Tarixi Roman": "Tarixi Roman",
       "Dram": "Dram",
-      "Hekayə": "Hekayə"
+      "Hekayə": "Hekayə",
+      "Fəlsəfi Dram": "Fəlsəfi Dram",
+      "Poema": "Poema",
+      "Satira": "Satira"
     }
   },
   "en": {
@@ -16,7 +19,10 @@
       "Detektiv": "Detective",
       "Tarixi Roman": "Historical Novel",
       "Dram": "Drama",
-      "Hekayə": "Story"
+      "Hekayə": "Story",
+      "Fəlsəfi Dram": "Philosophical Drama",
+      "Poema": "Poem",
+      "Satira": "Satire"
     }
   },
   "ru": {
@@ -26,7 +32,10 @@
       "Detektiv": "Детектив",
       "Tarixi Roman": "Исторический роман",
       "Dram": "Драма",
-      "Hekayə": "Рассказ"
+      "Hekayə": "Рассказ",
+      "Fəlsəfi Dram": "Философская драма",
+      "Poema": "Поэма",
+      "Satira": "Сатира"
     }
   }
 }

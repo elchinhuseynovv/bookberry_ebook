@@ -19,6 +19,14 @@
   "downloading": "Downloading...",
   "downloadError": "Download failed. Please try again.",
 
+  "audiobook": {
+    "details": "Audiobook Details",
+    "duration": "Duration",
+    "narrator": "Narrator",
+    "format": "Format",
+    "quality": "Quality"
+  },
+
   "customerService": {
     "title": "Support",
     "welcomeMessage": "Welcome to BookBerry support! How can I help you today?",

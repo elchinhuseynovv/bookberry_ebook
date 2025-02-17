@@ -19,6 +19,34 @@
   "downloading": "Yüklənir...",
   "downloadError": "Yükləmə xətası baş verdi. Yenidən cəhd edin.",
 
+  "readingPreferences": {
+    "title": "Oxuma Tənzimləmələri",
+    "preview": "Görünüş",
+    "previewText": "Kitabların oxunması üçün tənzimləmələri burada dəyişə bilərsiniz. Bu mətn seçdiyiniz parametrlərin necə görünəcəyini göstərir.",
+    "fontSize": "Şrift ölçüsü",
+    "textAlignment": "Mətn düzülüşü",
+    "autoPlayAudio": "Avtomatik səs oxutma",
+    "showPageNumber": "Səhifə nömrələrini göstər",
+    "highlightLinks": "Linkləri vurğula"
+  },
+
+  "notifications": {
+    "title": "Bildirişlər",
+    "dailyReminder": "Gündəlik xatırlatma",
+    "weeklyProgress": "Həftəlik irəliləyiş",
+    "newBookAlerts": "Yeni kitab bildirişləri",
+    "systemNotifications": "Sistem bildirişləri"
+  },
+
+  "accessibility": {
+    "title": "Əlçatanlıq",
+    "highContrast": "Yüksək kontrast",
+    "reduceAnimations": "Animasiyaları azalt",
+    "screenReader": "Ekran oxuyucusu",
+    "dyslexicFont": "Disleksiya şrifti",
+    "textToSpeech": "Mətndən səsə"
+  },
+
   "audiobook": {
     "details": "Audiokitab haqqında",
     "duration": "Müddət",

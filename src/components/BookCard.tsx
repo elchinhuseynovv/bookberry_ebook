@@ -8,9 +8,16 @@ interface Props {
 }
 
 export const BookCard: React.FC<Props> = ({ book, onClick }) => {
+  const handleClick = () => {
+    if (book.pdfUrl) {
+      // If it's a local PDF, open it in the PDF viewer component
+      onClick(book);
+    }
+  };
+
   return (
     <div
-      onClick={() => onClick(book)}
+      onClick={handleClick}
       className="group relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-transform hover:-translate-y-1 hover:shadow-xl cursor-pointer dark:bg-gray-800"
     >
       <div className="relative aspect-[2/3] w-full overflow-hidden">

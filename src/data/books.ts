@@ -68,7 +68,8 @@ export const books: Book[] = [
     language: 'Azərbaycanca',
     pages: 304,
     genre: 'Detektiv',
-    rating: 4.4
+    rating: 4.4,
+    pdfUrl: '/src/pdfs/Çingiz Abdullayev manipulyator, üç payız günü (1).pdf'
   },
   {
     id: '7',
@@ -81,7 +82,8 @@ export const books: Book[] = [
     language: 'Azərbaycanca',
     pages: 288,
     genre: 'Detektiv',
-    rating: 4.5
+    rating: 4.5,
+    pdfUrl: '/src/pdfs/Çingiz Abdullayev irodun kölgəsi.pdf'
   },
   {
     id: '8',
@@ -94,7 +96,8 @@ export const books: Book[] = [
     language: 'Azərbaycanca',
     pages: 296,
     genre: 'Detektiv',
-    rating: 4.3
+    rating: 4.3,
+    pdfUrl: '/src/pdfs/Çingiz Abdullayev qərb bürküsü.pdf'
   },
   {
     id: '9',
@@ -107,7 +110,8 @@ export const books: Book[] = [
     language: 'Azərbaycanca',
     pages: 312,
     genre: 'Detektiv',
-    rating: 4.6
+    rating: 4.6,
+    pdfUrl: '/src/pdfs/Çingiz Abdullayev soyuğu qoruyanlar.pdf'
   },
   {
     id: '10',
@@ -253,7 +257,7 @@ export const books: Book[] = [
     rating: 4.5
   },
   {
-   id: '21',
+    id: '21',
     title: 'Böyük Oyun',
     author: 'Çingiz Abdullayev',
     cover: 'https://www.teaspress.az/storage/1354/conversions/boyuk-oyun-front-book.jpg',

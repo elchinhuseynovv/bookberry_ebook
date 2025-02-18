@@ -33,7 +33,7 @@ export const CustomerServiceSection: React.FC = () => {
   const [selectedBot, setSelectedBot] = useState<BotPersonality | null>(null);
   const [showBotSelection, setShowBotSelection] = useState(true);
   const [showLanguageSelection, setShowLanguageSelection] = useState(true);
-  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
+  const [chatLanguage, setChatLanguage] = useState<string | null>(null);
 
   const languages = [
     { code: 'az', name: 'Azərbaycanca' },
@@ -42,7 +42,7 @@ export const CustomerServiceSection: React.FC = () => {
   ];
 
   const getBotDescription = (botId: string) => {
-    switch (i18n.language) {
+    switch (chatLanguage) {
       case 'en':
         switch (botId) {
           case 'friendly':
@@ -85,12 +85,100 @@ export const CustomerServiceSection: React.FC = () => {
     }
   };
 
+  const getBotName = (botId: string) => {
+    switch (chatLanguage) {
+      case 'en':
+        switch (botId) {
+          case 'friendly':
+            return "Friendly Bot";
+          case 'professional':
+            return "Professional Bot";
+          case 'technical':
+            return "Technical Bot";
+          case 'human':
+            return "Live Support";
+          default:
+            return "";
+        }
+      case 'ru':
+        switch (botId) {
+          case 'friendly':
+            return "Дружелюбный бот";
+          case 'professional':
+            return "Профессиональный бот";
+          case 'technical':
+            return "Технический бот";
+          case 'human':
+            return "Живая поддержка";
+          default:
+            return "";
+        }
+      default: // Azerbaijani
+        switch (botId) {
+          case 'friendly':
+            return "Dostcanlı Bot";
+          case 'professional':
+            return "Professional Bot";
+          case 'technical':
+            return "Texniki Bot";
+          case 'human':
+            return "Canlı Dəstək";
+          default:
+            return "";
+        }
+    }
+  };
+
+  const getWelcomeMessage = (botId: string) => {
+    switch (chatLanguage) {
+      case 'en':
+        switch (botId) {
+          case 'friendly':
+            return "Hi! I'm your friendly assistant. How can I help you today? 😊";
+          case 'professional':
+            return "Welcome. I'm your professional support assistant. How may I assist you?";
+          case 'technical':
+            return "Hello! I'm your technical support bot. Ready to solve your technical issues.";
+          case 'human':
+            return "Connecting you to our live support service...";
+          default:
+            return "";
+        }
+      case 'ru':
+        switch (botId) {
+          case 'friendly':
+            return "Привет! Я ваш дружелюбный помощник. Как я могу помочь вам сегодня? 😊";
+          case 'professional':
+            return "Добро пожаловать. Я ваш профессиональный ассистент поддержки. Чем могу помочь?";
+          case 'technical':
+            return "Здравствуйте! Я бот технической поддержки. Готов решать ваши технические проблемы.";
+          case 'human':
+            return "Подключаем вас к службе живой поддержки...";
+          default:
+            return "";
+        }
+      default: // Azerbaijani
+        switch (botId) {
+          case 'friendly':
+            return "Salam! Mən sizin dostcanlı köməkçinizəm. Sizə necə kömək edə bilərəm? 😊";
+          case 'professional':
+            return "Xoş gəlmisiniz. Mən sizin professional dəstək asistentinizəm. Sizə necə yardımçı ola bilərəm?";
+          case 'technical':
+            return "Salam! Mən texniki dəstək botuyam. Texniki problemlərinizi həll etməyə hazıram.";
+          case 'human':
+            return "Sizi canlı dəstək xidmətimizə yönləndiririk...";
+          default:
+            return "";
+        }
+    }
+  };
+
   const botPersonalities: BotPersonality[] = [
     {
       id: 'friendly',
-      name: t('customerService.bots.friendly'),
+      name: getBotName('friendly'),
       icon: <Bot className="text-green-500" />,
-      welcomeMessage: t('customerService.bots.friendlyWelcome'),
+      welcomeMessage: getWelcomeMessage('friendly'),
       style: 'bg-green-100 border-green-200 dark:bg-green-900/30 dark:border-green-800',
       responses: {
         default: {
@@ -114,9 +202,9 @@ export const CustomerServiceSection: React.FC = () => {
     },
     {
       id: 'professional',
-      name: t('customerService.bots.professional'),
+      name: getBotName('professional'),
       icon: <Bot className="text-blue-500" />,
-      welcomeMessage: t('customerService.bots.professionalWelcome'),
+      welcomeMessage: getWelcomeMessage('professional'),
       style: 'bg-blue-100 border-blue-200 dark:bg-blue-900/30 dark:border-blue-800',
       responses: {
         default: {
@@ -140,9 +228,9 @@ export const CustomerServiceSection: React.FC = () => {
     },
     {
       id: 'technical',
-      name: t('customerService.bots.technical'),
+      name: getBotName('technical'),
       icon: <Bot className="text-purple-500" />,
-      welcomeMessage: t('customerService.bots.technicalWelcome'),
+      welcomeMessage: getWelcomeMessage('technical'),
       style: 'bg-purple-100 border-purple-200 dark:bg-purple-900/30 dark:border-purple-800',
       responses: {
         default: {
@@ -166,13 +254,13 @@ export const CustomerServiceSection: React.FC = () => {
     },
     {
       id: 'human',
-      name: t('customerService.realAgent'),
+      name: getBotName('human'),
       icon: <Phone className="text-red-500" />,
-      welcomeMessage: t('customerService.callCenter'),
+      welcomeMessage: getWelcomeMessage('human'),
       style: 'bg-red-100 border-red-200 dark:bg-red-900/30 dark:border-red-800',
       responses: {
         default: {
-          az: [t('customerService.callCenterResponse')],
+          az: ["Operatorlarımız hal-hazırda başqa müştərilərlə məşğuldur. Növbənizi gözləyin və ya daha sonra yenidən zəng edin."],
           en: ["Our operators are currently busy with other customers. Please wait in queue or try calling back later."],
           ru: ["Наши операторы в данный момент заняты с другими клиентами. Пожалуйста, подождите в очереди или перезвоните позже."]
         }
@@ -181,16 +269,15 @@ export const CustomerServiceSection: React.FC = () => {
   ];
 
   const handleLanguageSelect = (langCode: string) => {
-    setSelectedLanguage(langCode);
-    i18n.changeLanguage(langCode);
+    setChatLanguage(langCode);
     setShowLanguageSelection(false);
   };
 
   const getRandomResponse = (category: string): string => {
-    if (!selectedBot || !selectedLanguage) return '';
+    if (!selectedBot || !chatLanguage) return '';
     
     const responses = selectedBot.responses[category] || selectedBot.responses.default;
-    const languageResponses = responses[selectedLanguage as keyof typeof responses] || responses.en;
+    const languageResponses = responses[chatLanguage as keyof typeof responses] || responses.en;
     const randomIndex = Math.floor(Math.random() * languageResponses.length);
     return languageResponses[randomIndex];
   };
@@ -209,9 +296,15 @@ export const CustomerServiceSection: React.FC = () => {
 
     if (bot.id === 'human') {
       setTimeout(() => {
+        const callCenterMessage = {
+          az: "Dəstək xəttimiz 09:00-18:00 saatları arasında aktivdir. Zəng mərkəzimizlə əlaqə: (012) 123-45-67",
+          en: "Our support line is active between 09:00-18:00. Contact our call center: (012) 123-45-67",
+          ru: "Наша линия поддержки работает с 09:00 до 18:00. Свяжитесь с нашим колл-центром: (012) 123-45-67"
+        };
+
         setMessages(prev => [...prev, {
           id: crypto.randomUUID(),
-          text: t('customerService.callCenterHours'),
+          text: callCenterMessage[chatLanguage as keyof typeof callCenterMessage],
           sender: 'support',
           timestamp: new Date()
         }]);
@@ -221,7 +314,7 @@ export const CustomerServiceSection: React.FC = () => {
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newMessage.trim() || !selectedBot || !selectedLanguage) return;
+    if (!newMessage.trim() || !selectedBot || !chatLanguage) return;
 
     const userMessage: Message = {
       id: crypto.randomUUID(),
@@ -257,10 +350,32 @@ export const CustomerServiceSection: React.FC = () => {
     setSelectedBot(null);
     setShowBotSelection(true);
     setShowLanguageSelection(true);
-    setSelectedLanguage(null);
+    setChatLanguage(null);
     setMessages([]);
     setNewMessage('');
     setIsTyping(false);
+  };
+
+  const getMessagePlaceholder = () => {
+    switch (chatLanguage) {
+      case 'en':
+        return "Type your message...";
+      case 'ru':
+        return "Введите ваше сообщение...";
+      default:
+        return "Mesajınızı daxil edin...";
+    }
+  };
+
+  const getBackToSelectionText = () => {
+    switch (chatLanguage) {
+      case 'en':
+        return "Back to selection";
+      case 'ru':
+        return "Вернуться к выбору";
+      default:
+        return "Geri qayıt";
+    }
   };
 
   return (
@@ -297,9 +412,6 @@ export const CustomerServiceSection: React.FC = () => {
           </div>
         ) : showBotSelection ? (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              {t('customerService.selectAssistant')}
-            </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {botPersonalities.map((bot) => (
                 <button
@@ -331,12 +443,12 @@ export const CustomerServiceSection: React.FC = () => {
                 className="flex items-center gap-2 text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300"
               >
                 <ArrowLeft size={20} />
-                {t('customerService.backToSelection')}
+                {getBackToSelectionText()}
               </button>
               <div className="flex items-center gap-2">
                 <Globe className="h-5 w-5 text-gray-400" />
                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {languages.find(lang => lang.code === selectedLanguage)?.name}
+                  {languages.find(lang => lang.code === chatLanguage)?.name}
                 </span>
               </div>
             </div>
@@ -401,7 +513,7 @@ export const CustomerServiceSection: React.FC = () => {
                 type="text"
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
-                placeholder={t('customerService.messagePlaceholder')}
+                placeholder={getMessagePlaceholder()}
                 className="flex-1 rounded-xl border-2 border-gray-200 bg-white px-4 py-2 
                          text-gray-900 placeholder-gray-500
                          focus:border-cyan-400 focus:outline-none dark:border-gray-700 

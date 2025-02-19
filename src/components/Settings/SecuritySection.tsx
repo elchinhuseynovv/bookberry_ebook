@@ -6,6 +6,7 @@ import { SettingHeader } from './SettingHeader';
 import { Toggle } from './Toggle';
 import { authDB } from '../../services/database/auth';
 import { useAuth } from '../../hooks/useAuth';
+import { useDynamicTitles } from '../../utils/dynamicTitles';
 
 interface Props {
   settings: SecuritySettings;
@@ -15,6 +16,7 @@ interface Props {
 export const SecuritySection: React.FC<Props> = ({ settings, onSave }) => {
   const { t } = useTranslation();
   const { currentUser } = useAuth();
+  const { getResetPasswordTitle } = useDynamicTitles();
   const [editedSettings, setEditedSettings] = useState(settings);
   const [passwordForm, setPasswordForm] = useState({
     currentPassword: '',
@@ -195,7 +197,7 @@ export const SecuritySection: React.FC<Props> = ({ settings, onSave }) => {
                        hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200
                        dark:hover:bg-gray-600 disabled:opacity-50"
             >
-              {t('auth.resetPassword')}
+              {getResetPasswordTitle()}
             </button>
           </div>
         </form>

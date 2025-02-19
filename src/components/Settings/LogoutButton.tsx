@@ -1,11 +1,11 @@
 import React from 'react';
 import { LogOut } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth';
+import { useDynamicTitles } from '../../utils/dynamicTitles';
 
 export const LogoutButton: React.FC = () => {
-  const { t } = useTranslation();
   const { handleLogout } = useAuth();
+  const { getLogoutTitle } = useDynamicTitles();
 
   const handleClick = () => {
     handleLogout();
@@ -21,7 +21,7 @@ export const LogoutButton: React.FC = () => {
                  transition-colors duration-200"
     >
       <LogOut size={20} />
-      <span>{t('auth.logout')}</span>
+      <span>{getLogoutTitle()}</span>
     </button>
   );
 };

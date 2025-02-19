@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { MessageSquare, Send, User, Bot, Phone, ArrowLeft, Globe } from 'lucide-react';
 import { SettingHeader } from './SettingHeader';
+import { useDynamicTitles } from '../../utils/dynamicTitles';
+import { useTranslation } from 'react-i18next';
 
 interface Message {
   id: string;
@@ -27,6 +28,7 @@ interface BotPersonality {
 
 export const CustomerServiceSection: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const { getSupportTitle } = useDynamicTitles();
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -382,7 +384,7 @@ export const CustomerServiceSection: React.FC = () => {
     <div className="space-y-6">
       <SettingHeader
         icon={<MessageSquare size={24} />}
-        title={t('customerService.title')}
+        title={getSupportTitle()}
         className="text-cyan-700 dark:text-cyan-400"
       />
 

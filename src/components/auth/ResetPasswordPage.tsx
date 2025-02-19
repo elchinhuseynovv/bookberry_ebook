@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { KeyRound, Mail, ArrowLeft, Send } from 'lucide-react';
 import { Logo } from '../Logo';
+import { useDynamicTitles } from '../../utils/dynamicTitles';
 import { az } from '../../constants/translations';
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 export const ResetPasswordPage: React.FC<Props> = ({ onBackToLogin, onResetPassword }) => {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { getResetPasswordTitle } = useDynamicTitles();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +38,7 @@ export const ResetPasswordPage: React.FC<Props> = ({ onBackToLogin, onResetPassw
             <Logo />
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            {az.auth.resetPassword}
+            {getResetPasswordTitle()}
           </h1>
           <p className="mt-2 text-gray-600 dark:text-gray-300">
             {az.auth.resetPasswordDescription}

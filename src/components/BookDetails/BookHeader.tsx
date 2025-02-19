@@ -5,6 +5,7 @@ import { Heart, Share2, Download } from 'lucide-react';
 import { downloadManager } from '../../services/download/downloadManager';
 import { PDFReader } from '../BookReader/PDFReader';
 import { pdfToEpubConverter } from '../../services/conversion/pdfToEpub';
+import { AudioPlayer } from '../AudioPlayer/AudioPlayer';
 
 interface Props {
   book: Book;
@@ -15,17 +16,18 @@ interface Props {
 export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite, initialPage }) => {
   const { t } = useTranslation();
   const [showPdfReader, setShowPdfReader] = useState(false);
+  const [showAudioPlayer, setShowAudioPlayer] = useState(false);
   const [isConverting, setIsConverting] = useState(false);
   const [epubUrl, setEpubUrl] = useState<string | null>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [showShareTooltip, setShowShareTooltip] = useState(false);
 
   const handleReadClick = async () => {
-    if (book.pdfUrl) {
-      // For local PDFs, we can show them directly
+    if (book.isAudio) {
+      setShowAudioPlayer(true);
+    } else if (book.pdfUrl) {
       setShowPdfReader(true);
     } else {
-      // For remote PDFs that need conversion
       setIsConverting(true);
       try {
         const convertedUrl = await pdfToEpubConverter.convert(book);
@@ -33,7 +35,6 @@ export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite, initialPag
         setShowPdfReader(true);
       } catch (error) {
         console.error('Error processing PDF:', error);
-        // If conversion fails, try showing PDF directly
         setShowPdfReader(true);
       } finally {
         setIsConverting(false);
@@ -147,6 +148,14 @@ export const BookHeader: React.FC<Props> = ({ book, onToggleFavorite, initialPag
           url={epubUrl || book.pdfUrl}
           onClose={() => setShowPdfReader(false)}
           initialPage={initialPage}
+        />
+      )}
+
+      {/* Audio Player */}
+      {showAudioPlayer && book.isAudio && (
+        <AudioPlayer
+          book={book}
+          onClose={() => setShowAudioPlayer(false)}
         />
       )}
     </>

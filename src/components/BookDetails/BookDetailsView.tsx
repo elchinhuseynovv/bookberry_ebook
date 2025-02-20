@@ -59,26 +59,31 @@ export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavori
           <X size={20} />
         </button>
 
-        {/* Book Cover Section */}
+        {/* Hero Section with Blurred Background */}
         <div className="relative">
-          {/* Background Cover (Blurred) */}
+          {/* Blurred Background Cover */}
           <div 
-            className="absolute inset-0 h-[250px] bg-cover bg-center blur-md opacity-50"
-            style={{ backgroundImage: `url(${book.cover})` }}
+            className="absolute inset-0 h-[300px] bg-cover bg-center"
+            style={{ 
+              backgroundImage: `url(${book.cover})`,
+              filter: 'blur(20px)',
+              transform: 'scale(1.1)', // Prevent blur edges from showing
+              opacity: 0.3
+            }}
           />
           
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 h-[250px] bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
+          <div className="absolute inset-0 h-[300px] bg-gradient-to-b from-black/60 via-black/40 to-white dark:to-gray-900" />
 
           {/* Content Container */}
           <div className="relative px-6 pt-16 pb-6 md:px-8 md:pt-8 md:pb-8">
-            <div className="flex flex-col md:flex-row gap-6">
+            <div className="flex flex-col md:flex-row gap-8">
               {/* Book Cover */}
-              <div className="w-32 md:w-48 mx-auto md:mx-0 flex-shrink-0">
+              <div className="w-40 md:w-56 mx-auto md:mx-0 flex-shrink-0">
                 <img
                   src={book.cover}
                   alt={book.title}
-                  className="w-full rounded-lg shadow-2xl"
+                  className="w-full rounded-xl shadow-2xl ring-1 ring-black/5"
                   style={{ aspectRatio: '2/3' }}
                 />
               </div>
@@ -94,22 +99,22 @@ export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavori
                     {t('audiobook.narrator')}: {book.narrator}
                   </p>
                 )}
+
+                {/* Action Buttons */}
+                <div className="mt-8">
+                  <BookHeader 
+                    book={book} 
+                    onToggleFavorite={onToggleFavorite}
+                    initialPage={initialPage}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Action Buttons */}
-        <div className="px-6 md:px-8 py-4 border-t border-gray-200 dark:border-gray-700">
-          <BookHeader 
-            book={book} 
-            onToggleFavorite={onToggleFavorite}
-            initialPage={initialPage}
-          />
-        </div>
         
         {/* Book Details */}
-        <div className="space-y-8 p-6 md:p-8 pb-32 md:pb-8">
+        <div className="space-y-8 p-6 md:p-8">
           <BookProgress book={book} />
           {book.isAudio ? (
             <AudioBookInfo book={book} />

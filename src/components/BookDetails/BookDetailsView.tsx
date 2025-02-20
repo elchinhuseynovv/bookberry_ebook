@@ -6,7 +6,7 @@ import { AudioBookInfo } from './AudioBookInfo';
 import { BookProgress } from './BookProgress';
 import { BookReviews } from './BookReviews';
 import { X } from 'lucide-react';
-import { az } from '../../constants/translations';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   book: Book;
@@ -16,6 +16,8 @@ interface Props {
 }
 
 export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavorite, initialPage }) => {
+  const { t } = useTranslation();
+
   // Handle escape key press
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -34,6 +36,10 @@ export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavori
       onClose();
     }
   };
+
+  if (!book) {
+    return null;
+  }
 
   return (
     <div 
@@ -83,9 +89,9 @@ export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavori
                   {book.title}
                 </h1>
                 <p className="text-lg text-gray-200 mb-4">{book.author}</p>
-                {book.narrator && (
+                {book.isAudio && book.narrator && (
                   <p className="text-sm text-gray-300">
-                    {az.audiobook.narrator}: {book.narrator}
+                    {t('audiobook.narrator')}: {book.narrator}
                   </p>
                 )}
               </div>
@@ -110,7 +116,9 @@ export const BookDetailsView: React.FC<Props> = ({ book, onClose, onToggleFavori
           ) : (
             <BookInfo book={book} />
           )}
-          <BookReviews book={book} />
+          {book.reviews && book.reviews.length > 0 && (
+            <BookReviews book={book} />
+          )}
         </div>
       </div>
     </div>

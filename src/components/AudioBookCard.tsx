@@ -1,7 +1,7 @@
 import React from 'react';
 import { Book } from '../types';
 import { Headphones, Clock, Download } from 'lucide-react';
-import { az } from '../constants/translations';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   book: Book;
@@ -9,6 +9,8 @@ interface Props {
 }
 
 export const AudioBookCard: React.FC<Props> = ({ book, onClick }) => {
+  const { t } = useTranslation();
+
   const handleDownload = async (e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent card click when downloading
     
@@ -55,7 +57,7 @@ export const AudioBookCard: React.FC<Props> = ({ book, onClick }) => {
           <button
             onClick={handleDownload}
             className="absolute top-3 left-3 rounded-full bg-black/60 p-2 hover:bg-black/80 transition-colors"
-            title={az.download}
+            title={t('download')}
           >
             <Download className="h-4 w-4 text-white" />
           </button>
@@ -71,9 +73,11 @@ export const AudioBookCard: React.FC<Props> = ({ book, onClick }) => {
         </p>
         <p className="mt-1 text-xs text-purple-300 flex items-center gap-1">
           <Clock className="h-3 w-3" />
-          {book.duration} {az.minutes}
+          {book.duration} {t('minutes')}
         </p>
-        <p className="text-xs text-purple-300 line-clamp-1">{book.narrator}</p>
+        <p className="text-xs text-purple-300 line-clamp-1">
+          {t('narrator')}: {book.narrator}
+        </p>
         <div className="mt-2 flex items-center gap-2">
           <div className="h-1 flex-1 rounded-full bg-gray-300/30">
             <div

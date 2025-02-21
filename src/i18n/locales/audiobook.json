@@ -1,0 +1,26 @@
+{
+  "az": {
+    "details": "Audiokitab haqqında",
+    "duration": "Müddət",
+    "narrator": "Səsləndirən",
+    "format": "Format",
+    "quality": "Keyfiyyət",
+    "minutes": "dəqiqə"
+  },
+  "en": {
+    "details": "Audiobook Details",
+    "duration": "Duration",
+    "narrator": "Narrator",
+    "format": "Format",
+    "quality": "Quality",
+    "minutes": "minutes"
+  },
+  "ru": {
+    "details": "Об аудиокниге",
+    "duration": "Длительность",
+    "narrator": "Диктор",
+    "format": "Формат",
+    "quality": "Качество",
+    "minutes": "минут"
+  }
+}

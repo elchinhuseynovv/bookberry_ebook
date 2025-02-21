@@ -11,15 +11,37 @@ export const AudioBookInfo: React.FC<Props> = ({ book }) => {
   const { t } = useTranslation();
 
   const details = [
-    { icon: <Clock className="h-5 w-5" />, label: t('audiobook.duration'), value: `${book.duration} ${t('minutes')}` },
-    { icon: <Headphones className="h-5 w-5" />, label: t('audiobook.narrator'), value: book.narrator },
-    { icon: <FileAudio className="h-5 w-5" />, label: t('audiobook.format'), value: `${book.format} (${book.fileSize})` },
-    { icon: <Gauge className="h-5 w-5" />, label: t('audiobook.quality'), value: book.quality }
-  ].filter(detail => detail.value);
+    book.duration && { 
+      icon: <Clock className="h-5 w-5" />, 
+      label: t('duration'), 
+      value: `${book.duration} ${t('minutes')}` 
+    },
+    book.narrator && { 
+      icon: <Headphones className="h-5 w-5" />, 
+      label: t('narrator'), 
+      value: book.narrator 
+    },
+    (book.format && book.fileSize) && { 
+      icon: <FileAudio className="h-5 w-5" />, 
+      label: t('format'), 
+      value: `${book.format} (${book.fileSize})` 
+    },
+    book.quality && { 
+      icon: <Gauge className="h-5 w-5" />, 
+      label: t('quality'), 
+      value: book.quality 
+    }
+  ].filter(Boolean) as Array<{
+    icon: JSX.Element;
+    label: string;
+    value: string;
+  }>;
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{t('audiobook.details')}</h2>
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+        {t('details')}
+      </h2>
 
       <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
         {details.map((detail, index) => (

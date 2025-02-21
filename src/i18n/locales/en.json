@@ -19,106 +19,60 @@
   "downloading": "Downloading...",
   "downloadError": "Download failed. Please try again.",
 
-  "readingPreferences": {
-    "title": "Reading Preferences",
-    "preview": "Preview",
-    "previewText": "You can adjust the reading settings here. This text shows how your selections will look.",
-    "fontSize": "Font Size",
-    "textAlignment": "Text Alignment",
-    "autoPlayAudio": "Auto-play Audio",
-    "showPageNumber": "Show Page Numbers",
-    "highlightLinks": "Highlight Links"
+  "navigation": {
+    "library": "Library",
+    "audiobooks": "Audiobooks",
+    "favorites": "Favorites",
+    "bookmarks": "Bookmarks",
+    "settings": "Settings"
   },
 
-  "notifications": {
-    "title": "Notifications",
-    "dailyReminder": "Daily Reminder",
-    "weeklyProgress": "Weekly Progress",
-    "newBookAlerts": "New Book Alerts",
-    "systemNotifications": "System Notifications",
-    "reminderTime": "Reminder Time"
-  },
-
-  "accessibility": {
-    "title": "Accessibility",
-    "highContrast": "High Contrast",
-    "reduceAnimations": "Reduce Animations",
-    "screenReader": "Screen Reader",
-    "dyslexicFont": "Dyslexic Font",
-    "textToSpeech": "Text to Speech"
-  },
-
-  "profile": {
-    "title": "Profile",
-    "name": "Name",
-    "surname": "Surname",
-    "namePlaceholder": "Enter your name",
-    "surnamePlaceholder": "Enter your surname",
-    "age": "Age",
-    "agePlaceholder": "Enter your age",
-    "phoneNumber": "Phone number",
-    "phonePlaceholder": "+994 XX XXX XX XX",
-    "email": "Email",
-    "emailPlaceholder": "Enter your email",
-    "save": "Save",
-    "saving": "Saving...",
-    "saveSuccess": "Saved successfully",
-    "saveError": "Error occurred",
-    "nameRequired": "Name is required",
-    "surnameRequired": "Surname is required",
-    "phoneRequired": "Phone number is required",
-    "invalidPhone": "Invalid phone number",
-    "invalidAge": "Invalid age",
-    "emailRequired": "Email is required"
+  "favorites": {
+    "title": "Favorites",
+    "empty": "No favorite books yet",
+    "addSome": "Add books you love from the library"
   },
 
   "security": {
     "title": "Security",
+    "changePassword": "Change Password",
     "currentPassword": "Current Password",
     "currentPasswordPlaceholder": "Enter current password",
     "newPassword": "New Password",
     "newPasswordPlaceholder": "Enter new password",
     "confirmNewPassword": "Confirm New Password",
     "confirmNewPasswordPlaceholder": "Re-enter new password",
+    "resetPassword": "Reset Password",
     "twoFactorAuth": "Two-Factor Authentication",
-    "twoFactorAuthDescription": "Add an extra layer of security to your account",
-    "enabled": "Enabled",
-    "disabled": "Disabled",
-    "changePassword": "Change Password",
-    "changing": "Changing...",
-    "passwordChangeSuccess": "Password changed successfully",
-    "passwordChangeError": "Failed to change password",
-    "currentPasswordIncorrect": "Current password is incorrect",
-    "passwordTooShort": "Password must be at least 6 characters",
-    "resetPasswordError": "Failed to send reset email"
+    "twoFactorAuthDescription": "Add an extra layer of security to your account"
+  },
+
+  "profile": {
+    "title": "Profile",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "surname": "Surname",
+    "surnamePlaceholder": "Enter your surname",
+    "age": "Age",
+    "agePlaceholder": "Enter your age",
+    "phoneNumber": "Phone number",
+    "phonePlaceholder": "+994 XX XXX XX XX",
+    "email": "Email",
+    "save": "Save"
   },
 
   "subscription": {
     "title": "Subscription",
     "currentPlan": "Current Plan",
-    "free": "Free",
+    "choosePlan": "Choose Plan",
     "freePlan": "Free Plan",
     "premiumPlan": "Premium Plan",
-    "choosePlan": "Choose Your Plan",
-    "select": "Select",
-    "selected": "Selected",
-    "selectPlanRequired": "Please select a subscription plan",
-    "continueToPayment": "Continue to Payment",
+    "free": "Free",
     "currency": "USD",
     "monthly": "monthly",
     "yearly": "yearly",
-    "payment": {
-      "title": "Payment Details",
-      "cardNumber": "Card Number",
-      "nameOnCard": "Name on Card",
-      "expiry": "Expiry Date",
-      "cvv": "CVV",
-      "cardNumberRequired": "Card number is required",
-      "nameRequired": "Name on card is required",
-      "expiryRequired": "Expiry date is required",
-      "cvvRequired": "CVV is required",
-      "payNow": "Pay Now"
-    },
+    "selected": "Selected",
+    "select": "Select",
     "features": {
       "basicAccess": "Basic library access",
       "limitedBooks": "10 books per month",
@@ -135,5 +89,37 @@
       "bookmarks": "Unlimited bookmarks",
       "highlights": "Notes and highlights"
     }
+  },
+
+  "readingPreferences": {
+    "title": "Reading Preferences",
+    "preview": "Preview",
+    "previewText": "You can adjust the reading settings here. This text shows how your selections will look.",
+    "fontSize": "Font Size",
+    "textAlignment": "Text Alignment",
+    "autoPlayAudio": "Auto-play Audio",
+    "showPageNumber": "Show Page Numbers",
+    "highlightLinks": "Highlight Links"
+  },
+
+  "notifications": {
+    "title": "Notifications",
+    "dailyReminder": "Daily Reminder",
+    "weeklyProgress": "Weekly Progress",
+    "newBookAlerts": "New Book Alerts",
+    "systemNotifications": "System Notifications"
+  },
+
+  "accessibility": {
+    "title": "Accessibility",
+    "highContrast": "High Contrast",
+    "reduceAnimations": "Reduce Animations",
+    "screenReader": "Screen Reader",
+    "dyslexicFont": "Dyslexic Font",
+    "textToSpeech": "Text to Speech"
+  },
+
+  "customerService": {
+    "title": "Customer Service"
   }
 }

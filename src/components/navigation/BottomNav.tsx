@@ -13,11 +13,11 @@ export const BottomNav: React.FC<Props> = ({ currentView, onViewChange }) => {
   const { t } = useTranslation();
 
   const navItems = [
-    { view: 'library' as ViewMode, icon: Library, label: t('library') },
-    { view: 'audiobooks' as ViewMode, icon: Headphones, label: t('audiobooks') },
-    { view: 'favorites' as ViewMode, icon: Heart, label: t('favorites.title') },
-    { view: 'bookmarks' as ViewMode, icon: BookMarked, label: t('bookmarks') },
-    { view: 'settings' as ViewMode, icon: Settings, label: t('settings') }
+    { view: 'library' as ViewMode, icon: Library, label: t('navigation.library') },
+    { view: 'audiobooks' as ViewMode, icon: Headphones, label: t('navigation.audiobooks') },
+    { view: 'favorites' as ViewMode, icon: Heart, label: t('navigation.favorites') },
+    { view: 'bookmarks' as ViewMode, icon: BookMarked, label: t('navigation.bookmarks') },
+    { view: 'settings' as ViewMode, icon: Settings, label: t('navigation.settings') }
   ];
 
   return (

@@ -19,9 +19,81 @@
   "downloading": "Yüklənir...",
   "downloadError": "Yükləmə xətası baş verdi. Yenidən cəhd edin.",
 
+  "navigation": {
+    "library": "Kitabxana",
+    "audiobooks": "Audiokitablar",
+    "favorites": "Sevimlilər",
+    "bookmarks": "Əlfəcinlər",
+    "settings": "Tənzimləmələr"
+  },
+
+  "favorites": {
+    "title": "Sevimlilər",
+    "empty": "Hələ sevimli kitabınız yoxdur",
+    "addSome": "Kitabxanadan sevdiyiniz kitabları əlavə edin"
+  },
+
+  "security": {
+    "title": "Təhlükəsizlik",
+    "changePassword": "Şifrəni dəyiş",
+    "currentPassword": "Cari şifrə",
+    "currentPasswordPlaceholder": "Cari şifrəni daxil edin",
+    "newPassword": "Yeni şifrə",
+    "newPasswordPlaceholder": "Yeni şifrəni daxil edin",
+    "confirmNewPassword": "Yeni şifrəni təsdiqlə",
+    "confirmNewPasswordPlaceholder": "Yeni şifrəni təkrar daxil edin",
+    "resetPassword": "Şifrəni sıfırla",
+    "twoFactorAuth": "İki faktorlu doğrulama",
+    "twoFactorAuthDescription": "Hesabınıza əlavə təhlükəsizlik qatı əlavə edin"
+  },
+
+  "profile": {
+    "title": "Profil",
+    "name": "Ad",
+    "namePlaceholder": "Adınızı daxil edin",
+    "surname": "Soyad",
+    "surnamePlaceholder": "Soyadınızı daxil edin",
+    "age": "Yaş",
+    "agePlaceholder": "Yaşınızı daxil edin",
+    "phoneNumber": "Telefon nömrəsi",
+    "phonePlaceholder": "+994 XX XXX XX XX",
+    "email": "Email",
+    "save": "Yadda saxla"
+  },
+
+  "subscription": {
+    "title": "Abunəlik",
+    "currentPlan": "Cari plan",
+    "choosePlan": "Plan seçin",
+    "freePlan": "Pulsuz plan",
+    "premiumPlan": "Premium plan",
+    "free": "Pulsuz",
+    "currency": "AZN",
+    "monthly": "aylıq",
+    "yearly": "illik",
+    "selected": "Seçildi",
+    "select": "Seç",
+    "features": {
+      "basicAccess": "Əsas kitabxana girişi",
+      "limitedBooks": "Ayda 10 kitaba giriş",
+      "adsSupported": "Reklamlı oxuma",
+      "fullAccess": "Tam kitabxana girişi",
+      "unlimitedBooks": "Limitsiz kitablar",
+      "noAds": "Reklamsız oxuma",
+      "offlineReading": "Oflayn oxuma",
+      "prioritySupport": "Prioritet dəstək",
+      "audiobooks": "Audiokitablara giriş",
+      "deviceSync": "Bütün cihazlarda sinxronizasiya",
+      "customCollections": "Xüsusi kolleksiyalar",
+      "readingStats": "Oxuma statistikası",
+      "bookmarks": "Limitsiz əlfəcinlər",
+      "highlights": "Qeydlər və vurğulamalar"
+    }
+  },
+
   "readingPreferences": {
     "title": "Oxuma Tənzimləmələri",
-    "preview": "Görünüş",
+    "preview": "Nümunə",
     "previewText": "Kitabların oxunması üçün tənzimləmələri burada dəyişə bilərsiniz. Bu mətn seçdiyiniz parametrlərin necə görünəcəyini göstərir.",
     "fontSize": "Şrift ölçüsü",
     "textAlignment": "Mətn düzülüşü",
@@ -47,103 +119,7 @@
     "textToSpeech": "Mətndən səsə"
   },
 
-  "audiobook": {
-    "details": "Audiokitab haqqında",
-    "duration": "Müddət",
-    "narrator": "Səsləndirən",
-    "format": "Format",
-    "quality": "Keyfiyyət"
-  },
-
   "customerService": {
-    "title": "Dəstək",
-    "welcomeMessage": "BookBerry dəstək xidmətinə xoş gəlmisiniz! Sizə necə kömək edə bilərəm?",
-    "autoResponse": "Müraciətiniz qeydə alındı. Dəstək komandamız sizinlə tezliklə əlaqə saxlayacaq.",
-    "messagePlaceholder": "Mesajınızı daxil edin...",
-    "selectAssistant": "Sizə necə kömək edə bilərik?",
-    "backToSelection": "Geri qayıt",
-    "realAgent": "Canlı Dəstək",
-    "callCenter": "Sizi canlı dəstək xidmətimizə yönləndiririk...",
-    "callCenterHours": "Dəstək xəttimiz 09:00-18:00 saatları arasında aktivdir. Zəng mərkəzimizlə əlaqə: (012) 123-45-67",
-    "callCenterResponse": "Operatorlarımız hal-hazırda başqa müştərilərlə məşğuldur. Növbənizi gözləyin və ya daha sonra yenidən zəng edin.",
-    "bots": {
-      "friendly": "Dostcanlı Bot",
-      "professional": "Professional Bot",
-      "technical": "Texniki Bot",
-      "friendlyWelcome": "Salam! Mən sizin dostcanlı köməkçinizəm. Sizə necə kömək edə bilərəm? 😊",
-      "professionalWelcome": "Xoş gəlmisiniz. Mən sizin professional dəstək asistentinizəm. Sizə necə yardımçı ola bilərəm?",
-      "technicalWelcome": "Salam! Mən texniki dəstək botuyam. Texniki problemlərinizi həll etməyə hazıram."
-    }
-  },
-
-  "favorites": {
-    "title": "Sevimlilər",
-    "empty": "Hələ sevimli kitabınız yoxdur",
-    "addSome": "Kitabxanadan sevdiyiniz kitabları əlavə edin"
-  },
-
-  "profile": {
-    "title": "Profil",
-    "name": "Ad",
-    "surname": "Soyad",
-    "namePlaceholder": "Adınızı daxil edin",
-    "surnamePlaceholder": "Soyadınızı daxil edin",
-    "age": "Yaş",
-    "agePlaceholder": "Yaşınızı daxil edin",
-    "phoneNumber": "Telefon nömrəsi",
-    "phonePlaceholder": "+994 XX XXX XX XX",
-    "email": "Email",
-    "emailPlaceholder": "Email ünvanınızı daxil edin",
-    "save": "Yadda saxla",
-    "saving": "Yadda saxlanılır...",
-    "saveSuccess": "Uğurla yadda saxlanıldı",
-    "saveError": "Xəta baş verdi"
-  },
-
-  "security": {
-    "title": "Təhlükəsizlik",
-    "currentPassword": "Cari şifrə",
-    "currentPasswordPlaceholder": "Cari şifrəni daxil edin",
-    "newPassword": "Yeni şifrə",
-    "newPasswordPlaceholder": "Yeni şifrəni daxil edin",
-    "confirmNewPassword": "Yeni şifrəni təsdiqlə",
-    "confirmNewPasswordPlaceholder": "Yeni şifrəni təkrar daxil edin",
-    "twoFactorAuth": "İki faktorlu doğrulama",
-    "twoFactorAuthDescription": "Hesabınıza əlavə təhlükəsizlik qatı əlavə edin",
-    "enabled": "Aktivdir",
-    "disabled": "Deaktivdir",
-    "changePassword": "Şifrəni dəyiş"
-  },
-
-  "subscription": {
-    "title": "Abunəlik",
-    "currentPlan": "Cari abunəliyiniz",
-    "free": "Pulsuz",
-    "freePlan": "Pulsuz Plan",
-    "premiumPlan": "Premium Plan",
-    "choosePlan": "Abunəlik planı seçin",
-    "select": "Seç",
-    "selected": "Seçildi",
-    "selectPlanRequired": "Zəhmət olmasa abunəlik planı seçin",
-    "continueToPayment": "Ödənişə keç",
-    "currency": "AZN",
-    "monthly": "aylıq",
-    "yearly": "illik",
-    "features": {
-      "basicAccess": "Əsas kitabxana girişi",
-      "limitedBooks": "Ayda 10 kitaba giriş",
-      "adsSupported": "Reklamlı oxuma",
-      "fullAccess": "Tam kitabxana girişi",
-      "unlimitedBooks": "Limitsiz kitablar",
-      "noAds": "Reklamsız oxuma",
-      "offlineReading": "Oflayn oxuma",
-      "prioritySupport": "Prioritet dəstək",
-      "audiobooks": "Audiokitablara giriş",
-      "deviceSync": "Bütün cihazlarda sinxronizasiya",
-      "customCollections": "Xüsusi kolleksiyalar",
-      "readingStats": "Oxuma statistikası",
-      "bookmarks": "Limitsiz əlfəcinlər",
-      "highlights": "Qeydlər və vurğulamalar"
-    }
+    "title": "Müştəri Dəstəyi"
   }
 }

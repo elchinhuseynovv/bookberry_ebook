@@ -1,43 +1,32 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MainLayout } from './components/layout/MainLayout';
-import { BookDetailsView } from './components/BookDetails/BookDetailsView';
 import { LoginPage } from './components/auth/LoginPage';
 import { SignUpPage } from './components/auth/SignUpPage';
 import { ResetPasswordPage } from './components/auth/ResetPasswordPage';
 import { SplashScreen } from './components/SplashScreen';
-import { LanguageFilter } from './components/LanguageFilter';
-import { GenreSection } from './components/GenreSection';
-import { Book, ViewMode } from './types';
-import { Search } from 'lucide-react';
 import { useAuth } from './hooks/useAuth';
 import { useTheme } from './hooks/useTheme';
+import { ViewMode } from './types';
 import { useSearch } from './hooks/useSearch';
-import { SettingsView } from './components/Settings/SettingsView';
+import { LanguageFilter } from './components/LanguageFilter';
+import { GenreSection } from './components/GenreSection';
 import { FavoriteBooks } from './components/FavoriteBooks';
 import { BookmarksList } from './components/BookmarksList';
-import { AudioBookCard } from './components/AudioBookCard';
+import { SettingsView } from './components/Settings/SettingsView';
+import { BookDetailsView } from './components/BookDetails/BookDetailsView';
+import { books } from './data/books';
+import { audiobooks } from './data/audiobooks';
+import { Book } from './types';
 
 function App() {
   const { t } = useTranslation();
   const [showSplash, setShowSplash] = useState(true);
   const [currentView, setCurrentView] = useState<ViewMode>('library');
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
-  
   const { theme, setTheme, themeClasses } = useTheme();
-  const { 
-    searchQuery, 
-    setSearchQuery, 
-    selectedLanguage,
-    setSelectedLanguage,
-    languages,
-    filteredBooks, 
-    filteredAudioBooks,
-    setFilteredBooks,
-    setFilteredAudioBooks
-  } = useSearch();
   const {
     isAuthenticated,
+    loading,
     showSignUp,
     showResetPassword,
     setShowSignUp,
@@ -46,6 +35,20 @@ function App() {
     handleSignUp,
     handleResetPassword
   } = useAuth();
+
+  const {
+    searchQuery,
+    setSearchQuery,
+    selectedLanguage,
+    setSelectedLanguage,
+    languages,
+    filteredBooks,
+    filteredAudioBooks,
+    setFilteredBooks,
+    setFilteredAudioBooks
+  } = useSearch();
+
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = showSplash ? 'hidden' : 'auto';
@@ -63,253 +66,191 @@ function App() {
     setSelectedBook(book);
   };
 
-  const handleBookmarkClick = (book: Book, page: number) => {
-    setSelectedBook(book);
-    localStorage.setItem(`last-page-${book.pdfUrl}`, page.toString());
+  const handleCloseBookDetails = () => {
+    setSelectedBook(null);
   };
 
   const handleToggleFavorite = (book: Book) => {
-    const updatedBooks = filteredBooks.map(b => 
-      b.id === book.id ? { ...b, isFavorite: !book.isFavorite } : b
-    );
-    const updatedAudioBooks = filteredAudioBooks.map(b => 
-      b.id === book.id ? { ...b, isFavorite: !book.isFavorite } : b
-    );
-
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    if (!book.isFavorite) {
-      favorites.push(book.id);
+    const isFavorite = favorites.includes(book.id);
+    
+    const newFavorites = isFavorite
+      ? favorites.filter((id: string) => id !== book.id)
+      : [...favorites, book.id];
+    
+    localStorage.setItem('favorites', JSON.stringify(newFavorites));
+
+    if (book.isAudio) {
+      setFilteredAudioBooks(
+        filteredAudioBooks.map(b => 
+          b.id === book.id ? { ...b, isFavorite: !isFavorite } : b
+        )
+      );
     } else {
-      const index = favorites.indexOf(book.id);
-      if (index > -1) {
-        favorites.splice(index, 1);
-      }
+      setFilteredBooks(
+        filteredBooks.map(b => 
+          b.id === book.id ? { ...b, isFavorite: !isFavorite } : b
+        )
+      );
     }
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-
-    setFilteredBooks(updatedBooks);
-    setFilteredAudioBooks(updatedAudioBooks);
   };
-
-  const getBooksByGenre = (genre: string) => {
-    return filteredBooks.filter(book => 
-      book.genre?.toLowerCase() === genre.toLowerCase()
-    );
-  };
-
-  const getAudioBooksByGenre = (genre: string) => {
-    return filteredAudioBooks.filter(book => 
-      book.genre?.toLowerCase() === genre.toLowerCase()
-    );
-  };
-
-  // Get unique genres from audiobooks
-  const audioBookGenres = useMemo(() => {
-    const genres = new Set(filteredAudioBooks.map(book => book.genre).filter(Boolean));
-    return Array.from(genres);
-  }, [filteredAudioBooks]);
-
-  // Define all available genres
-  const genres = [
-    { id: 'roman', name: 'Roman' },
-    { id: 'dastan', name: 'Dastan' },
-    { id: 'detective', name: 'Detektiv' },
-    { id: 'historical', name: 'Tarixi Roman' }
-  ];
 
   const renderContent = () => {
     switch (currentView) {
-      case 'settings':
-        return <SettingsView />;
-      case 'favorites':
+      case 'library':
         return (
-          <>
-            <div className="relative mb-8">
+          <div className="space-y-8">
+            {/* Search and Filter */}
+            <div className="space-y-6">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t('searchBooks')}
-                className={`w-full h-12 rounded-xl border-2 px-12 font-medium transition-all duration-300
-                  ${theme === 'dark' 
-                    ? 'bg-gray-800/90 border-purple-500/30 text-white placeholder-gray-400 focus:border-purple-400'
-                    : theme === 'sepia'
-                    ? 'bg-[#f8f4ea] border-purple-400/40 text-[#5c4b37] placeholder-[#8b7355] focus:border-purple-500'
-                    : 'bg-white border-purple-200 text-gray-800 placeholder-gray-500 focus:border-purple-400'
-                  }
-                  shadow-[0_4px_12px_rgba(124,58,237,0.05)]
-                  hover:shadow-[0_4px_16px_rgba(124,58,237,0.15)]
-                  focus:shadow-[0_4px_20px_rgba(124,58,237,0.2)]
-                  focus:outline-none`}
+                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600 
+                         bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                         focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none"
               />
-              <Search className={`absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 transition-colors duration-300
-                ${theme === 'dark'
-                  ? 'text-purple-400'
-                  : theme === 'sepia'
-                  ? 'text-purple-500'
-                  : 'text-purple-500'
-                }`} 
+              <LanguageFilter
+                selectedLanguage={selectedLanguage}
+                onLanguageSelect={setSelectedLanguage}
+                languages={languages}
               />
             </div>
 
-            <LanguageFilter
-              selectedLanguage={selectedLanguage}
-              onLanguageSelect={setSelectedLanguage}
-              languages={languages}
-            />
-
-            <FavoriteBooks
-              books={[...filteredBooks, ...filteredAudioBooks].filter(book => book.isFavorite)}
-              onBookClick={handleBookClick}
-            />
-          </>
+            {/* Books Grid */}
+            {filteredBooks.length > 0 ? (
+              <GenreSection
+                genre="all"
+                books={filteredBooks}
+                onBookClick={handleBookClick}
+              />
+            ) : (
+              <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+                {t('noBooks')}
+              </div>
+            )}
+          </div>
         );
+
+      case 'audiobooks':
+        return (
+          <div className="space-y-8">
+            {/* Search and Filter */}
+            <div className="space-y-6">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={t('searchBooks')}
+                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600 
+                         bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                         focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none"
+              />
+              <LanguageFilter
+                selectedLanguage={selectedLanguage}
+                onLanguageSelect={setSelectedLanguage}
+                languages={languages}
+              />
+            </div>
+
+            {/* Audiobooks Grid */}
+            {filteredAudioBooks.length > 0 ? (
+              <GenreSection
+                genre="all"
+                books={filteredAudioBooks}
+                onBookClick={handleBookClick}
+              />
+            ) : (
+              <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+                {t('noBooks')}
+              </div>
+            )}
+          </div>
+        );
+
+      case 'favorites':
+        const favoriteIds = JSON.parse(localStorage.getItem('favorites') || '[]');
+        const favoriteBooks = [...books, ...audiobooks].filter(book => 
+          favoriteIds.includes(book.id)
+        );
+        return (
+          <FavoriteBooks
+            books={favoriteBooks}
+            onBookClick={handleBookClick}
+          />
+        );
+
       case 'bookmarks':
         return (
           <BookmarksList
-            books={[...filteredBooks, ...filteredAudioBooks]}
-            onBookClick={handleBookmarkClick}
+            books={[...books, ...audiobooks]}
+            onBookClick={(book, page) => {
+              setSelectedBook(book);
+              // You can handle the page number here if needed
+            }}
           />
         );
-      case 'audiobooks':
-        return (
-          <>
-            <div className="relative mb-8">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={t('searchBooks')}
-                className={`w-full h-12 rounded-xl border-2 px-12 font-medium transition-all duration-300
-                  ${theme === 'dark' 
-                    ? 'bg-gray-800/90 border-purple-500/30 text-white placeholder-gray-400 focus:border-purple-400'
-                    : theme === 'sepia'
-                    ? 'bg-[#f8f4ea] border-purple-400/40 text-[#5c4b37] placeholder-[#8b7355] focus:border-purple-500'
-                    : 'bg-white border-purple-200 text-gray-800 placeholder-gray-500 focus:border-purple-400'
-                  }
-                  shadow-[0_4px_12px_rgba(124,58,237,0.05)]
-                  hover:shadow-[0_4px_16px_rgba(124,58,237,0.15)]
-                  focus:shadow-[0_4px_20px_rgba(124,58,237,0.2)]
-                  focus:outline-none`}
-              />
-              <Search className={`absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 transition-colors duration-300
-                ${theme === 'dark'
-                  ? 'text-purple-400'
-                  : theme === 'sepia'
-                  ? 'text-purple-500'
-                  : 'text-purple-500'
-                }`} 
-              />
-            </div>
 
-            <LanguageFilter
-              selectedLanguage={selectedLanguage}
-              onLanguageSelect={setSelectedLanguage}
-              languages={languages}
-            />
+      case 'settings':
+        return <SettingsView />;
 
-            <div className="space-y-8 pb-20">
-              {audioBookGenres.map((genre) => (
-                <GenreSection
-                  key={genre}
-                  genre={genre}
-                  books={getAudioBooksByGenre(genre)}
-                  onBookClick={handleBookClick}
-                />
-              ))}
-            </div>
-          </>
-        );
       default:
-        return (
-          <>
-            <div className="relative mb-8">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={t('searchBooks')}
-                className={`w-full h-12 rounded-xl border-2 px-12 font-medium transition-all duration-300
-                  ${theme === 'dark' 
-                    ? 'bg-gray-800/90 border-purple-500/30 text-white placeholder-gray-400 focus:border-purple-400'
-                    : theme === 'sepia'
-                    ? 'bg-[#f8f4ea] border-purple-400/40 text-[#5c4b37] placeholder-[#8b7355] focus:border-purple-500'
-                    : 'bg-white border-purple-200 text-gray-800 placeholder-gray-500 focus:border-purple-400'
-                  }
-                  shadow-[0_4px_12px_rgba(124,58,237,0.05)]
-                  hover:shadow-[0_4px_16px_rgba(124,58,237,0.15)]
-                  focus:shadow-[0_4px_20px_rgba(124,58,237,0.2)]
-                  focus:outline-none`}
-              />
-              <Search className={`absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 transition-colors duration-300
-                ${theme === 'dark'
-                  ? 'text-purple-400'
-                  : theme === 'sepia'
-                  ? 'text-purple-500'
-                  : 'text-purple-500'
-                }`} 
-              />
-            </div>
-
-            <LanguageFilter
-              selectedLanguage={selectedLanguage}
-              onLanguageSelect={setSelectedLanguage}
-              languages={languages}
-            />
-
-            <div className="space-y-8 pb-20">
-              {genres.map((genre) => (
-                <GenreSection
-                  key={genre.id}
-                  genre={genre.name}
-                  books={getBooksByGenre(genre.name)}
-                  onBookClick={handleBookClick}
-                />
-              ))}
-            </div>
-          </>
-        );
+        return null;
     }
   };
+
+  if (loading) {
+    return <SplashScreen />;
+  }
+
+  if (!isAuthenticated) {
+    if (showResetPassword) {
+      return (
+        <ResetPasswordPage 
+          onResetPassword={handleResetPassword}
+          onBackToLogin={() => setShowResetPassword(false)}
+        />
+      );
+    }
+
+    if (showSignUp) {
+      return (
+        <SignUpPage 
+          onSignUp={handleSignUp} 
+          onBackToLogin={() => setShowSignUp(false)} 
+        />
+      );
+    }
+
+    return (
+      <LoginPage 
+        onLogin={handleLogin} 
+        onSignUp={() => setShowSignUp(true)}
+        onForgotPassword={() => setShowResetPassword(true)}
+      />
+    );
+  }
 
   return (
     <>
       {showSplash && <SplashScreen />}
-      {!isAuthenticated ? (
-        showResetPassword ? (
-          <ResetPasswordPage 
-            onResetPassword={handleResetPassword}
-            onBackToLogin={() => setShowResetPassword(false)}
-          />
-        ) : showSignUp ? (
-          <SignUpPage 
-            onSignUp={handleSignUp} 
-            onBackToLogin={() => setShowSignUp(false)} 
-          />
-        ) : (
-          <LoginPage 
-            onLogin={handleLogin} 
-            onSignUp={() => setShowSignUp(true)}
-            onForgotPassword={() => setShowResetPassword(true)}
-          />
-        )
-      ) : (
-        <MainLayout
-          theme={theme}
-          themeClasses={themeClasses}
-          onThemeChange={setTheme}
-          currentView={currentView}
-          onViewChange={setCurrentView}
-        >
-          {renderContent()}
-          {selectedBook && (
-            <BookDetailsView
-              book={selectedBook}
-              onClose={() => setSelectedBook(null)}
-              onToggleFavorite={handleToggleFavorite}
-            />
-          )}
-        </MainLayout>
+      <MainLayout
+        theme={theme}
+        themeClasses={themeClasses}
+        onThemeChange={setTheme}
+        currentView={currentView}
+        onViewChange={setCurrentView}
+      >
+        {renderContent()}
+      </MainLayout>
+
+      {selectedBook && (
+        <BookDetailsView
+          book={selectedBook}
+          onClose={handleCloseBookDetails}
+          onToggleFavorite={handleToggleFavorite}
+        />
       )}
     </>
   );
